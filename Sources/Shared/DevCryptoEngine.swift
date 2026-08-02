@@ -17,10 +17,15 @@ enum EngineProvider {
             fatalError("passage engine unavailable")
             #endif
         case .pass:
+            PGPKeyStore.ensureDirectory()
+            if PGPKeyStore.hasKeys,
+               let engine = try? PGPonyEngine(keyDirectory: PGPKeyStore.keyDirectory) {
+                return engine
+            }
             #if DEBUG
             return DevFlipEngine()
             #else
-            fatalError("OpenPGP engine not wired yet — pass stores are dev-only.")
+            fatalError("No OpenPGP keys imported — pass stores need keys in pgp-keys/.")
             #endif
         }
     }

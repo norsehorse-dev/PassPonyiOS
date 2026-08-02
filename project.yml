@@ -8,6 +8,8 @@ options:
 packages:
   AgePonyCore:
     path: ../AgePony
+  NorseHorsePGPCore:
+    path: ../NorseHorsePGPCore
 
 settings:
   base:
@@ -53,6 +55,7 @@ targets:
       - sdk: libz.tbd
       - sdk: libiconv.tbd
       - package: AgePonyCore
+      - package: NorseHorsePGPCore
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: dev.norsehorse.passpony
@@ -85,6 +88,7 @@ targets:
       - sdk: libz.tbd
       - sdk: libiconv.tbd
       - package: AgePonyCore
+      - package: NorseHorsePGPCore
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: dev.norsehorse.passpony.autofill
