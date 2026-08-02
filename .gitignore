@@ -1,0 +1,8 @@
+PassPony.xcodeproj/
+Vendor/
+Sources/Generated/
+DerivedData/
+build/
+.DS_Store
+*.xcuserstate
+xcuserdata/

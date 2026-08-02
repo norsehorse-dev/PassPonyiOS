@@ -1,0 +1,68 @@
+name: PassPony
+options:
+  bundleIdPrefix: dev.norsehorse
+  deploymentTarget:
+    iOS: "17.0"
+  createIntermediateGroups: true
+
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    # Set your team locally (never committed):
+    #   xcodegen generate; then set in Xcode Signing & Capabilities, or
+    #   export via xcconfig.
+    CODE_SIGN_STYLE: Automatic
+
+targets:
+  PassPony:
+    type: application
+    platform: iOS
+    sources:
+      - Sources/App
+      - Sources/Shared
+      - Sources/Generated
+    dependencies:
+      - target: PassPonyAutofill
+        embed: true
+      - framework: Vendor/PassFFI.xcframework
+        embed: false
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: dev.norsehorse.passpony
+        CODE_SIGN_ENTITLEMENTS: Sources/App/PassPony.entitlements
+        SWIFT_OBJC_INTEROP_MODE: objc
+        LIBRARY_SEARCH_PATHS: "$(inherited)"
+    info:
+      path: Sources/App/Info.plist
+      properties:
+        UILaunchScreen: {}
+        NFCReaderUsageDescription: >-
+          PassPony uses NFC to talk to your OpenPGP smartcard (e.g. YubiKey)
+          to decrypt your passwords.
+        NSFaceIDUsageDescription: >-
+          Face ID protects access to your password store.
+        com.apple.developer.nfc.readersession.iso7816.select-identifiers:
+          - "D27600012401"
+
+  PassPonyAutofill:
+    type: app-extension
+    platform: iOS
+    sources:
+      - Sources/Autofill
+      - Sources/Shared
+      - Sources/Generated
+    dependencies:
+      - framework: Vendor/PassFFI.xcframework
+        embed: false
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: dev.norsehorse.passpony.autofill
+        CODE_SIGN_ENTITLEMENTS: Sources/Autofill/PassPonyAutofill.entitlements
+    info:
+      path: Sources/Autofill/Info.plist
+      properties:
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.authentication-services-credential-provider-ui
+          NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).CredentialProviderViewController
