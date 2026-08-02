@@ -18,6 +18,33 @@ enum StorePaths {
     }
 
     static var storeRoot: URL {
-        container.appendingPathComponent("store", isDirectory: true)
+        storeRoot(for: currentFormat)
+    }
+
+    /// Each format keeps its own store directory so switching is
+    /// non-destructive. Passage keeps the original "store" name for
+    /// continuity with existing installs.
+    static func storeRoot(for format: StoreFormat) -> URL {
+        switch format {
+        case .passage:
+            return container.appendingPathComponent("store", isDirectory: true)
+        case .pass:
+            return container.appendingPathComponent("pass-store", isDirectory: true)
+        }
+    }
+
+    private static let formatKey = "passpony.storeFormat"
+
+    /// The active store format, shared with the autofill extension via the
+    /// app group. Defaults to passage (the wedge format).
+    static var currentFormat: StoreFormat {
+        get {
+            let defaults = UserDefaults(suiteName: appGroupID) ?? .standard
+            return defaults.string(forKey: formatKey) == "pass" ? .pass : .passage
+        }
+        set {
+            let defaults = UserDefaults(suiteName: appGroupID) ?? .standard
+            defaults.set(newValue == .pass ? "pass" : "passage", forKey: formatKey)
+        }
     }
 }

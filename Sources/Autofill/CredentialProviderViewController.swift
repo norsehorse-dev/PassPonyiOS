@@ -28,13 +28,14 @@ final class CredentialProviderViewController: ASCredentialProviderViewController
             return cancel(.userInteractionRequired)
         }
         do {
+            let format = StorePaths.currentFormat
             let store = try PassStore.open(
                 root: StorePaths.storeRoot.path,
-                format: .passage
+                format: format
             )
             let content = try store.readEntry(
                 name: name,
-                backend: EngineProvider.engine(for: .passage)
+                backend: EngineProvider.engine(for: format)
             )
             let password = String(
                 data: entryPassword(content: content), encoding: .utf8
@@ -164,7 +165,7 @@ struct AutofillPickerView: View {
         do {
             let store = try PassStore.open(
                 root: StorePaths.storeRoot.path,
-                format: .passage
+                format: StorePaths.currentFormat
             )
             entries = try store.entries()
         } catch {
@@ -174,13 +175,14 @@ struct AutofillPickerView: View {
 
     private func pick(_ name: String) {
         do {
+            let format = StorePaths.currentFormat
             let store = try PassStore.open(
                 root: StorePaths.storeRoot.path,
-                format: .passage
+                format: format
             )
             let content = try store.readEntry(
                 name: name,
-                backend: EngineProvider.engine(for: .passage)
+                backend: EngineProvider.engine(for: format)
             )
             let password = String(
                 data: entryPassword(content: content), encoding: .utf8

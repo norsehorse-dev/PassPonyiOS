@@ -8,7 +8,7 @@ final class AppModel: ObservableObject {
     @Published var syncStatus: SyncStatus?
     @Published var lastError: String?
 
-    let format: StoreFormat = .passage
+    var format: StoreFormat { StorePaths.currentFormat }
     private(set) var store: PassStore?
     private(set) var git: GitSync?
 
@@ -30,7 +30,9 @@ final class AppModel: ObservableObject {
             let store = try PassStore.open(root: root.path, format: format)
             self.store = store
             #if DEBUG
-            if try store.entries().isEmpty {
+            // Demo seeding is passage-only; pass stores start from imported
+            // keys and a real .gpg-id.
+            if format == .passage, try store.entries().isEmpty {
                 try seedDemoStore(store)
             }
             #endif

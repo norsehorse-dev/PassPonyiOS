@@ -4,6 +4,7 @@ struct StoreListView: View {
     @EnvironmentObject var model: AppModel
     @State private var showingAdd = false
     @State private var showingSync = false
+    @State private var showingSettings = false
 
     var body: some View {
         List {
@@ -42,6 +43,13 @@ struct StoreListView: View {
                     Image(systemName: "arrow.triangle.2.circlepath")
                 }
             }
+            ToolbarItem(placement: .topBarLeading) {
+                Button {
+                    showingSettings = true
+                } label: {
+                    Image(systemName: "gearshape")
+                }
+            }
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
                     showingAdd = true
@@ -55,6 +63,9 @@ struct StoreListView: View {
         }
         .sheet(isPresented: $showingSync) {
             SyncView()
+        }
+        .sheet(isPresented: $showingSettings) {
+            SettingsView()
         }
         .overlay {
             if model.visibleEntries.isEmpty {

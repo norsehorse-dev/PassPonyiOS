@@ -39,8 +39,9 @@ final class PGPonyEngine: CryptoBackend {
             } else {
                 binary = rawFile
             }
-            let infos = (try? OpenPGPPacketParser.parseAllPublicKeys(from: Array(binary))) ?? []
-            if infos.isEmpty { continue } // not an OpenPGP key blob
+            guard let material = PGPKeyStore.publicKeyMaterial(from: binary) else {
+                continue // not an OpenPGP key blob
+            }
             do {
                 if let key = try Self.extractSecret(binary, passphrase: passphrase) {
                     decryption.append(key)
@@ -54,7 +55,9 @@ final class PGPonyEngine: CryptoBackend {
                     reason: "Wrong passphrase for \(url.lastPathComponent)"
                 )
             }
-            loaded.append(KeyEntry(raw: binary, infos: infos))
+            // publicBlob (not the original) so recipient extraction sees
+            // tag-14 public subkeys even for secret-only exports.
+            loaded.append(KeyEntry(raw: material.publicBlob, infos: material.infos))
         }
         self.decryptionKeys = decryption
         self.entries = loaded
@@ -183,5 +186,66 @@ enum PGPKeyStore {
             at: keyDirectory, includingPropertiesForKeys: nil
         )) ?? []
         return !files.isEmpty
+    }
+
+    /// Public-key packets for any key blob. A secret-only export (tags 5/7,
+    /// the common `gpg --export-secret-keys` shape) carries no public-key
+    /// packets, so derive them via the core's public-key derivation
+    /// (v4 Ed25519/Cv25519). Returns the infos plus the binary blob that
+    /// actually contains public packets — use that blob for recipient
+    /// extraction, and the original for secret extraction.
+    static func publicKeyMaterial(from binary: Data) -> (infos: [ParsedPublicKeyInfo], publicBlob: Data)? {
+        if let infos = try? OpenPGPPacketParser.parseAllPublicKeys(from: Array(binary)),
+           !infos.isEmpty {
+            return (infos, binary)
+        }
+        guard
+            let armored = try? OpenPGPPacketParser.transferablePublicKey(fromSecretKey: binary),
+            let derived = try? OpenPGPPacketParser.dearmor(armored),
+            let infos = try? OpenPGPPacketParser.parseAllPublicKeys(from: Array(derived)),
+            !infos.isEmpty
+        else { return nil }
+        return (infos, derived)
+    }
+
+    /// A key file summarized for pickers: primary-key identity plus every
+    /// fingerprint in the blob (subkeys included, for `.gpg-id` matching).
+    struct KeyFileInfo: Identifiable {
+        var id: String { file }
+        let file: String
+        let primaryFingerprint: String // uppercase hex
+        let algorithm: String
+        let isV6: Bool
+    }
+
+    /// Parse every imported key file into a picker-ready summary. Files that
+    /// aren't OpenPGP keys are skipped silently.
+    static func availableKeys() -> [KeyFileInfo] {
+        ensureDirectory()
+        let files = (try? FileManager.default.contentsOfDirectory(
+            at: keyDirectory, includingPropertiesForKeys: nil
+        )) ?? []
+        var out: [KeyFileInfo] = []
+        for url in files.sorted(by: { $0.lastPathComponent < $1.lastPathComponent }) {
+            guard let raw = try? Data(contentsOf: url) else { continue }
+            let binary: Data
+            if let text = String(data: raw, encoding: .utf8), text.contains("-----BEGIN") {
+                guard let dearmored = try? OpenPGPPacketParser.dearmor(text) else { continue }
+                binary = dearmored
+            } else {
+                binary = raw
+            }
+            guard
+                let material = publicKeyMaterial(from: binary),
+                let primary = material.infos.first
+            else { continue }
+            out.append(KeyFileInfo(
+                file: url.lastPathComponent,
+                primaryFingerprint: primary.fingerprintHex.uppercased(),
+                algorithm: primary.algorithmName,
+                isV6: primary.isV6
+            ))
+        }
+        return out
     }
 }
