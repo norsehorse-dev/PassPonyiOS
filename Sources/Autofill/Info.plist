@@ -27,5 +27,7 @@
 		<key>NSExtensionPrincipalClass</key>
 		<string>$(PRODUCT_MODULE_NAME).CredentialProviderViewController</string>
 	</dict>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Face ID unlocks your password store for autofill.</string>
 </dict>
 </plist>

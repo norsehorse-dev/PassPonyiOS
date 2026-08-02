@@ -18,6 +18,9 @@ final class CredentialProviderViewController: ASCredentialProviderViewController
     override func provideCredentialWithoutUserInteraction(
         for credentialRequest: ASCredentialRequest
     ) {
+        guard UnlockGate.isFresh else {
+            return cancel(.userInteractionRequired)
+        }
         guard
             let identity = credentialRequest.credentialIdentity as? ASPasswordCredentialIdentity,
             let name = identity.recordIdentifier
@@ -55,6 +58,22 @@ final class CredentialProviderViewController: ASCredentialProviderViewController
             domain: ASExtensionErrorDomain,
             code: code.rawValue
         ))
+    }
+
+    // MARK: With UI, single credential — the grace window lapsed. iOS
+    // re-invokes us here after userInteractionRequired; run the system auth
+    // sheet, then complete via the without-UI path (now fresh).
+
+    override func prepareInterfaceToProvideCredential(
+        for credentialRequest: ASCredentialRequest
+    ) {
+        Task { @MainActor in
+            if await UnlockGate.authenticate(reason: "Unlock to fill your password") {
+                self.provideCredentialWithoutUserInteraction(for: credentialRequest)
+            } else {
+                self.cancel(.userCanceled)
+            }
+        }
     }
 
     // MARK: With UI

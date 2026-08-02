@@ -93,6 +93,8 @@ targets:
       path: Sources/Autofill/Info.plist
       properties:
         CFBundleDisplayName: PassPony Autofill
+        NSFaceIDUsageDescription: >-
+          Face ID unlocks your password store for autofill.
         NSExtension:
           NSExtensionPointIdentifier: com.apple.authentication-services-credential-provider-ui
           NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).CredentialProviderViewController
