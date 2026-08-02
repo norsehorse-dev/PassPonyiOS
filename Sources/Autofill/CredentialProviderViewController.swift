@@ -8,15 +8,52 @@ import SwiftUI
 /// - with-UI path shows the entry picker (and, in week one, the spike checks).
 final class CredentialProviderViewController: ASCredentialProviderViewController {
 
-    // MARK: Without UI — the 95% path once passphrase caching lands (P4).
+    // MARK: Without UI — the 95% path.
+    //
+    // Works today because the identities file carries no passphrase gate yet.
+    // When the unlock policy lands (biometric gate / cached passphrase per
+    // the spike memo), this path first checks cache validity and escalates
+    // with userInteractionRequired on a miss.
 
     override func provideCredentialWithoutUserInteraction(
         for credentialRequest: ASCredentialRequest
     ) {
-        // Until the cached-vault-key flow lands, always escalate to UI.
+        guard
+            let identity = credentialRequest.credentialIdentity as? ASPasswordCredentialIdentity,
+            let name = identity.recordIdentifier
+        else {
+            return cancel(.userInteractionRequired)
+        }
+        do {
+            let store = try PassStore.open(
+                root: StorePaths.storeRoot.path,
+                format: .passage
+            )
+            let content = try store.readEntry(
+                name: name,
+                backend: EngineProvider.engine(for: .passage)
+            )
+            let password = String(
+                data: entryPassword(content: content), encoding: .utf8
+            ) ?? ""
+            let username = entryFields(content: content)
+                .first { $0.key == "username" || $0.key == "login" }?
+                .value ?? ""
+            extensionContext.completeRequest(
+                withSelectedCredential: ASPasswordCredential(
+                    user: username,
+                    password: password
+                )
+            )
+        } catch {
+            cancel(.userInteractionRequired)
+        }
+    }
+
+    private func cancel(_ code: ASExtensionError.Code) {
         extensionContext.cancelRequest(withError: NSError(
             domain: ASExtensionErrorDomain,
-            code: ASExtensionError.userInteractionRequired.rawValue
+            code: code.rawValue
         ))
     }
 

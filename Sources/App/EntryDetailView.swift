@@ -7,6 +7,7 @@ struct EntryDetailView: View {
     @State private var content: Data?
     @State private var revealed = false
     @State private var error: String?
+    @State private var showingEdit = false
 
     var body: some View {
         List {
@@ -22,6 +23,19 @@ struct EntryDetailView: View {
         }
         .navigationTitle(name.components(separatedBy: "/").last ?? name)
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button("Edit") { showingEdit = true }
+                    .disabled(content == nil)
+            }
+        }
+        .sheet(isPresented: $showingEdit) {
+            if let content {
+                EditEntryView(name: name, original: content) {
+                    load()
+                }
+            }
+        }
         .task { load() }
         .onDisappear { content = nil } // no lingering plaintext
     }

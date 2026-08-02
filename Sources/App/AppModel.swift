@@ -46,6 +46,7 @@ final class AppModel: ObservableObject {
         do {
             entries = try store.entries()
             syncStatus = try? git?.status()
+            AutofillIdentities.sync(entries: entries)
         } catch {
             lastError = String(describing: error)
         }
@@ -85,9 +86,9 @@ final class AppModel: ObservableObject {
     #if DEBUG
     private func seedDemoStore(_ store: PassStore) throws {
         let demo: [(String, String)] = [
-            ("web/github", "correct-horse\nusername: kevin\nurl: github.com\notpauth://totp/GitHub:kevin?secret=JBSWY3DPEHPK3PXP&issuer=GitHub\n"),
-            ("web/fastmail", "battery-staple\nusername: kevin@example.com\n"),
-            ("finance/bank", "hunter2-but-longer\nurl: bank.example\nnote: ask branch for wire limits\n"),
+            ("web/github.com", "correct-horse\nusername: kevin\nurl: github.com\notpauth://totp/GitHub:kevin?secret=JBSWY3DPEHPK3PXP&issuer=GitHub\n"),
+            ("web/fastmail.com", "battery-staple\nusername: kevin@example.com\n"),
+            ("finance/bank.example", "hunter2-but-longer\nurl: bank.example\nnote: ask branch for wire limits\n"),
             ("wifi/home", "pony-passphrase-9000\n"),
         ]
         for (name, content) in demo {

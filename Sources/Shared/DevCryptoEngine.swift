@@ -1,13 +1,33 @@
-// DEV ONLY — NOT CRYPTO.
-// A reversible byte-flip standing in for a real engine so the whole app runs
-// in the simulator before NorseHorsePGPCore / the AgePony engine are wired.
-// The real engines conform to the same generated `CryptoBackend` protocol;
-// swapping them in is a one-line change in EngineProvider.
-//
-// This engine must never ship: EngineProvider traps in release builds.
+// The engine seam. passage stores run on the real AgePonyCore engine;
+// pass stores still use the DEV byte-flip stand-in until NorseHorsePGPCore
+// is wired (next engine, same seam).
 
 import Foundation
 
+enum EngineProvider {
+    static func engine(for format: StoreFormat) -> CryptoBackend {
+        switch format {
+        case .passage:
+            if let engine = try? AgeIdentityStore.loadOrCreateEngine() {
+                return engine
+            }
+            #if DEBUG
+            return DevFlipEngine()
+            #else
+            fatalError("passage engine unavailable")
+            #endif
+        case .pass:
+            #if DEBUG
+            return DevFlipEngine()
+            #else
+            fatalError("OpenPGP engine not wired yet — pass stores are dev-only.")
+            #endif
+        }
+    }
+}
+
+// DEV ONLY — NOT CRYPTO. A reversible byte-flip used solely where a real
+// engine isn't wired yet (pass stores). Release builds trap instead.
 final class DevFlipEngine: CryptoBackend {
     func encrypt(plaintext: Data, recipients: [String]) throws -> Data {
         Data(plaintext.map { ~$0 })
@@ -15,18 +35,5 @@ final class DevFlipEngine: CryptoBackend {
 
     func decrypt(ciphertext: Data) throws -> Data {
         Data(ciphertext.map { ~$0 })
-    }
-}
-
-enum EngineProvider {
-    /// The single seam where real engines plug in:
-    /// - passage stores → AgePony Swift engine
-    /// - pass stores    → NorseHorsePGPCore
-    static func engine(for format: StoreFormat) -> CryptoBackend {
-        #if DEBUG
-        return DevFlipEngine()
-        #else
-        fatalError("Real crypto engines not wired yet — dev builds only.")
-        #endif
     }
 }
