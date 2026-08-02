@@ -138,9 +138,3 @@ struct AutofillPickerView: View {
         }
     }
 }
-
-extension EntryRef: Equatable {
-    public static func == (lhs: EntryRef, rhs: EntryRef) -> Bool {
-        lhs.name == rhs.name && lhs.hidden == rhs.hidden
-    }
-}

@@ -12,9 +12,16 @@ OUT_GEN="$(pwd)/Sources/Generated"
 [[ -d "$CORE/crates/pass-ffi" ]] || {
   echo "PassPonyCore not found at $CORE (set PASSPONY_CORE)"; exit 1; }
 
-rustup target add aarch64-apple-ios aarch64-apple-ios-sim
+# Rust's default iOS baseline is 10.0, far below what the SDK's C output
+# (OpenSSL, libgit2) assumes — ___chkstk_darwin is missing at that baseline.
+# Pin everything to the app's minimum.
+export IPHONEOS_DEPLOYMENT_TARGET=17.0
 
 pushd "$CORE" >/dev/null
+
+# Run inside the core dir so rustup targets the toolchain pinned by its
+# rust-toolchain.toml, not the default toolchain.
+rustup target add aarch64-apple-ios aarch64-apple-ios-sim
 
 cargo build --release -p pass-ffi
 cargo build --release -p pass-ffi --target aarch64-apple-ios

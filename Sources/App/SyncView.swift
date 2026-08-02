@@ -154,10 +154,10 @@ struct SyncView: View {
 /// Bridges the blocking FFI resolver callback to async SwiftUI presentation.
 /// `choose` is called on the sync thread; it blocks on a semaphore while the
 /// main actor presents the dialog and the user decides.
-final class UIResolver: ConflictResolver {
-    private let ask: (String) async -> ConflictChoice
+final class UIResolver: ConflictResolver, @unchecked Sendable {
+    private let ask: @Sendable (String) async -> ConflictChoice
 
-    init(ask: @escaping (String) async -> ConflictChoice) {
+    init(ask: @escaping @Sendable (String) async -> ConflictChoice) {
         self.ask = ask
     }
 
