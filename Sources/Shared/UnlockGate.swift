@@ -40,7 +40,9 @@ enum UnlockGate {
     /// On devices without any protection configured (fresh simulator),
     /// auth is treated as passed — development convenience only; real
     /// devices always have at least a passcode path.
-    static func authenticate(reason: String = "Unlock your password store") async -> Bool {
+    static func authenticate(
+        reason: String = L("Unlock your password store")
+    ) async -> Bool {
         let context = LAContext()
         var error: NSError?
         guard context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) else {

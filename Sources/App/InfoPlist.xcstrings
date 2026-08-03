@@ -1,0 +1,125 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "CFBundleDisplayName" : {
+      "comment" : "Bundle display name",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "PassPony"
+          }
+        }
+      },
+      "shouldTranslate" : false
+    },
+    "CFBundleName" : {
+      "comment" : "Bundle name",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "PassPony"
+          }
+        }
+      }
+    },
+    "NFCReaderUsageDescription" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PassPony nutzt NFC, um mit deiner OpenPGP-Smartcard (z. B. YubiKey) zu kommunizieren und deine Passwörter zu entschlüsseln."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PassPony uses NFC to talk to your OpenPGP smartcard (e.g. YubiKey) to decrypt your passwords."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PassPony usa NFC para comunicarse con tu tarjeta inteligente OpenPGP (p. ej. YubiKey) y descifrar tus contraseñas."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PassPony utilise le NFC pour communiquer avec votre carte à puce OpenPGP (p. ex. YubiKey) afin de déchiffrer vos mots de passe."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O PassPony usa NFC para se comunicar com seu cartão inteligente OpenPGP (ex.: YubiKey) e descriptografar suas senhas."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PassPony использует NFC для связи с вашей смарт-картой OpenPGP (напр. YubiKey), чтобы расшифровывать ваши пароли."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PassPony 使用 NFC 与你的 OpenPGP 智能卡（如 YubiKey）通信，以解密你的密码。"
+          }
+        }
+      }
+    },
+    "NSFaceIDUsageDescription" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Face ID schützt den Zugriff auf deinen Passwort-Speicher."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Face ID protects access to your password store."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Face ID protege el acceso a tu almacén de contraseñas."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Face ID protège l'accès à votre coffre de mots de passe."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O Face ID protege o acesso ao seu cofre de senhas."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Face ID защищает доступ к вашему хранилищу паролей."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "面容 ID 保护对你的密码库的访问。"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

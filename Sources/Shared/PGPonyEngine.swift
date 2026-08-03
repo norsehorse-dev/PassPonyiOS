@@ -20,12 +20,15 @@ final class PGPonyEngine: CryptoBackend {
     private let decryptionKeys: [Cv25519DecryptionKey]
     private let entries: [KeyEntry]
 
-    /// Load every key file in `keyDirectory`. A protected secret key with no
-    /// (or a wrong) passphrase surfaces as `CryptoError.Unavailable` naming
-    /// the file — the unlock UX catches that and re-inits with a passphrase.
+    /// Load every key file in `keyDirectory`. Protected keys that can't be
+    /// unlocked (no passphrase cached, or a wrong one) don't abort the load —
+    /// they're recorded in `PGPKeyStore.lockedKeyFiles` and skipped for
+    /// decryption, so unprotected keys keep working and Settings can offer
+    /// the unlock prompt.
     init(keyDirectory: URL, passphrase: String? = nil) throws {
         var decryption: [Cv25519DecryptionKey] = []
         var loaded: [KeyEntry] = []
+        var locked: [String] = []
         let files = (try? FileManager.default.contentsOfDirectory(
             at: keyDirectory, includingPropertiesForKeys: nil
         )) ?? []
@@ -47,13 +50,9 @@ final class PGPonyEngine: CryptoBackend {
                     decryption.append(key)
                 }
             } catch PacketParserError.passphraseRequired {
-                throw CryptoError.Unavailable(
-                    reason: "\(url.lastPathComponent) is passphrase-protected"
-                )
+                locked.append(url.lastPathComponent)
             } catch PacketParserError.wrongPassphrase {
-                throw CryptoError.Unavailable(
-                    reason: "Wrong passphrase for \(url.lastPathComponent)"
-                )
+                locked.append(url.lastPathComponent + " (wrong passphrase)")
             }
             // publicBlob (not the original) so recipient extraction sees
             // tag-14 public subkeys even for secret-only exports.
@@ -61,6 +60,7 @@ final class PGPonyEngine: CryptoBackend {
         }
         self.decryptionKeys = decryption
         self.entries = loaded
+        PGPKeyStore.lockedKeyFiles = locked
     }
 
     /// Try v4 extraction, then v6; passphrase errors propagate, structural
@@ -125,7 +125,7 @@ final class PGPonyEngine: CryptoBackend {
         for spec in recipients {
             guard let entry = resolve(spec) else {
                 throw CryptoError.Unavailable(
-                    reason: "No imported key matches \(spec) (fingerprint or 16-hex key ID)"
+                    reason: L("No imported key matches \(spec) (fingerprint or 16-hex key ID)")
                 )
             }
             if let r = try? OpenPGPPacketParser.cv25519Recipient(fromPublicKey: entry.raw) {
@@ -134,7 +134,7 @@ final class PGPonyEngine: CryptoBackend {
                 targets.append(r)
             } else {
                 throw CryptoError.Unavailable(
-                    reason: "Key for \(spec) has no usable encryption subkey (RSA keys need the smartcard path)"
+                    reason: L("Key for \(spec) has no usable encryption subkey (RSA keys need the smartcard path)")
                 )
             }
         }
@@ -180,6 +180,12 @@ enum PGPKeyStore {
             at: keyDirectory, withIntermediateDirectories: true
         )
     }
+
+    /// Key files that couldn't be unlocked on the last engine load —
+    /// Settings offers the passphrase prompt when this is non-empty.
+    /// (Written on engine init from whichever thread loads the store;
+    /// read from the UI. Simple last-write-wins is fine for a status list.)
+    static var lockedKeyFiles: [String] = []
 
     static var hasKeys: Bool {
         let files = (try? FileManager.default.contentsOfDirectory(

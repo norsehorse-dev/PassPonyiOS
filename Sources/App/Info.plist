@@ -20,15 +20,9 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
-	<key>NFCReaderUsageDescription</key>
-	<string>PassPony uses NFC to talk to your OpenPGP smartcard (e.g. YubiKey) to decrypt your passwords.</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>Face ID protects access to your password store.</string>
 	<key>UILaunchScreen</key>
 	<dict/>
-	<key>com.apple.developer.nfc.readersession.iso7816.select-identifiers</key>
-	<array>
-		<string>D27600012401</string>
-	</array>
 </dict>
 </plist>

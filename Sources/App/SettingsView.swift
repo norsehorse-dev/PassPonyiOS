@@ -6,11 +6,15 @@ import UniformTypeIdentifiers
 struct SettingsView: View {
     @EnvironmentObject var model: AppModel
     @Environment(\.dismiss) private var dismiss
+    @AppStorage("passpony.onboardingCompleted") private var onboardingCompleted = true
 
     @State private var format = StorePaths.currentFormat
     @State private var keyFiles: [String] = []
     @State private var importing = false
     @State private var initializing = false
+    @State private var reencrypting = false
+    @State private var keyPassphrase = ""
+    @State private var lockedKeys: [String] = []
     @State private var gpgIDLines: [String] = []
     @State private var message: String?
 
@@ -48,6 +52,22 @@ struct SettingsView: View {
                         }
                     }
 
+                    if !lockedKeys.isEmpty {
+                        Section {
+                            ForEach(lockedKeys, id: \.self) { file in
+                                Label(file, systemImage: "lock")
+                                    .foregroundStyle(.orange)
+                            }
+                            SecureField("Key passphrase", text: $keyPassphrase)
+                            Button("Unlock") { unlockKeys() }
+                                .disabled(keyPassphrase.isEmpty)
+                        } header: {
+                            Text("Locked keys")
+                        } footer: {
+                            Text("The passphrase is cached for \(Int(UnlockGate.gracePeriod / 60)) minutes (shared with autofill), then cleared.")
+                        }
+                    }
+
                     Section {
                         if gpgIDLines.isEmpty {
                             Button {
@@ -71,6 +91,102 @@ struct SettingsView: View {
                     }
                 }
 
+                Section("Maintenance") {
+                    Button {
+                        reencrypting = true
+                    } label: {
+                        Label("Re-encrypt store…", systemImage: "arrow.triangle.2.circlepath.circle")
+                    }
+                }
+
+                // Live in-app override, applied immediately: Text picks it
+                // up via the root locale environment (RootView), formatted
+                // strings via L(_:). Language names stay in their own
+                // language on purpose (verbatim, not localized).
+                Section {
+                    Picker(selection: $model.language) {
+                        Text("System").tag("")
+                        Text(verbatim: "English").tag("en")
+                        Text(verbatim: "Español").tag("es")
+                        Text(verbatim: "Français").tag("fr")
+                        Text(verbatim: "Deutsch").tag("de")
+                        Text(verbatim: "简体中文").tag("zh-Hans")
+                        Text(verbatim: "Português (Brasil)").tag("pt-BR")
+                        Text(verbatim: "Русский").tag("ru")
+                    } label: {
+                        Label("Language", systemImage: "globe")
+                    }
+                    // Replay the first-run tour. Closing the sheet first
+                    // lets RootView swap straight to the carousel; the
+                    // interactive slides adapt when the store already has
+                    // entries or keys.
+                    Button {
+                        model.showingSettings = false
+                        onboardingCompleted = false
+                    } label: {
+                        Label("Show welcome tour again", systemImage: "sparkles")
+                    }
+                }
+
+                Section {
+                    LabeledContent("Version", value: appVersion)
+                    Link(destination: URL(string: Self.appRepoURL)!) {
+                        Label {
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text("PassPony on GitHub")
+                                    .foregroundStyle(.primary)
+                                Text("The full app source (Apache-2.0).")
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                            }
+                        } icon: {
+                            Image(systemName: "chevron.left.forwardslash.chevron.right")
+                        }
+                    }
+                    Link(destination: URL(string: Self.coreRepoURL)!) {
+                        Label {
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text("Crypto core on GitHub")
+                                    .foregroundStyle(.primary)
+                                Text("Open source (Apache-2.0). Inspect the cryptography.")
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                            }
+                        } icon: {
+                            Image(systemName: "chevron.left.forwardslash.chevron.right")
+                        }
+                    }
+                    Link(destination: URL(string: "mailto:norsehorse@norsehor.se")!) {
+                        Label("Contact", systemImage: "envelope")
+                    }
+                } header: {
+                    Text("About")
+                }
+
+                Section {
+                    ForEach(Self.otherApps.indices, id: \.self) { index in
+                        let app = Self.otherApps[index]
+                        Link(destination: URL(string: app.url)!) {
+                            Label {
+                                VStack(alignment: .leading, spacing: 2) {
+                                    Text(app.name)
+                                        .foregroundStyle(.primary)
+                                    Text(app.tagline)
+                                        .font(.caption)
+                                        .foregroundStyle(.secondary)
+                                }
+                            } icon: {
+                                Image(systemName: app.icon)
+                                    .foregroundStyle(app.tint)
+                            }
+                        }
+                    }
+                } header: {
+                    Text("More from NorseHorse")
+                } footer: {
+                    Text("Other apps from the same developer.")
+                }
+
                 Section("Diagnostics") {
                     LabeledContent("Core", value: coreVersion())
                     LabeledContent("Entries", value: "\(model.entries.count)")
@@ -85,6 +201,9 @@ struct SettingsView: View {
                     Section { Text(message).font(.footnote) }
                 }
             }
+            // Re-key the form in place on language change: the sheet stays
+            // presented, only its content rebuilds in the new language.
+            .id(model.language)
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -102,8 +221,39 @@ struct SettingsView: View {
             .sheet(isPresented: $initializing, onDismiss: { refreshKeys() }) {
                 InitializeStoreView()
             }
+            .sheet(isPresented: $reencrypting) {
+                ReencryptView()
+            }
             .onAppear { refreshKeys() }
         }
+    }
+
+    // MARK: - About / other apps
+
+    private static let appRepoURL = "https://github.com/norsehorse-dev/PassPonyiOS"
+    private static let coreRepoURL = "https://github.com/norsehorse-dev/PassPonyCore"
+
+    /// App names render verbatim (brand names, never translated); taglines
+    /// are LocalizedStringKey and resolve through the catalog.
+    private static let otherApps: [(name: String, tagline: LocalizedStringKey, icon: String, tint: Color, url: String)] = [
+        ("PGPony", "OpenPGP messages, files, and keys", "envelope.fill", .purple,
+         "https://apps.apple.com/us/app/pgpony/id6759994432"),
+        ("AgePony", "Simple, modern file encryption (age)", "lock.fill", .indigo,
+         "https://apps.apple.com/app/id6774821172"),
+        ("QuorumPony", "Quorum key backup & recovery", "person.3.fill", .teal,
+         "https://apps.apple.com/us/app/quorumpony-key-backup/id6783608628"),
+        ("CarrierPony", "PGP chat and encrypted files", "paperplane.fill", .orange,
+         "https://apps.apple.com/us/app/carrierpony-pgp-chat-files/id6786930072"),
+        ("BurnPony", "Self-destructing encrypted messages", "flame.fill", .red,
+         "https://apps.apple.com/us/app/burnpony/id6788513233"),
+        ("RelayPony", "Encrypted file transfer", "arrow.left.arrow.right", .green,
+         "https://apps.apple.com/us/app/relaypony-file-transfer/id6785085525"),
+    ]
+
+    /// Marketing version from the bundle so the displayed version tracks
+    /// the real build instead of a hardcoded value.
+    private var appVersion: String {
+        Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "?"
     }
 
     private func refreshKeys() {
@@ -116,6 +266,41 @@ struct SettingsView: View {
         gpgIDLines = (try? String(contentsOf: gpgID, encoding: .utf8))?
             .split(whereSeparator: \.isNewline)
             .map(String.init) ?? []
+        // Building the engine is what discovers locked keys — opening the
+        // store alone never decrypts, so we must actually load here.
+        if format == .pass {
+            _ = try? PGPonyEngine(
+                keyDirectory: PGPKeyStore.keyDirectory,
+                passphrase: PassphraseCache.load()
+            )
+        }
+        lockedKeys = PGPKeyStore.lockedKeyFiles
+    }
+
+    private func unlockKeys() {
+        let attempt = keyPassphrase
+        keyPassphrase = ""
+        // Load the engine directly with the candidate passphrase, then
+        // inspect what's still locked — that's the pass/fail signal.
+        _ = try? PGPonyEngine(
+            keyDirectory: PGPKeyStore.keyDirectory,
+            passphrase: attempt
+        )
+        let stillLocked = PGPKeyStore.lockedKeyFiles
+        if stillLocked.isEmpty {
+            PassphraseCache.save(attempt)
+            message = L("Key unlocked.")
+            model.openStore()
+        } else if stillLocked.contains(where: { $0.contains("wrong passphrase") }) {
+            message = L("Wrong passphrase.")
+        } else {
+            // Some keys unlocked, others need a different passphrase.
+            PassphraseCache.save(attempt)
+            message = L("Unlocked some keys; \(stillLocked.count) still locked.")
+            model.openStore()
+        }
+        lockedKeys = stillLocked
+        refreshKeys()
     }
 
     private func importKeys(_ result: Result<[URL], Error>) {
@@ -131,11 +316,11 @@ struct SettingsView: View {
                 try data.write(to: dest, options: [.completeFileProtection])
                 imported += 1
             } catch {
-                message = "Import failed for \(url.lastPathComponent): \(error.localizedDescription)"
+                message = L("Import failed for \(url.lastPathComponent): \(error.localizedDescription)")
             }
         }
         if imported > 0 {
-            message = "Imported \(imported) key file\(imported == 1 ? "" : "s")."
+            message = L("Imported \(imported) key files.")
         }
         refreshKeys()
         model.openStore()

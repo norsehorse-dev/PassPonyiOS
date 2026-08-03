@@ -2,6 +2,11 @@
 // Answers the open items from PassPonyCore docs/spike-corenfc-credential-
 // extension.md empirically on-device. Remove after the spike memo is updated
 // with the verdicts.
+//
+// Debug-only: the whole file compiles out of release builds so App Review
+// never sees the spike screen or a CoreNFC link without the NFC feature.
+
+#if DEBUG
 
 import AuthenticationServices
 import CoreNFC
@@ -65,3 +70,5 @@ struct SpikeChecksView: View {
         results = out
     }
 }
+
+#endif

@@ -4,6 +4,13 @@ import SwiftUI
 struct PassPonyApp: App {
     @StateObject private var model = AppModel()
 
+    init() {
+        // Point Bundle.main at the stored language override before any view
+        // resolves a string, so a launch in an overridden language starts
+        // correct everywhere.
+        AppLanguage.activate()
+    }
+
     var body: some Scene {
         WindowGroup {
             RootView()
@@ -15,25 +22,46 @@ struct PassPonyApp: App {
 struct RootView: View {
     @EnvironmentObject var model: AppModel
     @Environment(\.scenePhase) private var scenePhase
+    @AppStorage("passpony.onboardingCompleted") private var onboardingCompleted = false
     @State private var locked = true
 
     var body: some View {
-        NavigationStack {
-            StoreListView()
-        }
-        .redacted(reason: locked ? .privacy : [])
-        .overlay {
-            if locked {
-                LockedView {
+        Group {
+            if onboardingCompleted {
+                NavigationStack {
+                    StoreListView()
+                }
+                .redacted(reason: locked ? .privacy : [])
+                .overlay {
+                    if locked {
+                        LockedView {
+                            Task { await unlock() }
+                        }
+                    }
+                }
+            } else {
+                // First run (or a replay from Settings): the tour replaces
+                // the lock screen and the store list until finished or
+                // skipped. The store is already open so the interactive
+                // slides act on the real thing.
+                OnboardingView {
+                    onboardingCompleted = true
                     Task { await unlock() }
                 }
             }
         }
+        // Live language override. No .id() here: remounting the whole tree
+        // would tear down and re-present the Settings sheet (a visible
+        // jump). The mounted surfaces re-key themselves instead
+        // (SettingsView's Form, StoreListView's List, OnboardingView's
+        // pager).
+        .environment(\.locale, model.language.isEmpty ? .autoupdatingCurrent : Locale(identifier: model.language))
         .task {
             model.openStore()
-            await unlock()
+            if onboardingCompleted { await unlock() }
         }
         .onChange(of: scenePhase) { _, phase in
+            guard onboardingCompleted else { return }
             switch phase {
             case .background:
                 if !UnlockGate.isFresh { locked = true }

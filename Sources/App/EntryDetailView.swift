@@ -4,10 +4,12 @@ struct EntryDetailView: View {
     @EnvironmentObject var model: AppModel
     let name: String
 
+    @Environment(\.dismiss) private var dismiss
     @State private var content: Data?
     @State private var revealed = false
     @State private var error: String?
     @State private var showingEdit = false
+    @State private var showingMove = false
 
     var body: some View {
         List {
@@ -25,8 +27,21 @@ struct EntryDetailView: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                Button("Edit") { showingEdit = true }
+                Menu {
+                    Button {
+                        showingEdit = true
+                    } label: {
+                        Label("Edit fields", systemImage: "pencil")
+                    }
                     .disabled(content == nil)
+                    Button {
+                        showingMove = true
+                    } label: {
+                        Label("Move / rename", systemImage: "folder")
+                    }
+                } label: {
+                    Image(systemName: "ellipsis.circle")
+                }
             }
         }
         .sheet(isPresented: $showingEdit) {
@@ -34,6 +49,12 @@ struct EntryDetailView: View {
                 EditEntryView(name: name, original: content) {
                     load()
                 }
+            }
+        }
+        .sheet(isPresented: $showingMove) {
+            MoveEntryView(currentName: name) {
+                // Name changed; this detail view is stale — pop it.
+                dismiss()
             }
         }
         .task { load() }
@@ -44,7 +65,7 @@ struct EntryDetailView: View {
         do {
             content = try model.readEntry(name)
         } catch {
-            self.error = String(describing: error)
+            self.error = error.ponyMessage
         }
     }
 

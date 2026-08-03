@@ -1,18 +1,31 @@
 # PassPony (iOS)
 
-SwiftUI app over the shared Rust core (PassPonyCore). Browse, search, view,
-add, and delete entries in pass/passage stores; live TOTP; git sync with
-per-file conflict resolution; QuickType autofill extension.
+A password manager that speaks pass and passage: plain encrypted files, your
+keys, git sync. SwiftUI app over the shared Rust core (PassPonyCore).
 
-Crypto note: DEBUG builds use `DevFlipEngine` — a byte-flip stand-in, not
-crypto — so the full app runs in the simulator today. The real engines
-(NorseHorsePGPCore, AgePony Swift) plug into `EngineProvider`, the single
-seam, and release builds trap until they do.
+- Browse, search, and edit entries in pass (OpenPGP) and passage (age)
+  stores. Each format keeps its own store; switching never touches the
+  other store's data.
+- Live TOTP with a countdown ring; ephemeral, local-only clipboard that
+  clears after 45 seconds.
+- Git sync: clone, publish, push, and per-entry conflict resolution.
+  Commit messages match the pass CLI format, so a store stays
+  interoperable with desktop pass and passage users.
+- QuickType autofill through a credential provider extension. Only entry
+  names are indexed; nothing decrypts until you fill.
+- Face ID / Touch ID unlock with a 5-minute grace window shared with
+  autofill.
+- Localized in English, Spanish, French, German, Simplified Chinese,
+  Brazilian Portuguese, and Russian, with live in-app language switching.
+- First-run tour: pick a language, choose a format, clone an existing
+  store or import keys, add a first pass, and turn on autofill without
+  leaving the app.
 
 ## First build
 
-Prereqs: Xcode 15+, rustup, `brew install xcodegen`, PassPonyCore checked out
-(default assumed at `~/Apps/PassPonyCore`; override with `PASSPONY_CORE`).
+Prereqs: Xcode 16+, rustup, `brew install xcodegen`, PassPonyCore checked
+out (default assumed at `~/Apps/PassPonyCore`; override with
+`PASSPONY_CORE`).
 
 ```
 bash scripts/build-core.sh
@@ -20,37 +33,46 @@ xcodegen generate
 open PassPony.xcodeproj
 ```
 
-Then set your development team in Signing & Capabilities (both targets), and
-adjust the app group if your team prefix requires it (also in
-`Sources/Shared/StorePaths.swift` and both `.entitlements` files).
+`DEVELOPMENT_TEAM` in `project.yml` is pinned to the NorseHorse team;
+change it to yours, and adjust the app group if your team prefix requires
+it (also in `Sources/Shared/StorePaths.swift` and both `.entitlements`
+files). The project is generated: version, team, and build settings live
+in `project.yml`, and anything set in the Xcode target editor is reverted
+on the next xcodegen run.
 
 `scripts/build-core.sh` rebuilds the Rust core into
-`Vendor/PassFFI.xcframework` and regenerates `Sources/Generated/PassFFI.swift`
-— rerun it whenever PassPonyCore changes. Both outputs are gitignored;
-`project.yml` is the source of truth for the Xcode project.
+`Vendor/PassFFI.xcframework` and regenerates
+`Sources/Generated/PassFFI.swift`. Rerun it whenever PassPonyCore changes.
+Both outputs are gitignored; `project.yml` is the source of truth for the
+Xcode project.
 
 ## Layout
 
-- `Sources/App` — SwiftUI app: list/search, entry detail (reveal, ephemeral
-  clipboard, TOTP ring), add entry, sync UI with the conflict sheet from
-  PassPonyCore `docs/conflict-ux.md`.
-- `Sources/Autofill` — ASCredentialProviderExtension: picker UI backed by the
-  shared app-group store, plus `SpikeChecksView` — the week-one spike checks
-  (NFC availability, CryptoTokenKit slots, token keychain visibility) from
-  the CoreNFC spike memo. Run those on an iPhone 15+ with a USB-C YubiKey
-  inserted and record the verdicts back into the memo.
-- `Sources/Shared` — engine seam, store paths (app group), used by both
-  targets.
-- `Sources/Generated`, `Vendor/` — build products of `scripts/build-core.sh`.
+- `Sources/App`: SwiftUI app (list/search, entry detail, editing, sync UI
+  with the per-file conflict sheet, settings, onboarding).
+- `Sources/Autofill`: ASCredentialProviderExtension serving QuickType
+  fills from the app-group store.
+- `Sources/Shared`: engine seam, store paths, unlock gate, language
+  override, and the string catalog. Compiled into both targets.
+- `Sources/Generated`, `Vendor/`: build products of
+  `scripts/build-core.sh`.
 
-## Known P3 to-dos
+## Crypto
 
-- Wire real crypto engines behind `EngineProvider` (passphrase caching via
-  app group + keychain, the PGPony 5-minute pattern).
-- Smartcard decrypt in the main app (NFC + USB-C), bounce-back flow per the
-  spike memo.
-- Edit view for existing entries (field-level, byte-faithful via
-  `entrySetField` / `entrySetPassword`).
-- `ASCredentialIdentityStore` population from the entry index for QuickType.
-- Store settings: format choice, iCloud-backup exclusion toggle, remote
-  setup with SSH once the credentials callback lands in core.
+passage stores run on AgePonyCore (pure-Swift age v1). pass stores run on
+NorseHorsePGPCore (Cv25519 v4 and X25519/Ed25519 v6 keys in software).
+RSA-keyed stores need the smartcard path, which is not implemented yet;
+software RSA decrypt is deliberately absent from the core. DEBUG builds
+fall back to a byte-flip stand-in engine only when a real engine cannot
+load; release builds trap instead.
+
+## Not yet
+
+- Smartcard decrypt (NFC and USB-C YubiKey). Scaffolding exists behind
+  the spike memo in PassPonyCore docs.
+- SSH remotes for git sync; use HTTPS with a token for now.
+- Passphrase-protected identities files for passage.
+
+## License
+
+Apache-2.0. See LICENSE.

@@ -88,14 +88,14 @@ struct InitializeStoreView: View {
             let content = fingerprints.joined(separator: "\n") + "\n"
             let gpgID = root.appendingPathComponent(".gpg-id")
             guard !FileManager.default.fileExists(atPath: gpgID.path) else {
-                error = "Store already has a .gpg-id — re-keying comes with the re-encrypt flow."
+                error = L("Store already has a .gpg-id — re-keying comes with the re-encrypt flow.")
                 return
             }
             try Data(content.utf8).write(to: gpgID, options: [.completeFileProtection])
             model.openStore()
             dismiss()
         } catch {
-            self.error = String(describing: error)
+            self.error = error.ponyMessage
         }
     }
 }

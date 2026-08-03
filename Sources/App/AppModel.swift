@@ -8,6 +8,21 @@ final class AppModel: ObservableObject {
     @Published var syncStatus: SyncStatus?
     @Published var lastError: String?
 
+    /// Lives here rather than in StoreListView so the Settings sheet's
+    /// presentation state sits outside any re-keyed subtree and can never
+    /// be dropped by a language-change rebuild.
+    @Published var showingSettings = false
+
+    /// In-app language override ("" follows the system). Published so the
+    /// root view rebuilds the moment the Settings picker changes it; the
+    /// didSet persists the choice and re-points this process's lookups.
+    @Published var language: String = AppLanguage.current {
+        didSet {
+            guard language != oldValue else { return }
+            AppLanguage.select(language)
+        }
+    }
+
     var format: StoreFormat { StorePaths.currentFormat }
     private(set) var store: PassStore?
     private(set) var git: GitSync?
@@ -31,15 +46,17 @@ final class AppModel: ObservableObject {
             self.store = store
             #if DEBUG
             // Demo seeding is passage-only; pass stores start from imported
-            // keys and a real .gpg-id.
-            if format == .passage, try store.entries().isEmpty {
+            // keys and a real .gpg-id. Held back until the tour is done so
+            // the onboarding import/try slides see a genuinely empty store.
+            if format == .passage, try store.entries().isEmpty,
+               UserDefaults.standard.bool(forKey: "passpony.onboardingCompleted") {
                 try seedDemoStore(store)
             }
             #endif
             self.git = try? GitSync.open(root: root.path)
             refresh()
         } catch {
-            lastError = String(describing: error)
+            lastError = error.ponyMessage
         }
     }
 
@@ -50,7 +67,7 @@ final class AppModel: ObservableObject {
             syncStatus = try? git?.status()
             AutofillIdentities.sync(entries: entries)
         } catch {
-            lastError = String(describing: error)
+            lastError = error.ponyMessage
         }
     }
 
@@ -69,7 +86,26 @@ final class AppModel: ObservableObject {
             try? git?.commitPaths(paths: [file], message: message)
             refresh()
         } catch {
-            lastError = String(describing: error)
+            lastError = error.ponyMessage
+        }
+    }
+
+    /// Move/rename. Core semantics: passage always re-encrypts the moved
+    /// entry; pass re-encrypts only when the resolved key set differs.
+    func moveEntry(from: String, to: String) -> Bool {
+        guard let store else { return false }
+        do {
+            try store.moveEntry(from: from, to: to, backend: engine)
+            let ext = format == .passage ? "age" : "gpg"
+            try? git?.commitPaths(
+                paths: ["\(from).\(ext)", "\(to).\(ext)"],
+                message: commitMessageRename(from: from, to: to)
+            )
+            refresh()
+            return true
+        } catch {
+            lastError = error.ponyMessage
+            return false
         }
     }
 
@@ -81,7 +117,7 @@ final class AppModel: ObservableObject {
             try? git?.commitPaths(paths: [file], message: commitMessageRemove(name: name))
             refresh()
         } catch {
-            lastError = String(describing: error)
+            lastError = error.ponyMessage
         }
     }
 

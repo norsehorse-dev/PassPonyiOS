@@ -4,6 +4,7 @@ options:
   deploymentTarget:
     iOS: "18.0"
   createIntermediateGroups: true
+  developmentLanguage: en
 
 packages:
   AgePonyCore:
@@ -14,11 +15,14 @@ packages:
 settings:
   base:
     SWIFT_VERSION: "5.9"
-    MARKETING_VERSION: "0.1.0"
+    SWIFT_EMIT_LOC_STRINGS: YES
+    LOCALIZATION_PREFERS_STRING_CATALOGS: YES
+    # Version, build number, and team live HERE, not in the Xcode UI.
+    # This is a generated project: anything set in Xcode's target editor
+    # is silently reverted to these values on the next xcodegen run.
+    MARKETING_VERSION: "1.0"
     CURRENT_PROJECT_VERSION: "1"
-    # Set your team locally (never committed):
-    #   xcodegen generate; then set in Xcode Signing & Capabilities, or
-    #   export via xcconfig.
+    DEVELOPMENT_TEAM: 4AVJZV35G8
     CODE_SIGN_STYLE: Automatic
 
 schemes:
@@ -59,6 +63,7 @@ targets:
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: dev.norsehorse.passpony
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         CODE_SIGN_ENTITLEMENTS: Sources/App/PassPony.entitlements
         SWIFT_OBJC_INTEROP_MODE: objc
         LIBRARY_SEARCH_PATHS: "$(inherited)"
@@ -67,13 +72,18 @@ targets:
       properties:
         CFBundleDisplayName: PassPony
         UILaunchScreen: {}
-        NFCReaderUsageDescription: >-
-          PassPony uses NFC to talk to your OpenPGP smartcard (e.g. YubiKey)
-          to decrypt your passwords.
+        # NFC smartcard scaffolding removed for the first store submission;
+        # the feature is not implemented yet (spike memo: PassPonyCore
+        # docs/spike-corenfc-credential-extension.md). To restore when the
+        # smartcard path ships, add back here:
+        #   NFCReaderUsageDescription (translations already live in
+        #   Sources/App/InfoPlist.xcstrings)
+        #   com.apple.developer.nfc.readersession.iso7816.select-identifiers:
+        #     ["D27600012401"]
+        # and the nfc.readersession.formats [TAG] entitlement in
+        # Sources/App/PassPony.entitlements.
         NSFaceIDUsageDescription: >-
           Face ID protects access to your password store.
-        com.apple.developer.nfc.readersession.iso7816.select-identifiers:
-          - "D27600012401"
 
   PassPonyAutofill:
     type: app-extension
@@ -102,3 +112,10 @@ targets:
         NSExtension:
           NSExtensionPointIdentifier: com.apple.authentication-services-credential-provider-ui
           NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).CredentialProviderViewController
+          NSExtensionAttributes:
+            # Required on modern iOS for the provider to appear in
+            # Settings > AutoFill & Passwords. Passwords only for now;
+            # add ProvidesOneTimeCodes / ProvidesPasskeys when the
+            # extension implements those request types.
+            ASCredentialProviderExtensionCapabilities:
+              ProvidesPasswords: true

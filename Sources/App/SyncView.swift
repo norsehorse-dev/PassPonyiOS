@@ -62,7 +62,12 @@ struct SyncView: View {
             if let st = model.syncStatus {
                 LabeledContent("Unpushed", value: "\(st.ahead)")
                 LabeledContent("Behind remote", value: "\(st.behind)")
-                LabeledContent("Remote", value: st.hasRemote ? "configured" : "none")
+                LabeledContent(
+                    "Remote",
+                    value: st.hasRemote
+                        ? L("configured")
+                        : L("none")
+                )
             } else {
                 Text("No git repository — clone a store or use local-only mode.")
                     .foregroundStyle(.secondary)
@@ -89,7 +94,7 @@ struct SyncView: View {
                 run {
                     try model.git?.setRemote(url: publishURL)
                     await MainActor.run {
-                        message = "Remote updated."
+                        message = L("Remote updated.")
                         publishURL = ""
                         model.refresh()
                     }
@@ -199,7 +204,7 @@ struct SyncView: View {
             do {
                 try await work()
             } catch {
-                await MainActor.run { self.message = String(describing: error) }
+                await MainActor.run { self.message = error.ponyMessage }
             }
             await MainActor.run { self.busy = false }
         }
@@ -221,13 +226,14 @@ struct SyncView: View {
 
     static func describe(_ outcome: SyncOutcome) -> String {
         switch outcome {
-        case .upToDate: return "Already up to date."
-        case .fastForwarded: return "Pulled changes from remote."
-        case .rebased(let replayed): return "Merged cleanly (\(replayed) local change\(replayed == 1 ? "" : "s") replayed)."
+        case .upToDate: return L("Already up to date.")
+        case .fastForwarded: return L("Pulled changes from remote.")
+        case .rebased(let replayed):
+            return L("Merged cleanly (\(Int(replayed)) local changes replayed).")
         case .resolvedConflicts(let resolved, let keptBoth):
-            var text = "Resolved \(resolved.count) conflict\(resolved.count == 1 ? "" : "s")."
+            var text = L("Resolved \(resolved.count) conflicts.")
             if !keptBoth.isEmpty {
-                text += " Kept both for: \(keptBoth.joined(separator: ", "))."
+                text += " " + L("Kept both for: \(keptBoth.joined(separator: ", ")).")
             }
             return text
         }

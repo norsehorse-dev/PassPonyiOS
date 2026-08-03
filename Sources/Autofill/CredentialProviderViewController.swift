@@ -1,5 +1,11 @@
 import AuthenticationServices
 import SwiftUI
+import os
+
+private let log = Logger(
+    subsystem: "dev.norsehorse.passpony.autofill",
+    category: "provider"
+)
 
 /// The autofill extension. P3/P4 flow per the spike memo
 /// (PassPonyCore docs/spike-corenfc-credential-extension.md):
@@ -15,17 +21,17 @@ final class CredentialProviderViewController: ASCredentialProviderViewController
     // the spike memo), this path first checks cache validity and escalates
     // with userInteractionRequired on a miss.
 
-    override func provideCredentialWithoutUserInteraction(
+    /// The shared fill: resolve the identity, open the store, decrypt.
+    /// Both request paths use this and map failures to the error code
+    /// appropriate for their context.
+    private func credential(
         for credentialRequest: ASCredentialRequest
-    ) {
-        guard UnlockGate.isFresh else {
-            return cancel(.userInteractionRequired)
-        }
+    ) -> Result<ASPasswordCredential, Error> {
         guard
             let identity = credentialRequest.credentialIdentity as? ASPasswordCredentialIdentity,
             let name = identity.recordIdentifier
         else {
-            return cancel(.userInteractionRequired)
+            return .failure(ASExtensionError(.credentialIdentityNotFound))
         }
         do {
             let format = StorePaths.currentFormat
@@ -43,13 +49,24 @@ final class CredentialProviderViewController: ASCredentialProviderViewController
             let username = entryFields(content: content)
                 .first { $0.key == "username" || $0.key == "login" }?
                 .value ?? ""
-            extensionContext.completeRequest(
-                withSelectedCredential: ASPasswordCredential(
-                    user: username,
-                    password: password
-                )
-            )
+            return .success(ASPasswordCredential(user: username, password: password))
         } catch {
+            return .failure(error)
+        }
+    }
+
+    override func provideCredentialWithoutUserInteraction(
+        for credentialRequest: ASCredentialRequest
+    ) {
+        guard UnlockGate.isFresh else {
+            log.info("no-UI fill: unlock window lapsed, escalating to UI")
+            return cancel(.userInteractionRequired)
+        }
+        switch credential(for: credentialRequest) {
+        case .success(let credential):
+            extensionContext.completeRequest(withSelectedCredential: credential)
+        case .failure(let error):
+            log.error("no-UI fill failed: \(String(describing: error), privacy: .public) store=\(StorePaths.storeRoot.path, privacy: .public)")
             cancel(.userInteractionRequired)
         }
     }
@@ -63,16 +80,25 @@ final class CredentialProviderViewController: ASCredentialProviderViewController
 
     // MARK: With UI, single credential — the grace window lapsed. iOS
     // re-invokes us here after userInteractionRequired; run the system auth
-    // sheet, then complete via the without-UI path (now fresh).
+    // sheet, then serve the same fill. Failures here must NOT cancel with
+    // userInteractionRequired (we ARE the interactive path; iOS just
+    // dismisses and nothing fills) — they end the request as failed.
 
     override func prepareInterfaceToProvideCredential(
         for credentialRequest: ASCredentialRequest
     ) {
+        AppLanguage.activate()
         Task { @MainActor in
-            if await UnlockGate.authenticate(reason: "Unlock to fill your password") {
-                self.provideCredentialWithoutUserInteraction(for: credentialRequest)
-            } else {
-                self.cancel(.userCanceled)
+            guard await UnlockGate.authenticate(reason: L("Unlock to fill your password")) else {
+                log.info("UI fill: authentication declined")
+                return self.cancel(.userCanceled)
+            }
+            switch self.credential(for: credentialRequest) {
+            case .success(let credential):
+                self.extensionContext.completeRequest(withSelectedCredential: credential)
+            case .failure(let error):
+                log.error("UI fill failed: \(String(describing: error), privacy: .public) store=\(StorePaths.storeRoot.path, privacy: .public)")
+                self.cancel(.failed)
             }
         }
     }
@@ -82,6 +108,9 @@ final class CredentialProviderViewController: ASCredentialProviderViewController
     override func prepareCredentialList(
         for serviceIdentifiers: [ASCredentialServiceIdentifier]
     ) {
+        // The extension is a separate process; adopt the app's language
+        // override before building the picker UI.
+        AppLanguage.activate()
         let host = UIHostingController(
             rootView: AutofillPickerView(
                 serviceHint: serviceIdentifiers.first?.identifier ?? "",
@@ -134,9 +163,12 @@ struct AutofillPickerView: View {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel", action: onCancel)
                 }
+                #if DEBUG
+                // Dev-only capability spike; never ships in release builds.
                 ToolbarItem(placement: .topBarTrailing) {
                     NavigationLink("Spike") { SpikeChecksView() }
                 }
+                #endif
             }
             .task { load() }
             .overlay {
@@ -149,6 +181,8 @@ struct AutofillPickerView: View {
                 }
             }
         }
+        // Follow the app's in-app language override (app-group defaults).
+        .environment(\.locale, AppLanguage.locale)
     }
 
     private var filtered: [EntryRef] {
@@ -169,7 +203,7 @@ struct AutofillPickerView: View {
             )
             entries = try store.entries()
         } catch {
-            self.error = String(describing: error)
+            self.error = error.ponyMessage
         }
     }
 
@@ -192,7 +226,7 @@ struct AutofillPickerView: View {
                 .value ?? ""
             onPick(password, username)
         } catch {
-            self.error = String(describing: error)
+            self.error = error.ponyMessage
         }
     }
 }

@@ -19,7 +19,10 @@ enum EngineProvider {
         case .pass:
             PGPKeyStore.ensureDirectory()
             if PGPKeyStore.hasKeys,
-               let engine = try? PGPonyEngine(keyDirectory: PGPKeyStore.keyDirectory) {
+               let engine = try? PGPonyEngine(
+                   keyDirectory: PGPKeyStore.keyDirectory,
+                   passphrase: PassphraseCache.load()
+               ) {
                 return engine
             }
             #if DEBUG

@@ -1,5 +1,57 @@
 import SwiftUI
 
+/// Rename or move an entry (a rename into another folder is a move — same
+/// operation, `pass mv` semantics via the core).
+struct MoveEntryView: View {
+    @EnvironmentObject var model: AppModel
+    @Environment(\.dismiss) private var dismiss
+
+    let currentName: String
+    var onMoved: () -> Void
+
+    @State private var newName: String
+    @State private var error: String?
+
+    init(currentName: String, onMoved: @escaping () -> Void) {
+        self.currentName = currentName
+        self.onMoved = onMoved
+        _newName = State(initialValue: currentName)
+    }
+
+    var body: some View {
+        NavigationStack {
+            Form {
+                Section("New name") {
+                    TextField("folder/name", text: $newName)
+                        .textInputAutocapitalization(.never)
+                        .autocorrectionDisabled()
+                }
+                if let error {
+                    Section { Text(error).foregroundStyle(.red).font(.footnote) }
+                }
+            }
+            .navigationTitle("Move / rename")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Cancel") { dismiss() }
+                }
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Move") {
+                        if model.moveEntry(from: currentName, to: newName) {
+                            dismiss()
+                            onMoved()
+                        } else {
+                            error = model.lastError
+                        }
+                    }
+                    .disabled(newName.isEmpty || newName == currentName)
+                }
+            }
+        }
+    }
+}
+
 /// Field-level editing over the byte-faithful core helpers: only the value
 /// bytes of changed fields and (if changed) the first line are rewritten;
 /// unknown lines, ordering, spacing, and trailing-newline style all survive

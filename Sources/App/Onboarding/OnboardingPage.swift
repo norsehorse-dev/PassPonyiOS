@@ -1,0 +1,291 @@
+import SwiftUI
+import AuthenticationServices
+import LocalAuthentication
+import UniformTypeIdentifiers
+
+/// Renders a single onboarding slide: icon, title, body, plus the slide's
+/// interactive element. The import and try-pass slides act on the REAL
+/// store (clone via GitSync, key files into PGPKeyStore, first entry via
+/// AddEntryView), and on replay they collapse to a checkmark indicator so
+/// nothing destructive is offered twice.
+struct OnboardingPage: View {
+    let slide: OnboardingSlide
+    let onAdvance: () -> Void
+
+    @EnvironmentObject var model: AppModel
+
+    @State private var format = StorePaths.currentFormat
+    @State private var showCloneSheet = false
+    @State private var importingKeys = false
+    @State private var showAddSheet = false
+    @State private var entryCountBeforeAdd = 0
+    @State private var autofillEnabled = false
+    @State private var status: String?
+
+    var body: some View {
+        // Center-or-scroll (the PGPony fix for tall language lists): the
+        // content centers exactly when it fits and scrolls when it doesn't.
+        GeometryReader { proxy in
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack(spacing: 28) {
+                    Spacer(minLength: 8)
+
+                    ZStack {
+                        Circle()
+                            .fill(slide.iconTint.opacity(0.15))
+                            .frame(width: 140, height: 140)
+                        Image(systemName: slide.action == .biometric ? biometricIcon : slide.icon)
+                            .font(.system(size: 64))
+                            .foregroundStyle(slide.iconTint)
+                    }
+
+                    Text(slide.title)
+                        .font(.title.bold())
+                        .multilineTextAlignment(.center)
+
+                    Text(slide.body)
+                        .font(.body)
+                        .foregroundStyle(.secondary)
+                        .multilineTextAlignment(.center)
+                        .fixedSize(horizontal: false, vertical: true)
+
+                    actionArea
+
+                    if let status {
+                        Text(status)
+                            .font(.footnote)
+                            .foregroundStyle(.secondary)
+                    }
+
+                    Spacer()
+                }
+                .padding(.horizontal, 32)
+                .frame(maxWidth: .infinity)
+                .frame(minHeight: proxy.size.height)
+            }
+        }
+        .sheet(isPresented: $showCloneSheet) {
+            OnboardingCloneSheet {
+                status = L("Store cloned.")
+                onAdvance()
+            }
+        }
+        .sheet(isPresented: $showAddSheet, onDismiss: {
+            if model.entries.count > entryCountBeforeAdd {
+                status = L("Saved. That's your first pass.")
+                onAdvance()
+            }
+        }) {
+            AddEntryView()
+        }
+        .fileImporter(
+            isPresented: $importingKeys,
+            allowedContentTypes: [.data, .text],
+            allowsMultipleSelection: true
+        ) { result in
+            importKeys(result)
+        }
+    }
+
+    // MARK: - Per-slide action area
+
+    @ViewBuilder
+    private var actionArea: some View {
+        switch slide.action {
+        case .none, .biometric:
+            EmptyView()
+        case .languagePicker:
+            languagePicker
+        case .formatPicker:
+            formatPicker
+        case .importStore:
+            importArea
+        case .tryPass:
+            tryArea
+        case .autofill:
+            autofillArea
+        }
+    }
+
+    // MARK: - Language
+
+    private var languagePicker: some View {
+        VStack(spacing: 0) {
+            languageRow(code: "", label: Text("System"))
+            languageRow(code: "en", label: Text(verbatim: "English"))
+            languageRow(code: "es", label: Text(verbatim: "Español"))
+            languageRow(code: "fr", label: Text(verbatim: "Français"))
+            languageRow(code: "de", label: Text(verbatim: "Deutsch"))
+            languageRow(code: "zh-Hans", label: Text(verbatim: "简体中文"))
+            languageRow(code: "pt-BR", label: Text(verbatim: "Português (Brasil)"))
+            languageRow(code: "ru", label: Text(verbatim: "Русский"))
+        }
+        .background(Color(.secondarySystemBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 12))
+    }
+
+    private func languageRow(code: String, label: Text) -> some View {
+        Button {
+            model.language = code
+        } label: {
+            HStack {
+                label.foregroundStyle(.primary)
+                Spacer()
+                if model.language == code {
+                    Image(systemName: "checkmark")
+                        .foregroundStyle(.tint)
+                }
+            }
+            .padding(.horizontal, 16)
+            .padding(.vertical, 10)
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+    }
+
+    // MARK: - Format
+
+    private var formatPicker: some View {
+        Picker("Store format", selection: $format) {
+            Text("passage (age)").tag(StoreFormat.passage)
+            Text("pass (OpenPGP)").tag(StoreFormat.pass)
+        }
+        .pickerStyle(.segmented)
+        .onChange(of: format) { _, newValue in
+            StorePaths.currentFormat = newValue
+            model.openStore()
+        }
+    }
+
+    // MARK: - Import
+
+    @ViewBuilder
+    private var importArea: some View {
+        if model.entries.isEmpty {
+            VStack(spacing: 12) {
+                Button {
+                    showCloneSheet = true
+                } label: {
+                    Label("Clone existing store…", systemImage: "arrow.triangle.2.circlepath")
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.borderedProminent)
+                Button {
+                    importingKeys = true
+                } label: {
+                    Label("Import key file…", systemImage: "square.and.arrow.down")
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.bordered)
+            }
+        } else {
+            existingIndicator
+        }
+    }
+
+    private func importKeys(_ result: Result<[URL], Error>) {
+        guard case .success(let urls) = result else { return }
+        PGPKeyStore.ensureDirectory()
+        var imported = 0
+        for url in urls {
+            let accessing = url.startAccessingSecurityScopedResource()
+            defer { if accessing { url.stopAccessingSecurityScopedResource() } }
+            let dest = PGPKeyStore.keyDirectory.appendingPathComponent(url.lastPathComponent)
+            if let data = try? Data(contentsOf: url) {
+                try? data.write(to: dest, options: [.completeFileProtection])
+                imported += 1
+            }
+        }
+        if imported > 0 {
+            // OpenPGP key files imply a pass store; align the format so the
+            // rest of the tour (and the store) matches what was imported.
+            StorePaths.currentFormat = .pass
+            format = .pass
+            model.openStore()
+            status = L("Imported \(imported) key files.")
+        }
+    }
+
+    // MARK: - Try a pass
+
+    @ViewBuilder
+    private var tryArea: some View {
+        if model.entries.isEmpty {
+            Button {
+                entryCountBeforeAdd = model.entries.count
+                showAddSheet = true
+            } label: {
+                Label("Add a pass…", systemImage: "plus")
+                    .frame(maxWidth: .infinity)
+            }
+            .buttonStyle(.borderedProminent)
+        } else {
+            existingIndicator
+        }
+    }
+
+    private var existingIndicator: some View {
+        Label("You already have \(model.entries.count) passes", systemImage: "checkmark.circle.fill")
+            .foregroundStyle(.green)
+    }
+
+    // MARK: - Autofill
+
+    /// In-app enable prompt (iOS 18 API): no Settings round trip, and no
+    /// race against the provider registration that made the raw Settings
+    /// deep link land on a list without PassPony during first run.
+    @ViewBuilder
+    private var autofillArea: some View {
+        VStack(spacing: 12) {
+            if autofillEnabled {
+                Label("Autofill is on.", systemImage: "checkmark.circle.fill")
+                    .foregroundStyle(.green)
+            } else {
+                Button {
+                    ASSettingsHelper.requestToTurnOnCredentialProviderExtension { enabled in
+                        DispatchQueue.main.async {
+                            autofillEnabled = enabled
+                            if enabled {
+                                // Enabled just now: earlier syncs were
+                                // skipped while the provider was off, so
+                                // push the identity index immediately.
+                                AutofillIdentities.sync(entries: model.entries)
+                            }
+                        }
+                    }
+                } label: {
+                    Label("Turn on autofill", systemImage: "keyboard")
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.borderedProminent)
+                Button {
+                    ASSettingsHelper.openCredentialProviderAppSettings()
+                } label: {
+                    Label("Open Settings", systemImage: "gear")
+                }
+                .buttonStyle(.borderless)
+                .font(.footnote)
+            }
+        }
+        .task {
+            ASCredentialIdentityStore.shared.getState { state in
+                DispatchQueue.main.async {
+                    autofillEnabled = state.isEnabled
+                }
+            }
+        }
+    }
+
+    // MARK: - Biometric icon
+
+    private var biometricIcon: String {
+        let context = LAContext()
+        _ = context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil)
+        switch context.biometryType {
+        case .faceID: return "faceid"
+        case .touchID: return "touchid"
+        case .opticID: return "opticid"
+        default: return slide.icon
+        }
+    }
+}
