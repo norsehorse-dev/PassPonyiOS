@@ -56,6 +56,10 @@ final class AppModel: ObservableObject {
             if format == .passage, try store.entries().isEmpty,
                UserDefaults.standard.bool(forKey: "passpony.onboardingCompleted") {
                 try seedDemoStore(store)
+                if ProcessInfo.processInfo.arguments.contains("-seedDemoStore") {
+                    Self.giveDemoStoreARemote(root: root, format: format)
+                    self.store = try PassStore.open(root: root.path, format: format)
+                }
             }
             #endif
             self.git = try? GitSync.open(root: root.path)
@@ -442,6 +446,25 @@ final class AppModel: ObservableObject {
     }
 
     #if DEBUG
+    /// App Store screenshots: make the demo store a git clone with nothing
+    /// to push and an example SSH remote, so Sync shows a configured store.
+    /// The store is committed in a scratch folder, cloned into place (which
+    /// sets up the tracking branch), then pointed at a remote that is never
+    /// contacted. On any failure the plain demo store is put back.
+    private static func giveDemoStoreARemote(root: URL, format: StoreFormat) {
+        let fm = FileManager.default
+        let origin = StorePaths.container.appendingPathComponent("demo-origin", isDirectory: true)
+        try? fm.removeItem(at: origin)
+        do {
+            try fm.moveItem(at: root, to: origin)
+            _ = try GitSync.`init`(root: origin.path, format: format)
+            _ = try GitSync.cloneWithSsh(url: origin.path, dest: root.path, depth: nil, ssh: SshKeyStore.config())
+            try GitSync.open(root: root.path).setRemote(url: "git@git.example.com:pony/passwords.git")
+        } catch {
+            if !fm.fileExists(atPath: root.path) { try? fm.moveItem(at: origin, to: root) }
+        }
+    }
+
     /// Screenshot-grade demo store: enough folders and entries to look
     /// lived-in, TOTP on several so the ring shows, usernames and urls on
     /// most. Every credential is fake. DEBUG builds only, passage only,

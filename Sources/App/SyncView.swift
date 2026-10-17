@@ -122,7 +122,7 @@ struct SyncView: View {
                         : L("none")
                 )
             } else {
-                Text("No git repository — clone a store or use local-only mode.")
+                Text("No git repository. Clone a store or use local-only mode.")
                     .foregroundStyle(.secondary)
             }
         } header: {
@@ -230,7 +230,7 @@ struct SyncView: View {
         } header: {
             Text("Clone existing store")
         } footer: {
-            Text("The clone lands in a scratch area first — a failed clone leaves the current store untouched. On success it replaces the current store for this format. Decrypting cloned entries still needs the matching key: identities file for passage, imported OpenPGP key for pass.")
+            Text("The clone lands in a scratch area first, so a failed clone leaves the current store untouched. On success it replaces the current store for this format. Decrypting cloned entries still needs the matching key: identities file for passage, imported OpenPGP key for pass.")
         }
     }
 

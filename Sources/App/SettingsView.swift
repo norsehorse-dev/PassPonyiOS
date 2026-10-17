@@ -91,7 +91,7 @@ struct SettingsView: View {
                     } footer: {
                         Text(gpgIDLines.isEmpty
                              ? "A pass store encrypts to the keys listed in its .gpg-id. Initialize once with your imported keys."
-                             : "Re-keying a live store is the re-encrypt flow — coming with the subtree preview.")
+                             : "Re-keying a live store is the re-encrypt flow, coming with the subtree preview.")
                     }
                 }
 

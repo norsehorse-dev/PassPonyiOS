@@ -8632,47 +8632,6 @@
         }
       }
     },
-    "No git repository — clone a store or use local-only mode." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kein Git-Repository — klone einen Speicher oder nutze den rein lokalen Modus."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No hay repositorio git: clona un almacén o usa el modo solo local."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aucun dépôt git — clonez un coffre ou utilisez le mode local uniquement."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nenhum repositório git — clone um cofre ou use o modo somente local."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Нет git-репозитория — клонируйте хранилище или используйте только локальный режим."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "没有 git 仓库——克隆一个密码库，或使用仅本地模式。"
-          }
-        }
-      }
-    },
     "No git repository for this store." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -8710,6 +8669,47 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "此密码库没有 git 仓库。"
+          }
+        }
+      }
+    },
+    "No git repository. Clone a store or use local-only mode." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kein Git-Repository. Klone einen Speicher oder nutze den rein lokalen Modus."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No hay repositorio git. Clona un almacén o usa el modo solo local."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucun dépôt git. Clonez un coffre ou utilisez le mode local uniquement."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nenhum repositório git. Clone um cofre ou use o modo somente local."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нет git-репозитория. Клонируйте хранилище или используйте только локальный режим."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "没有 git 仓库。克隆一个密码库，或使用仅本地模式。"
           }
         }
       }
@@ -11725,43 +11725,43 @@
         }
       }
     },
-    "Re-keying a live store is the re-encrypt flow — coming with the subtree preview." : {
+    "Re-keying a live store is the re-encrypt flow, coming with the subtree preview." : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Das Umschlüsseln eines aktiven Speichers ist der Neuverschlüsselungs-Ablauf — er kommt mit der Teilbaum-Vorschau."
+            "value" : "Das Umschlüsseln eines aktiven Speichers ist der Neuverschlüsselungs-Ablauf, er kommt mit der Teilbaum-Vorschau."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cambiar las claves de un almacén en uso es el flujo de recifrado; llegará con la vista previa por subárbol."
+            "value" : "Cambiar las claves de un almacén en uso es el flujo de recifrado, que llegará con la vista previa por subárbol."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Changer les clés d'un coffre actif passe par le flux de rechiffrement — à venir avec l'aperçu par sous-arborescence."
+            "value" : "Changer les clés d'un coffre actif passe par le flux de rechiffrement, à venir avec l'aperçu par sous-arborescence."
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Trocar as chaves de um cofre em uso é o fluxo de recriptografia — chegará com a pré-visualização por subárvore."
+            "value" : "Trocar as chaves de um cofre em uso é o fluxo de recriptografia, chegará com a pré-visualização por subárvore."
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Смена ключей действующего хранилища — это процесс перешифрования; он появится вместе с предпросмотром поддерева."
+            "value" : "Смена ключей действующего хранилища является процессом перешифрования; он появится вместе с предпросмотром поддерева."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "更换在用密码库的密钥属于重新加密流程——将随子树预览一起推出。"
+            "value" : "更换在用密码库的密钥属于重新加密流程，将随子树预览一起推出。"
           }
         }
       }
@@ -13930,43 +13930,43 @@
         }
       }
     },
-    "Store already has a .gpg-id — re-keying comes with the re-encrypt flow." : {
+    "Store already has a .gpg-id. Re-keying comes with the re-encrypt flow." : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Der Speicher hat bereits eine .gpg-id — das Umschlüsseln kommt mit dem Neuverschlüsselungs-Ablauf."
+            "value" : "Der Speicher hat bereits eine .gpg-id. Das Umschlüsseln kommt mit dem Neuverschlüsselungs-Ablauf."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "El almacén ya tiene un .gpg-id; el cambio de claves llegará con el flujo de recifrado."
+            "value" : "El almacén ya tiene un .gpg-id. El cambio de claves llegará con el flujo de recifrado."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le coffre a déjà un .gpg-id — le changement de clés arrivera avec le flux de rechiffrement."
+            "value" : "Le coffre a déjà un .gpg-id. Le changement de clés arrivera avec le flux de rechiffrement."
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "O cofre já tem um .gpg-id — a troca de chaves chegará com o fluxo de recriptografia."
+            "value" : "O cofre já tem um .gpg-id. A troca de chaves chegará com o fluxo de recriptografia."
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "У хранилища уже есть .gpg-id — смена ключей появится вместе с процессом перешифрования."
+            "value" : "У хранилища уже есть .gpg-id. Смена ключей появится вместе с процессом перешифрования."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "密码库已有 .gpg-id——更换密钥将随重新加密流程推出。"
+            "value" : "密码库已有 .gpg-id。更换密钥将随重新加密流程推出。"
           }
         }
       }
@@ -15285,43 +15285,43 @@
         }
       }
     },
-    "The clone lands in a scratch area first — a failed clone leaves the current store untouched. On success it replaces the current store for this format. Decrypting cloned entries still needs the matching key: identities file for passage, imported OpenPGP key for pass." : {
+    "The clone lands in a scratch area first, so a failed clone leaves the current store untouched. On success it replaces the current store for this format. Decrypting cloned entries still needs the matching key: identities file for passage, imported OpenPGP key for pass." : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Der Klon landet zuerst in einem Zwischenbereich — ein fehlgeschlagenes Klonen lässt den aktuellen Speicher unangetastet. Bei Erfolg ersetzt er den aktuellen Speicher dieses Formats. Zum Entschlüsseln geklonter Einträge braucht es weiterhin den passenden Schlüssel: Identities-Datei für passage, importierter OpenPGP-Schlüssel für pass."
+            "value" : "Der Klon landet zuerst in einem Zwischenbereich, sodass ein fehlgeschlagenes Klonen den aktuellen Speicher unangetastet lässt. Bei Erfolg ersetzt er den aktuellen Speicher dieses Formats. Zum Entschlüsseln geklonter Einträge braucht es weiterhin den passenden Schlüssel: Identities-Datei für passage, importierter OpenPGP-Schlüssel für pass."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "El clon llega primero a un área temporal: un clonado fallido no toca el almacén actual. Si tiene éxito, reemplaza el almacén actual de este formato. Descifrar las entradas clonadas sigue necesitando la clave correspondiente: el archivo de identidades para passage, la clave OpenPGP importada para pass."
+            "value" : "El clon llega primero a un área temporal, así que un clonado fallido no toca el almacén actual. Si tiene éxito, reemplaza el almacén actual de este formato. Descifrar las entradas clonadas sigue necesitando la clave correspondiente: el archivo de identidades para passage, la clave OpenPGP importada para pass."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le clone arrive d'abord dans une zone temporaire — un clonage échoué laisse le coffre actuel intact. En cas de succès, il remplace le coffre actuel pour ce format. Déchiffrer les entrées clonées nécessite toujours la clé correspondante : fichier d'identités pour passage, clé OpenPGP importée pour pass."
+            "value" : "Le clone arrive d'abord dans une zone temporaire, donc un clonage échoué laisse le coffre actuel intact. En cas de succès, il remplace le coffre actuel pour ce format. Déchiffrer les entrées clonées nécessite toujours la clé correspondante : fichier d'identités pour passage, clé OpenPGP importée pour pass."
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "O clone chega primeiro a uma área temporária — um clone com falha deixa o cofre atual intacto. Em caso de sucesso, ele substitui o cofre atual deste formato. Descriptografar as entradas clonadas ainda exige a chave correspondente: arquivo de identidades para passage, chave OpenPGP importada para pass."
+            "value" : "O clone chega primeiro a uma área temporária, então um clone com falha deixa o cofre atual intacto. Em caso de sucesso, ele substitui o cofre atual deste formato. Descriptografar as entradas clonadas ainda exige a chave correspondente: arquivo de identidades para passage, chave OpenPGP importada para pass."
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Клон сначала попадает во временную область — неудачное клонирование не затрагивает текущее хранилище. При успехе он заменяет текущее хранилище этого формата. Для расшифровки клонированных записей по-прежнему нужен соответствующий ключ: файл identities для passage, импортированный ключ OpenPGP для pass."
+            "value" : "Клон сначала попадает во временную область, поэтому неудачное клонирование не затрагивает текущее хранилище. При успехе он заменяет текущее хранилище этого формата. Для расшифровки клонированных записей по-прежнему нужен соответствующий ключ: файл identities для passage, импортированный ключ OpenPGP для pass."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "克隆会先放入暂存区——克隆失败不会影响当前密码库。成功后它会替换该格式的当前密码库。解密克隆的条目仍需要匹配的密钥：passage 需要 identities 文件，pass 需要已导入的 OpenPGP 密钥。"
+            "value" : "克隆会先放入暂存区，克隆失败不会影响当前密码库。成功后它会替换该格式的当前密码库。解密克隆的条目仍需要匹配的密钥：passage 需要 identities 文件，pass 需要已导入的 OpenPGP 密钥。"
           }
         }
       }
@@ -15628,43 +15628,43 @@
         }
       }
     },
-    "The remote has new changes — sync before pushing." : {
+    "The remote has new changes. Sync before pushing." : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Das Remote hat neue Änderungen — synchronisiere vor dem Push."
+            "value" : "Das Remote hat neue Änderungen. Synchronisiere vor dem Push."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "El remoto tiene cambios nuevos: sincroniza antes de hacer push."
+            "value" : "El remoto tiene cambios nuevos. Sincroniza antes de hacer push."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le distant a de nouvelles modifications — synchronisez avant de pousser."
+            "value" : "Le distant a de nouvelles modifications. Synchronisez avant de pousser."
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "O remoto tem novas alterações — sincronize antes de fazer push."
+            "value" : "O remoto tem novas alterações. Sincronize antes de fazer push."
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "В удалённом репозитории есть новые изменения — синхронизируйтесь перед отправкой."
+            "value" : "В удалённом репозитории есть новые изменения. Синхронизируйтесь перед отправкой."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "远程有新的更改——请先同步再推送。"
+            "value" : "远程有新的更改。请先同步再推送。"
           }
         }
       }
@@ -18088,14 +18088,14 @@
         }
       }
     },
-    "Writes the selected keys' fingerprints to the store's .gpg-id — the same file pass init creates. Every entry saved afterward is encrypted to all of them." : {
+    "Writes the selected keys' fingerprints to the store's .gpg-id, the same file pass init creates. Every entry saved afterward is encrypted to all of them." : {
       "comment" : "Security-sensitive term — review carefully.",
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Schreibt die Fingerabdrücke der ausgewählten Schlüssel in die .gpg-id des Speichers — dieselbe Datei, die pass init anlegt. Jeder danach gesicherte Eintrag wird für alle diese Schlüssel verschlüsselt."
+            "value" : "Schreibt die Fingerabdrücke der ausgewählten Schlüssel in die .gpg-id des Speichers, dieselbe Datei, die pass init anlegt. Jeder danach gesicherte Eintrag wird für alle diese Schlüssel verschlüsselt."
           }
         },
         "es" : {
@@ -18107,25 +18107,25 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Écrit les empreintes des clés sélectionnées dans le .gpg-id du coffre — le même fichier que crée pass init. Chaque entrée enregistrée ensuite est chiffrée pour toutes ces clés."
+            "value" : "Écrit les empreintes des clés sélectionnées dans le .gpg-id du coffre, le même fichier que crée pass init. Chaque entrée enregistrée ensuite est chiffrée pour toutes ces clés."
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Grava as impressões digitais das chaves selecionadas no .gpg-id do cofre — o mesmo arquivo que o pass init cria. Toda entrada salva depois é criptografada para todas elas."
+            "value" : "Grava as impressões digitais das chaves selecionadas no .gpg-id do cofre, o mesmo arquivo que o pass init cria. Toda entrada salva depois é criptografada para todas elas."
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Записывает отпечатки выбранных ключей в .gpg-id хранилища — тот же файл, который создаёт pass init. Каждая запись, сохранённая после этого, шифруется для всех этих ключей."
+            "value" : "Записывает отпечатки выбранных ключей в .gpg-id хранилища, тот же файл, который создаёт pass init. Каждая запись, сохранённая после этого, шифруется для всех этих ключей."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "将所选密钥的指纹写入密码库的 .gpg-id——与 pass init 创建的是同一个文件。此后保存的每个条目都会为所有这些密钥加密。"
+            "value" : "将所选密钥的指纹写入密码库的 .gpg-id，与 pass init 创建的是同一个文件。此后保存的每个条目都会为所有这些密钥加密。"
           }
         }
       }

@@ -28,7 +28,7 @@ enum EngineProvider {
             #if DEBUG
             return DevFlipEngine()
             #else
-            fatalError("No OpenPGP keys imported — pass stores need keys in pgp-keys/.")
+            fatalError("No OpenPGP keys imported. pass stores need keys in pgp-keys/.")
             #endif
         }
     }

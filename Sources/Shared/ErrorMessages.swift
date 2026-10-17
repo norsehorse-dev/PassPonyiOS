@@ -53,7 +53,7 @@ extension GitError {
         case .NoRemote:
             return L("No remote is configured.")
         case .NonFastForward:
-            return L("The remote has new changes — sync before pushing.")
+            return L("The remote has new changes. Sync before pushing.")
         case .UpstreamRewritten:
             return L("The remote history was rewritten. Re-clone the store to continue.")
         case .DirtyWorkdir:

@@ -24,7 +24,7 @@ struct OnboardingCloneSheet: View {
                     Button("Clone") { clone() }
                         .disabled(url.isEmpty || busy)
                 } footer: {
-                    Text("The clone lands in a scratch area first — a failed clone leaves the current store untouched. On success it replaces the current store for this format. Decrypting cloned entries still needs the matching key: identities file for passage, imported OpenPGP key for pass.")
+                    Text("The clone lands in a scratch area first, so a failed clone leaves the current store untouched. On success it replaces the current store for this format. Decrypting cloned entries still needs the matching key: identities file for passage, imported OpenPGP key for pass.")
                 }
                 if let error {
                     Section { Text(error).foregroundStyle(.red).font(.footnote) }
