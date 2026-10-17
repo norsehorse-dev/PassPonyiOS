@@ -8,5 +8,9 @@
 	<array>
 		<string>group.dev.norsehorse.passpony</string>
 	</array>
+	<key>keychain-access-groups</key>
+	<array>
+		<string>$(AppIdentifierPrefix)dev.norsehorse.shared</string>
+	</array>
 </dict>
 </plist>

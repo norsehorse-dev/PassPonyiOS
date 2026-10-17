@@ -2,7 +2,8 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 /// Store settings: format switch (the plan's open decision, now a user
-/// choice), OpenPGP key import for pass stores, and diagnostics basics.
+/// choice), OpenPGP key import for pass stores, and the way in to the
+/// Diagnostics screen.
 struct SettingsView: View {
     @EnvironmentObject var model: AppModel
     @Environment(\.dismiss) private var dismiss
@@ -164,6 +165,25 @@ struct SettingsView: View {
                 }
 
                 Section {
+                    NavigationLink {
+                        DiagnosticsView()
+                    } label: {
+                        Label {
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text("Diagnostics")
+                                Text("Version, store, and sync details for a support message. No secrets.")
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                            }
+                        } icon: {
+                            Image(systemName: "stethoscope")
+                        }
+                    }
+                } header: {
+                    Text("Diagnostics")
+                }
+
+                Section {
                     ForEach(Self.otherApps.indices, id: \.self) { index in
                         let app = Self.otherApps[index]
                         Link(destination: URL(string: app.url)!) {
@@ -185,16 +205,6 @@ struct SettingsView: View {
                     Text("More from NorseHorse")
                 } footer: {
                     Text("Other apps from the same developer.")
-                }
-
-                Section("Diagnostics") {
-                    LabeledContent("Core", value: coreVersion())
-                    LabeledContent("Entries", value: "\(model.entries.count)")
-                    if let st = model.syncStatus {
-                        LabeledContent("Git", value: "↑\(st.ahead) ↓\(st.behind)\(st.dirty ? " (dirty)" : "")")
-                    } else {
-                        LabeledContent("Git", value: "not configured")
-                    }
                 }
 
                 if let message {

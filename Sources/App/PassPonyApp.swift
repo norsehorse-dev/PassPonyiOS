@@ -46,6 +46,10 @@ struct RootView: View {
                 // slides act on the real thing.
                 OnboardingView {
                     onboardingCompleted = true
+                    // Reopen so anything gated on tour completion (the
+                    // DEBUG demo seed in particular) runs now instead of
+                    // waiting for the next launch.
+                    model.openStore()
                     Task { await unlock() }
                 }
             }
@@ -58,6 +62,7 @@ struct RootView: View {
         .environment(\.locale, model.language.isEmpty ? .autoupdatingCurrent : Locale(identifier: model.language))
         .task {
             model.openStore()
+            model.importInbox()
             if onboardingCompleted { await unlock() }
         }
         .onChange(of: scenePhase) { _, phase in
@@ -66,7 +71,8 @@ struct RootView: View {
             case .background:
                 if !UnlockGate.isFresh { locked = true }
             case .active:
-                if locked, !UnlockGate.isFresh {
+                model.importInbox()
+                    if locked, !UnlockGate.isFresh {
                     Task { await unlock() }
                 } else if UnlockGate.isFresh {
                     locked = false

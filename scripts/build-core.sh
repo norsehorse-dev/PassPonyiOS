@@ -27,8 +27,15 @@ cargo build --release -p pass-ffi
 cargo build --release -p pass-ffi --target aarch64-apple-ios
 cargo build --release -p pass-ffi --target aarch64-apple-ios-sim
 
-HOST_DYLIB="target/release/libpass_ffi.dylib"
-[[ -f "$HOST_DYLIB" ]] || HOST_DYLIB="target/release/libpass_ffi.so"
+# The core pins its target dir in .cargo/config.toml (a fixed absolute
+# path, for reproducible builds), so the artifacts are not under
+# $CORE/target. Ask cargo where they went rather than assuming.
+TARGET_DIR="$(cargo metadata --format-version 1 --no-deps \
+  | python3 -c 'import json, sys; print(json.load(sys.stdin)["target_directory"])')"
+[[ -n "$TARGET_DIR" ]] || { echo "Could not resolve cargo's target directory"; exit 1; }
+
+HOST_DYLIB="$TARGET_DIR/release/libpass_ffi.dylib"
+[[ -f "$HOST_DYLIB" ]] || HOST_DYLIB="$TARGET_DIR/release/libpass_ffi.so"
 
 rm -rf /tmp/passpony-bindings
 cargo run -q --release -p pass-ffi --features cli --bin uniffi-bindgen -- \
@@ -48,8 +55,8 @@ cp /tmp/passpony-bindings/pass_ffiFFI.modulemap "$HEADERS/module.modulemap"
 rm -rf "$OUT_VENDOR/PassFFI.xcframework"
 mkdir -p "$OUT_VENDOR"
 xcodebuild -create-xcframework \
-  -library "$CORE/target/aarch64-apple-ios/release/libpass_ffi.a" -headers "$HEADERS" \
-  -library "$CORE/target/aarch64-apple-ios-sim/release/libpass_ffi.a" -headers "$HEADERS" \
+  -library "$TARGET_DIR/aarch64-apple-ios/release/libpass_ffi.a" -headers "$HEADERS" \
+  -library "$TARGET_DIR/aarch64-apple-ios-sim/release/libpass_ffi.a" -headers "$HEADERS" \
   -output "$OUT_VENDOR/PassFFI.xcframework"
 
 echo "Done. Now: xcodegen generate && open PassPony.xcodeproj"

@@ -14,6 +14,8 @@ extension Error {
         case let error as CryptoError: return error.ponyMessage
         case let error as GitError: return error.ponyMessage
         case let error as StoreError: return error.ponyMessage
+        case let error as TotpError: return error.ponyMessage
+        case let error as GenerateError: return error.ponyMessage
         default: return String(describing: self)
         }
     }
@@ -70,6 +72,36 @@ extension StoreError {
             return L("Encryption error: \(reason)")
         case .Io(let reason):
             return L("File error: \(reason)")
+        }
+    }
+}
+
+extension TotpError {
+    var ponyMessage: String {
+        switch self {
+        case .NotTotpUri:
+            return L("This isn't an otpauth:// one-time code link. Counter-based (HOTP) codes and Google Authenticator export codes aren't supported.")
+        case .MissingSecret:
+            return L("The code has no secret.")
+        case .BadSecret:
+            return L("The secret isn't valid base32.")
+        case .BadAlgorithm(let name):
+            return L("Unsupported algorithm: \(name)")
+        case .BadNumber(let detail):
+            return L("Invalid value: \(detail)")
+        }
+    }
+}
+
+extension GenerateError {
+    var ponyMessage: String {
+        switch self {
+        case .BadLength(let min, let max):
+            return L("Length must be between \(Int(min)) and \(Int(max)).")
+        case .NoClasses:
+            return L("Turn on at least one kind of character.")
+        case .Entropy(let reason):
+            return L("No random number source is available: \(reason)")
         }
     }
 }

@@ -1,5 +1,11 @@
 import SwiftUI
 
+/// A brand-new entry: password line, then an optional `username: ...`
+/// line, then an optional `url: ...` line, each only when non-empty, then
+/// (since 1.1) the optional `otpauth://` line last, the position
+/// `pass otp append` gives it. With no password and a code, the URI is
+/// the first line instead, which is exactly the entry `pass otp insert`
+/// creates. Same assembly as Android's `NewEntryContent`.
 struct AddEntryView: View {
     @EnvironmentObject var model: AppModel
     @Environment(\.dismiss) private var dismiss
@@ -8,6 +14,10 @@ struct AddEntryView: View {
     @State private var password = ""
     @State private var username = ""
     @State private var url = ""
+    /// The one-time code chosen in the setup sheet, held here until Save.
+    @State private var otpauth: String?
+    @State private var showingOtpSetup = false
+    @State private var showingGenerator = false
 
     var body: some View {
         NavigationStack {
@@ -21,9 +31,16 @@ struct AddEntryView: View {
                     HStack {
                         SecureField("Password", text: $password)
                         Button("Generate") {
-                            password = Self.generate()
+                            password = PasswordGenerator.generate()
                         }
                         .buttonStyle(.borderless)
+                        Button {
+                            showingGenerator = true
+                        } label: {
+                            Image(systemName: "slider.horizontal.3")
+                        }
+                        .buttonStyle(.borderless)
+                        .accessibilityLabel("Generator settings")
                     }
                 }
                 Section("Fields (optional)") {
@@ -35,6 +52,22 @@ struct AddEntryView: View {
                         .autocorrectionDisabled()
                         .keyboardType(.URL)
                 }
+                Section("One-time code (optional)") {
+                    if let otpauth {
+                        if let summary = try? totpDescribe(uri: otpauth) {
+                            Text(totpSummaryLine(summary))
+                        }
+                        HStack {
+                            Button("Change…") { showingOtpSetup = true }
+                            Spacer()
+                            Button("Remove", role: .destructive) { self.otpauth = nil }
+                        }
+                        .buttonStyle(.borderless)
+                    } else {
+                        Button("Add one-time code…") { showingOtpSetup = true }
+                            .buttonStyle(.borderless)
+                    }
+                }
             }
             .navigationTitle("New entry")
             .navigationBarTitleDisplayMode(.inline)
@@ -44,29 +77,29 @@ struct AddEntryView: View {
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Save") { save() }
-                        .disabled(name.isEmpty || password.isEmpty)
+                        .disabled(name.isEmpty || (password.isEmpty && otpauth == nil))
+                }
+            }
+            .sheet(isPresented: $showingOtpSetup) {
+                TOTPSetupSheet { uri in
+                    otpauth = uri
+                }
+            }
+            .sheet(isPresented: $showingGenerator) {
+                GeneratorSheet { generated in
+                    password = generated
                 }
             }
         }
     }
 
     private func save() {
-        var content = password + "\n"
+        let otpOnly = password.isEmpty && otpauth != nil
+        var content = (otpOnly ? otpauth ?? "" : password) + "\n"
         if !username.isEmpty { content += "username: \(username)\n" }
         if !url.isEmpty { content += "url: \(url)\n" }
+        if !otpOnly, let otpauth { content += otpauth + "\n" }
         model.saveEntry(name: name, content: Data(content.utf8), isNew: true)
         dismiss()
-    }
-
-    /// Charset generator matching pass defaults (25 chars, with symbols).
-    /// Diceware and per-store defaults come later (plan §5).
-    static func generate(length: Int = 25) -> String {
-        let charset = Array(
-            "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"
-        )
-        var rng = SystemRandomNumberGenerator()
-        return String((0..<length).map { _ in
-            charset[Int(rng.next() % UInt64(charset.count))]
-        })
     }
 }

@@ -73,6 +73,53 @@
         }
       }
     },
+    "NSCameraUsageDescription" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PassPony nutzt die Kamera, um beim Einrichten eines Einmalcodes QR-Codes zu scannen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PassPony uses the camera to scan QR codes when you set up a one-time code."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PassPony usa la cámara para escanear códigos QR al configurar un código de un solo uso."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PassPony utilise l'appareil photo pour scanner les codes QR lors de la configuration d'un code à usage unique."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O PassPony usa a câmera para ler códigos QR ao configurar um código de uso único."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PassPony использует камеру для сканирования QR-кодов при настройке одноразового кода."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PassPony 使用相机扫描二维码以设置一次性验证码。"
+          }
+        }
+      }
+    },
     "NSFaceIDUsageDescription" : {
       "extractionState" : "manual",
       "localizations" : {

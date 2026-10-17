@@ -9,14 +9,26 @@ struct EntryDetailView: View {
     @State private var revealed = false
     @State private var error: String?
     @State private var showingEdit = false
+    /// Whether the edit sheet opens straight into the one-time code setup
+    /// (the "Set up one-time code" shortcut). A flag, never a secret.
+    @State private var editOpensOtp = false
     @State private var showingMove = false
 
     var body: some View {
         List {
             if let content {
-                passwordSection(content)
-                fieldsSection(content)
-                totpSection(content)
+                if entryIsOtpOnly(content: content) {
+                    // Line 1 is the URI (`pass otp insert`): there is no
+                    // password to show, and 1.0 showed the URI as one.
+                    totpSection(content, caption: "This entry is a one-time code only.")
+                    fieldsSection(content)
+                } else {
+                    passwordSection(content)
+                    fieldsSection(content)
+                    if hasTotp(content) {
+                        totpSection(content, caption: nil)
+                    }
+                }
             } else if let error {
                 Text(error).foregroundStyle(.red)
             } else {
@@ -29,11 +41,20 @@ struct EntryDetailView: View {
             ToolbarItem(placement: .topBarTrailing) {
                 Menu {
                     Button {
+                        editOpensOtp = false
                         showingEdit = true
                     } label: {
                         Label("Edit fields", systemImage: "pencil")
                     }
                     .disabled(content == nil)
+                    if let content, !hasTotp(content) {
+                        Button {
+                            editOpensOtp = true
+                            showingEdit = true
+                        } label: {
+                            Label("Set up one-time code", systemImage: "timer")
+                        }
+                    }
                     Button {
                         showingMove = true
                     } label: {
@@ -44,16 +65,21 @@ struct EntryDetailView: View {
                 }
             }
         }
-        .sheet(isPresented: $showingEdit) {
+        .sheet(isPresented: $showingEdit, onDismiss: { editOpensOtp = false }) {
             if let content {
-                EditEntryView(name: name, original: content) {
-                    load()
-                }
+                EditEntryView(
+                    name: name,
+                    original: content,
+                    openOtpSetup: editOpensOtp,
+                    onSave: { load() },
+                    // The entry is gone; this detail view is stale. Pop it.
+                    onDeleted: { dismiss() }
+                )
             }
         }
         .sheet(isPresented: $showingMove) {
             MoveEntryView(currentName: name) {
-                // Name changed; this detail view is stale — pop it.
+                // Name changed; this detail view is stale. Pop it.
                 dismiss()
             }
         }
@@ -67,6 +93,12 @@ struct EntryDetailView: View {
         } catch {
             self.error = error.ponyMessage
         }
+    }
+
+    /// Whether the entry carries a parsable `otpauth://totp/` line. Cheap:
+    /// a parse of already-decrypted bytes, no re-decryption.
+    private func hasTotp(_ content: Data) -> Bool {
+        entryTotpSummary(content: content) != nil
     }
 
     @ViewBuilder
@@ -122,10 +154,14 @@ struct EntryDetailView: View {
     }
 
     @ViewBuilder
-    private func totpSection(_ content: Data) -> some View {
-        if entryTotp(content: content, unixTime: UInt64(Date().timeIntervalSince1970)) != nil {
-            Section("One-time code") {
-                TOTPRingView(content: content)
+    private func totpSection(_ content: Data, caption: LocalizedStringKey?) -> some View {
+        Section {
+            TOTPRingView(content: content)
+        } header: {
+            Text("One-time code")
+        } footer: {
+            if let caption {
+                Text(caption)
             }
         }
     }

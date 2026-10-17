@@ -20,9 +20,15 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>NSCameraUsageDescription</key>
+	<string>PassPony uses the camera to scan QR codes when you set up a one-time code.</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>Face ID protects access to your password store.</string>
 	<key>UILaunchScreen</key>
 	<dict/>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
 </dict>
 </plist>

@@ -6,8 +6,14 @@ keys, git sync. SwiftUI app over the shared Rust core (PassPonyCore).
 - Browse, search, and edit entries in pass (OpenPGP) and passage (age)
   stores. Each format keeps its own store; switching never touches the
   other store's data.
-- Live TOTP with a countdown ring; ephemeral, local-only clipboard that
-  clears after 45 seconds.
+- Live TOTP with a countdown ring. Set up a one-time code by scanning
+  the QR code, pasting the otpauth:// link, or typing the key; entries
+  written by pass otp insert show their code too. Ephemeral, local-only
+  clipboard that clears after 45 seconds.
+- Password generator with length, character class, and symbol set
+  options, remembered per device. The defaults match pass generate.
+- Diagnostics screen (Settings, then Diagnostics) with a copyable report
+  for support messages: versions, store, and sync state, no secrets.
 - Git sync: clone, publish, push, and per-entry conflict resolution.
   Commit messages match the pass CLI format, so a store stays
   interoperable with desktop pass and passage users.

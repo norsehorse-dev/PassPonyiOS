@@ -20,10 +20,11 @@ settings:
     # Version, build number, and team live HERE, not in the Xcode UI.
     # This is a generated project: anything set in Xcode's target editor
     # is silently reverted to these values on the next xcodegen run.
-    MARKETING_VERSION: "1.0"
-    CURRENT_PROJECT_VERSION: "1"
+    MARKETING_VERSION: "1.1"
+    CURRENT_PROJECT_VERSION: "3"
     DEVELOPMENT_TEAM: 4AVJZV35G8
     CODE_SIGN_STYLE: Automatic
+    TARGETED_DEVICE_FAMILY: "1"
 
 schemes:
   PassPony:
@@ -84,6 +85,10 @@ targets:
         # Sources/App/PassPony.entitlements.
         NSFaceIDUsageDescription: >-
           Face ID protects access to your password store.
+        NSCameraUsageDescription: >-
+          PassPony uses the camera to scan QR codes when you set up a one-time code.
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
 
   PassPonyAutofill:
     type: app-extension
