@@ -9,7 +9,7 @@ Interoperável: os commits seguem o formato da CLI do pass, então o cofre conti
 USO NO DIA A DIA
 Preenchimento Automático: suas senhas aparecem acima do teclado quando você inicia sessão. Apenas os nomes das entradas são indexados; nada é descriptografado até você preencher.
 Chaves de acesso: salve uma chave de acesso para um site e inicie sessão com ela. Ela fica na entrada desse site, criptografada com suas chaves, e é sincronizada como todo o resto.
-Códigos de uso único: TOTP com anel de contagem regressiva, contadores HOTP e importação a partir de uma exportação do Google Authenticator.
+Códigos de uso único: TOTP com anel de contagem regressiva, contadores HOTP e importação a partir dos códigos QR de exportação de um app autenticador.
 Desbloqueio com Face ID ou Touch ID, com um período de tolerância de cinco minutos compartilhado com o Preenchimento Automático.
 Área de transferência temporária: as cópias ficam só neste dispositivo e são apagadas após 45 segundos.
 Edição por campo que preserva exatamente os bytes das linhas que não são alteradas.

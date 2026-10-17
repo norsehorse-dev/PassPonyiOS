@@ -1,6 +1,6 @@
 PassPony 2.0
 
-Clés d'accès : enregistrez une clé d'accès pour un site et connectez-vous avec. Elle est conservée dans l'entrée de ce site, chiffrée avec vos clés, et se synchronise sur vos autres appareils, y compris PassPony sur Android.
+Clés d'accès : enregistrez une clé d'accès pour un site et connectez-vous avec. Elle est conservée dans l'entrée de ce site, chiffrée avec vos clés, et se synchronise sur vos autres appareils.
 
 Synchronisation SSH : utilisez un dépôt distant SSH avec une clé créée dans l'app ou importée. Les hôtes sont approuvés à la première utilisation, et une clé d'hôte modifiée est refusée.
 
@@ -8,6 +8,6 @@ Sauvegarde des clés : enregistrez toutes les clés de ce téléphone dans un s
 
 Téléphones partageant un coffre : chaque téléphone ajoute sa propre clé publique au fichier .age-recipients du coffre lors de la synchronisation, et vous demande votre accord avant de rechiffrer vos entrées pour un nouveau téléphone.
 
-Codes à usage unique : compteurs HOTP et import depuis le code QR d'un export Google Authenticator.
+Codes à usage unique : compteurs HOTP et import depuis les codes QR d'export d'une app d'authentification.
 
 Le délai de grâce de cinq minutes du verrouillage est désormais compté à partir du moment où vous quittez l'app.

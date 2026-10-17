@@ -1,6 +1,6 @@
 PassPony 2.0
 
-Passkeys: Sichere einen Passkey für eine Website und melde dich damit an. Er wird im Eintrag dieser Website gespeichert, mit deinen Schlüsseln verschlüsselt, und mit deinen anderen Geräten synchronisiert, PassPony auf Android eingeschlossen.
+Passkeys: Sichere einen Passkey für eine Website und melde dich damit an. Er wird im Eintrag dieser Website gespeichert, mit deinen Schlüsseln verschlüsselt, und mit deinen anderen Geräten synchronisiert.
 
 SSH-Sync: Nutze ein SSH-Remote mit einem Schlüssel, der in der App erstellt oder importiert wurde. Hosts werden beim ersten Kontakt als vertrauenswürdig übernommen, und ein geänderter Host-Schlüssel wird abgelehnt.
 
@@ -8,6 +8,6 @@ Schlüssel-Backups: Sichere jeden Schlüssel auf diesem Telefon in einer Datei, 
 
 Telefone mit gemeinsamem Speicher: Jedes Telefon fügt beim Sync seinen eigenen öffentlichen Schlüssel zur Datei .age-recipients des Speichers hinzu und fragt dich, bevor deine Einträge für einen neuen Schlüssel neu verschlüsselt werden.
 
-Einmalcodes: HOTP-Zähler und Import über den QR-Code eines Exports aus Google Authenticator.
+Einmalcodes: HOTP-Zähler und Import über die Export-QR-Codes einer Authenticator-App.
 
 Die fünfminütige Schonfrist der Sperre zählt jetzt ab dem Moment, in dem du die App verlässt.

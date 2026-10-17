@@ -1,1 +1,1 @@
-gestor,totp,2fa,otp,gpg,pgp,age,openpgp,passkey,ssh,autorrelleno,llave,cifrado,privado,offline,linux
+gestor,totp,2fa,otp,gpg,pgp,age,openpgp,passkey,ssh,autorrelleno,llave,cifrado,privado,offline

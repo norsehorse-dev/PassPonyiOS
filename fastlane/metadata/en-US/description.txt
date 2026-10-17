@@ -9,7 +9,7 @@ Interoperable: commits match the pass CLI format, so the store stays fully usabl
 EVERYDAY USE
 AutoFill: your passwords appear above the keyboard when you sign in. Only entry names are indexed; nothing decrypts until you fill.
 Passkeys: save a passkey for a site and sign in with it. It lives in that site's entry, encrypted with your keys, and syncs like everything else.
-One-time codes: TOTP with a countdown ring, HOTP counters, and import from a Google Authenticator export.
+One-time codes: TOTP with a countdown ring, HOTP counters, and import from an authenticator app's export QR codes.
 Face ID or Touch ID unlock, with a five-minute grace window shared with AutoFill.
 Ephemeral clipboard: copies are local only and clear after 45 seconds.
 Field-level editing that preserves the exact bytes of lines it does not touch.

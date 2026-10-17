@@ -1,6 +1,6 @@
 PassPony 2.0
 
-Passkeys: save a passkey for a site and sign in with it. It is stored in that site's entry, encrypted with your keys, and syncs to your other devices, PassPony on Android included.
+Passkeys: save a passkey for a site and sign in with it. It is stored in that site's entry, encrypted with your keys, and syncs to your other devices.
 
 SSH sync: use an SSH remote with a key made in the app or imported. Hosts are trusted on first use, and a changed host key is refused.
 
@@ -8,6 +8,6 @@ Key backups: save every key on this phone to one file locked with a recovery cod
 
 Phones sharing a store: each phone adds its own public key to the store's .age-recipients when it syncs, and asks you before re-encrypting your entries for a new one.
 
-One-time codes: HOTP counters, and import from a Google Authenticator export QR code.
+One-time codes: HOTP counters, and import from an authenticator app's export QR codes.
 
 The lock's five-minute grace window now counts from when you leave the app.

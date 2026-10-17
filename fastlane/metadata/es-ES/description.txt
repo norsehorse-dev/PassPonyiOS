@@ -9,7 +9,7 @@ Interoperable: los commits siguen el formato de la CLI de pass, así que el alma
 USO DIARIO
 Autorrelleno: tus contraseñas aparecen encima del teclado cuando inicias sesión. Solo se indexan los nombres de las entradas; no se descifra nada hasta que rellenas.
 Llaves de acceso: guarda una llave de acceso para un sitio e inicia sesión con ella. Se guarda en la entrada de ese sitio, cifrada con tus claves, y se sincroniza como todo lo demás.
-Códigos de un solo uso: TOTP con un anillo de cuenta atrás, contadores HOTP e importación desde una exportación de Google Authenticator.
+Códigos de un solo uso: TOTP con un anillo de cuenta atrás, contadores HOTP e importación desde los códigos QR de exportación de una app de autenticación.
 Desbloqueo con Face ID o Touch ID, con un margen de cinco minutos compartido con el Autorrelleno.
 Portapapeles efímero: lo que copias se queda solo en el dispositivo y se borra a los 45 segundos.
 Edición por campos que conserva exactamente los bytes de las líneas que no toca.

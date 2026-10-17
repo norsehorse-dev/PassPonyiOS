@@ -9,7 +9,7 @@ Interoperabel: Commits entsprechen dem Format der pass-CLI, sodass der Speicher 
 IM ALLTAG
 Automatisch ausfüllen: Deine Passwörter erscheinen beim Anmelden über der Tastatur. Nur Eintragsnamen werden indexiert; entschlüsselt wird erst, wenn du ausfüllst.
 Passkeys: Sichere einen Passkey für eine Website und melde dich damit an. Er liegt im Eintrag dieser Website, mit deinen Schlüsseln verschlüsselt, und wird wie alles andere synchronisiert.
-Einmalcodes: TOTP mit Countdown-Ring, HOTP-Zähler und Import aus einem Export von Google Authenticator.
+Einmalcodes: TOTP mit Countdown-Ring, HOTP-Zähler und Import aus den Export-QR-Codes einer Authenticator-App.
 Entsperren mit Face ID oder Touch ID, mit einer Schonfrist von fünf Minuten, die auch für das automatische Ausfüllen gilt.
 Flüchtige Zwischenablage: Kopien bleiben lokal und werden nach 45 Sekunden gelöscht.
 Bearbeitung einzelner Felder, bei der unberührte Zeilen Byte für Byte erhalten bleiben.

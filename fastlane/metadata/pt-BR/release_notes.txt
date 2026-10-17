@@ -1,6 +1,6 @@
 PassPony 2.0
 
-Chaves de acesso: salve uma chave de acesso para um site e inicie sessão com ela. Ela fica guardada na entrada desse site, criptografada com suas chaves, e é sincronizada com seus outros dispositivos, incluindo o PassPony no Android.
+Chaves de acesso: salve uma chave de acesso para um site e inicie sessão com ela. Ela fica guardada na entrada desse site, criptografada com suas chaves, e é sincronizada com seus outros dispositivos.
 
 Sincronização por SSH: use um remoto SSH com uma chave criada no app ou importada. Os hosts são considerados confiáveis no primeiro uso, e uma chave de host alterada é recusada.
 
@@ -8,6 +8,6 @@ Backup das chaves: salve todas as chaves deste celular em um único arquivo prot
 
 Celulares com um cofre em comum: cada celular adiciona a própria chave pública ao .age-recipients do cofre ao sincronizar e pede sua confirmação antes de recriptografar suas entradas para um celular novo.
 
-Códigos de uso único: contadores HOTP e importação a partir do código QR de exportação do Google Authenticator.
+Códigos de uso único: contadores HOTP e importação a partir dos códigos QR de exportação de um app autenticador.
 
 O período de tolerância de cinco minutos do bloqueio agora é contado a partir do momento em que você sai do app.

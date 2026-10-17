@@ -9,7 +9,7 @@ Interopérable : les commits respectent le format de la CLI pass, le coffre res
 AU QUOTIDIEN
 Remplissage automatique : vos mots de passe apparaissent au-dessus du clavier lorsque vous vous connectez. Seuls les noms des entrées sont indexés ; rien n'est déchiffré avant le remplissage.
 Clés d'accès : enregistrez une clé d'accès pour un site et connectez-vous avec. Elle est conservée dans l'entrée de ce site, chiffrée avec vos clés, et se synchronise comme tout le reste.
-Codes à usage unique : TOTP avec anneau de compte à rebours, compteurs HOTP et import depuis un export Google Authenticator.
+Codes à usage unique : TOTP avec anneau de compte à rebours, compteurs HOTP et import depuis les codes QR d'export d'une app d'authentification.
 Déverrouillage par Face ID ou Touch ID, avec un délai de grâce de cinq minutes partagé avec le remplissage automatique.
 Presse-papiers éphémère : les copies restent locales et sont effacées après 45 secondes.
 Modification champ par champ, qui conserve à l'octet près les lignes auxquelles elle ne touche pas.
