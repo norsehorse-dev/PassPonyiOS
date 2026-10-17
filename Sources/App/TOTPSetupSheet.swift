@@ -78,12 +78,14 @@ struct TOTPSetupSheet: View {
         NavigationStack {
             Form {
                 Section {
-                    Picker("", selection: $tab) {
+                    Picker(selection: $tab) {
                         Text("Paste").tag(Tab.paste)
                         Text("Enter key").tag(Tab.key)
                         if hasCamera {
                             Text("Scan").tag(Tab.scan)
                         }
+                    } label: {
+                        EmptyView()
                     }
                     .pickerStyle(.segmented)
                 }
