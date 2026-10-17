@@ -90,7 +90,7 @@ struct AgeIdentitiesImporter: ViewModifier {
 func ageImportMessage(_ r: AgeIdentityStore.ImportResult) -> String {
     if r.added == 0 { return L("PassPony already has every identity in that file.") }
     if r.alreadyPresent == 0 { return L("Added \(r.added) age identities.") }
-    return L("Added \(r.added) age identities; \(r.alreadyPresent) already here.")
+    return L("\(r.added) added, \(r.alreadyPresent) already here.")
 }
 
 extension View {

@@ -42,6 +42,47 @@
         }
       }
     },
+    "%@ · %lld digits · counter %lld": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · %lld Stellen · Zähler %lld"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · %lld dígitos · contador %lld"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · %lld chiffres · compteur %lld"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · %lld dígitos · contador %lld"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · цифр: %lld · счётчик %lld"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · %lld 位 · 计数器 %lld"
+          }
+        }
+      }
+    },
     "%@%@ · %@": {
       "comment": "A fingerprint of a PGP key.",
       "extractionState": "manual",
@@ -99,6 +140,499 @@
           "stringUnit": {
             "state": "translated",
             "value": "%lld 个 OpenPGP 密钥文件"
+          }
+        }
+      }
+    },
+    "%lld PGP keys": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld PGP-Schlüssel"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld PGP-Schlüssel"
+                }
+              }
+            }
+          }
+        },
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld PGP key"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld PGP keys"
+                }
+              }
+            }
+          }
+        },
+        "es": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld clave PGP"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld claves PGP"
+                }
+              }
+            }
+          }
+        },
+        "fr": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld clé PGP"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld clés PGP"
+                }
+              }
+            }
+          }
+        },
+        "pt-BR": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld chave PGP"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld chaves PGP"
+                }
+              }
+            }
+          }
+        },
+        "ru": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld ключ PGP"
+                }
+              },
+              "few": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld ключа PGP"
+                }
+              },
+              "many": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld ключей PGP"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld ключей PGP"
+                }
+              }
+            }
+          }
+        },
+        "zh-Hans": {
+          "variations": {
+            "plural": {
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld 个 PGP 密钥"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%lld added, %lld already here.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld hinzugefügt, %lld bereits vorhanden."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld añadidas, %lld ya estaban aquí."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajoutées : %lld, déjà présentes : %lld."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld adicionadas, %lld já estavam aqui."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Добавлено: %lld, уже есть: %lld."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已添加 %lld 个，%lld 个已存在。"
+          }
+        }
+      }
+    },
+    "%lld age identities": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld age-Identität"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld age-Identitäten"
+                }
+              }
+            }
+          }
+        },
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld age identity"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld age identities"
+                }
+              }
+            }
+          }
+        },
+        "es": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld identidad age"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld identidades age"
+                }
+              }
+            }
+          }
+        },
+        "fr": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld identité age"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld identités age"
+                }
+              }
+            }
+          }
+        },
+        "pt-BR": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld identidade age"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld identidades age"
+                }
+              }
+            }
+          }
+        },
+        "ru": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld идентификатор age"
+                }
+              },
+              "few": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld идентификатора age"
+                }
+              },
+              "many": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld идентификаторов age"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld идентификаторов age"
+                }
+              }
+            }
+          }
+        },
+        "zh-Hans": {
+          "variations": {
+            "plural": {
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld 个 age 身份"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%lld items from a newer version were skipped.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld Element aus einer neueren Version wurde übersprungen."
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld Elemente aus einer neueren Version wurden übersprungen."
+                }
+              }
+            }
+          }
+        },
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld item from a newer version was skipped."
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld items from a newer version were skipped."
+                }
+              }
+            }
+          }
+        },
+        "es": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Se omitió %lld elemento de una versión más reciente."
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Se omitieron %lld elementos de una versión más reciente."
+                }
+              }
+            }
+          }
+        },
+        "fr": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld élément d'une version plus récente a été ignoré."
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld éléments d'une version plus récente ont été ignorés."
+                }
+              }
+            }
+          }
+        },
+        "pt-BR": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld item de uma versão mais recente foi ignorado."
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld itens de uma versão mais recente foram ignorados."
+                }
+              }
+            }
+          }
+        },
+        "ru": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Пропущен %lld элемент из более новой версии."
+                }
+              },
+              "few": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Пропущены %lld элемента из более новой версии."
+                }
+              },
+              "many": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Пропущено %lld элементов из более новой версии."
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Пропущено %lld элементов из более новой версии."
+                }
+              }
+            }
+          }
+        },
+        "zh-Hans": {
+          "variations": {
+            "plural": {
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "已跳过 %lld 个来自较新版本的项目。"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%lld of %lld codes scanned": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld von %lld Codes gescannt"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld de %lld códigos escaneados"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld codes scannés sur %lld"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld de %lld códigos escaneados"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Отсканировано кодов: %lld из %lld"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已扫描 %lld 个导出码，共 %lld 个"
           }
         }
       }
@@ -411,6 +945,47 @@
         }
       }
     },
+    "A recovery code has 30 characters.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ein Wiederherstellungscode hat 30 Zeichen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un código de recuperación tiene 30 caracteres."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un code de récupération comporte 30 caractères."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Um código de recuperação tem 30 caracteres."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Код восстановления состоит из 30 символов."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "恢复码应为 30 个字符。"
+          }
+        }
+      }
+    },
     "About": {
       "extractionState": "manual",
       "localizations": {
@@ -489,6 +1064,47 @@
           "stringUnit": {
             "state": "translated",
             "value": "账户"
+          }
+        }
+      }
+    },
+    "Accounts": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Konten"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cuentas"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comptes"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Contas"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Аккаунты"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "帐号"
           }
         }
       }
@@ -658,6 +1274,47 @@
         }
       }
     },
+    "Add link": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Link hinzufügen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Añadir enlace"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajouter le lien"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adicionar link"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Добавить ссылку"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "添加链接"
+          }
+        }
+      }
+    },
     "Add one-time code…": {
       "extractionState": "manual",
       "localizations": {
@@ -736,6 +1393,143 @@
           "stringUnit": {
             "state": "translated",
             "value": "添加你的第一个条目"
+          }
+        }
+      }
+    },
+    "Added %lld age identities.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld age-Identität hinzugefügt."
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld age-Identitäten hinzugefügt."
+                }
+              }
+            }
+          }
+        },
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Added %lld age identity."
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Added %lld age identities."
+                }
+              }
+            }
+          }
+        },
+        "es": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Se añadió %lld identidad age."
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Se añadieron %lld identidades age."
+                }
+              }
+            }
+          }
+        },
+        "fr": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld identité age ajoutée."
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld identités age ajoutées."
+                }
+              }
+            }
+          }
+        },
+        "pt-BR": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld identidade age adicionada."
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld identidades age adicionadas."
+                }
+              }
+            }
+          }
+        },
+        "ru": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Добавлен %lld идентификатор age."
+                }
+              },
+              "few": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Добавлены %lld идентификатора age."
+                }
+              },
+              "many": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Добавлено %lld идентификаторов age."
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Добавлено %lld идентификаторов age."
+                }
+              }
+            }
+          }
+        },
+        "zh-Hans": {
+          "variations": {
+            "plural": {
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "已添加 %lld 个 age 身份。"
+                }
+              }
+            }
           }
         }
       }
@@ -822,6 +1616,47 @@
         }
       }
     },
+    "Age identities": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "age-Identitäten"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Identidades age"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Identités age"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Identidades age"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Идентификаторы age"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "age 身份"
+          }
+        }
+      }
+    },
     "Algorithm": {
       "extractionState": "manual",
       "localizations": {
@@ -904,6 +1739,47 @@
         }
       }
     },
+    "Already scanned. %lld of %lld codes so far.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bereits gescannt. Bisher %lld von %lld Codes."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ya escaneado. %lld de %lld códigos hasta ahora."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Déjà scanné. %lld codes sur %lld jusqu'ici."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Já escaneado. %lld de %lld códigos até agora."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Этот код уже отсканирован. Пока отсканировано %lld из %lld."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已扫描过。目前已扫描 %lld 个导出码，共 %lld 个。"
+          }
+        }
+      }
+    },
     "Already up to date.": {
       "extractionState": "manual",
       "localizations": {
@@ -982,6 +1858,129 @@
           "stringUnit": {
             "state": "translated",
             "value": "已经在用 pass 或 passage？从 git 远程仓库克隆你现有的密码库，或导入你的 OpenPGP 密钥文件。\n\n从零开始？直接继续即可。"
+          }
+        }
+      }
+    },
+    "An entry with this name already exists.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ein Eintrag mit diesem Namen existiert bereits."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ya existe una entrada con este nombre."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Une entrée portant ce nom existe déjà."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Já existe uma entrada com este nome."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Запись с таким названием уже существует."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已存在同名条目。"
+          }
+        }
+      }
+    },
+    "Another account here has the same name.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ein anderes Konto hier hat denselben Namen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Otra cuenta de esta lista tiene el mismo nombre."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un autre compte ici porte le même nom."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Outra conta aqui tem o mesmo nome."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "У другого аккаунта здесь такое же название."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此处另一个帐号使用了相同的名称。"
+          }
+        }
+      }
+    },
+    "Anyone who gets this file can read your passage entries. Keep it somewhere only you can reach, or use the encrypted backup instead.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jeder, der diese Datei bekommt, kann deine passage-Einträge lesen. Bewahre sie an einem Ort auf, auf den nur du Zugriff hast, oder nutze stattdessen das verschlüsselte Backup."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cualquiera que consiga este archivo podrá leer tus entradas de passage. Guárdalo en un lugar al que solo tú tengas acceso, o usa la copia de seguridad cifrada en su lugar."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quiconque obtient ce fichier peut lire vos entrées passage. Conservez-le dans un endroit accessible à vous seul, ou utilisez plutôt la sauvegarde chiffrée."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Qualquer pessoa que obtiver este arquivo poderá ler suas entradas do passage. Guarde-o em um lugar que só você possa acessar ou use o backup criptografado."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Любой, кто получит этот файл, сможет прочитать ваши записи passage. Храните его там, где доступ есть только у вас, или используйте вместо этого зашифрованную резервную копию."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "任何拿到此文件的人都能读取你的 passage 条目。请将它存放在只有你能访问的地方，或改用加密备份。"
           }
         }
       }
@@ -1105,6 +2104,170 @@
           "stringUnit": {
             "state": "translated",
             "value": "自动填充已开启。"
+          }
+        }
+      }
+    },
+    "Back up and restore keys": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schlüssel sichern und wiederherstellen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copia de seguridad y restauración de claves"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sauvegarder et restaurer les clés"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fazer backup e restaurar chaves"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Резервное копирование и восстановление ключей"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "备份和恢复密钥"
+          }
+        }
+      }
+    },
+    "Back up keys": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schlüssel sichern"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hacer copia de seguridad de las claves"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sauvegarder les clés"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fazer backup das chaves"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Создать резервную копию ключей"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "备份密钥"
+          }
+        }
+      }
+    },
+    "Backup": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Backup"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copia de seguridad"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sauvegarde"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Backup"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Резервное копирование"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "备份"
+          }
+        }
+      }
+    },
+    "Backup saved.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Backup gespeichert."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copia de seguridad guardada."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sauvegarde enregistrée."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Backup salvo."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Резервная копия сохранена."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "备份已保存。"
           }
         }
       }
@@ -1433,6 +2596,47 @@
           "stringUnit": {
             "state": "translated",
             "value": "选择你想使用的语言。\n\n之后随时可以在“设置”中更改。"
+          }
+        }
+      }
+    },
+    "Choose where to save the backup.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wähle, wo das Backup gespeichert werden soll."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elige dónde guardar la copia de seguridad."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choisissez où enregistrer la sauvegarde."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Escolha onde salvar o backup."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Выберите, куда сохранить резервную копию."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "选择备份的保存位置。"
           }
         }
       }
@@ -1895,6 +3099,129 @@
         }
       }
     },
+    "Couldn't save: %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Speichern fehlgeschlagen: %@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo guardar: %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible d'enregistrer : %@"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não foi possível salvar: %@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Не удалось сохранить: %@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法保存：%@"
+          }
+        }
+      }
+    },
+    "Counter-based code. Codes are shown on the entry, one at a time, when you ask for the next one.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zählerbasierter Code. Die Codes werden im Eintrag einzeln angezeigt, wenn du den nächsten anforderst."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Código basado en contador. Los códigos se muestran en la entrada, de uno en uno, cuando pides el siguiente."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Code basé sur un compteur. Les codes s'affichent sur l'entrée, un par un, lorsque vous demandez le suivant."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Código baseado em contador. Os códigos aparecem na entrada, um de cada vez, quando você pede o próximo."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Код на основе счётчика. Коды показываются в записи по одному, когда вы запрашиваете следующий."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "基于计数器的验证码。每当你请求下一个验证码时，验证码会逐个显示在条目中。"
+          }
+        }
+      }
+    },
+    "Create backup…": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Backup erstellen …"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crear copia de seguridad…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Créer une sauvegarde…"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Criar backup…"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Создать резервную копию…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "创建备份…"
+          }
+        }
+      }
+    },
     "Crypto core on GitHub": {
       "extractionState": "manual",
       "localizations": {
@@ -2264,6 +3591,47 @@
         }
       }
     },
+    "Each code uses up one counter value and is saved to the entry, the same as pass otp code.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jeder Code verbraucht einen Zählerwert und wird im Eintrag gespeichert, genau wie bei pass otp code."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cada código consume un valor del contador y se guarda en la entrada, igual que pass otp code."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chaque code consomme une valeur du compteur et est enregistré dans l'entrée, comme avec pass otp code."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cada código consome um valor do contador e é salvo na entrada, assim como no pass otp code."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Каждый код расходует одно значение счётчика и сохраняется в записи, так же как pass otp code."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每个验证码都会消耗一个计数器值并保存到条目中，与 pass otp code 相同。"
+          }
+        }
+      }
+    },
     "Each format keeps its own store. Switching never touches the other store's data.": {
       "extractionState": "manual",
       "localizations": {
@@ -2429,6 +3797,88 @@
         }
       }
     },
+    "Encrypted backup": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verschlüsseltes Backup"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copia de seguridad cifrada"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sauvegarde chiffrée"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Backup criptografado"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Зашифрованная резервная копия"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "加密备份"
+          }
+        }
+      }
+    },
+    "Encrypted backup, plain export, restore": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verschlüsseltes Backup, Klartext-Export, Wiederherstellung"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copia cifrada, exportación sin cifrar, restauración"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sauvegarde chiffrée, export en clair, restauration"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Backup criptografado, exportação sem criptografia, restauração"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Зашифрованная копия, экспорт без шифрования, восстановление"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "加密备份、明文导出、恢复"
+          }
+        }
+      }
+    },
     "Encrypted file transfer": {
       "extractionState": "manual",
       "localizations": {
@@ -2548,6 +3998,88 @@
           "stringUnit": {
             "state": "translated",
             "value": "输入密钥"
+          }
+        }
+      }
+    },
+    "Enter the passphrase this identities file was encrypted with, for example the one gopass asked for. It is only used to decrypt the file on this device.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gib die Passphrase ein, mit der diese Identitätsdatei verschlüsselt wurde, zum Beispiel die, nach der gopass gefragt hat. Sie wird nur verwendet, um die Datei auf diesem Gerät zu entschlüsseln."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Introduce la frase de contraseña con la que se cifró este archivo de identidades, por ejemplo la que te pidió gopass. Solo se usa para descifrar el archivo en este dispositivo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saisissez la phrase secrète avec laquelle ce fichier d'identités a été chiffré, par exemple celle demandée par gopass. Elle sert uniquement à déchiffrer le fichier sur cet appareil."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Digite a frase secreta com que este arquivo de identidades foi criptografado, por exemplo a que o gopass pediu. Ela é usada apenas para descriptografar o arquivo neste dispositivo."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Введите парольную фразу, которой зашифрован этот файл идентификаторов, например ту, которую запрашивал gopass. Она используется только для расшифровки файла на этом устройстве."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请输入此身份文件加密时使用的密码短语，例如 gopass 要求你输入的那个。它仅用于在此设备上解密该文件。"
+          }
+        }
+      }
+    },
+    "Enter the recovery code you wrote down when you made this backup.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gib den Wiederherstellungscode ein, den du beim Erstellen dieses Backups aufgeschrieben hast."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Introduce el código de recuperación que anotaste al crear esta copia de seguridad."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saisissez le code de récupération que vous avez noté lors de la création de cette sauvegarde."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Digite o código de recuperação que você anotou ao criar este backup."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Введите код восстановления, который вы записали при создании этой резервной копии."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请输入你创建此备份时写下的恢复码。"
           }
         }
       }
@@ -2675,6 +4207,47 @@
         }
       }
     },
+    "Entry name": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eintragsname"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nombre de la entrada"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nom de l'entrée"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nome da entrada"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Название записи"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "条目名称"
+          }
+        }
+      }
+    },
     "Every entry in scope is decrypted and re-encrypted to the recipients its directory currently resolves to.": {
       "extractionState": "manual",
       "localizations": {
@@ -2712,6 +4285,129 @@
           "stringUnit": {
             "state": "translated",
             "value": "范围内的每个条目都会被解密，并为其目录当前解析到的接收者重新加密。"
+          }
+        }
+      }
+    },
+    "Export": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exportieren"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exportar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exporter"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exportar"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Экспортировать"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "导出"
+          }
+        }
+      }
+    },
+    "Export identities file…": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Identitätsdatei exportieren …"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exportar archivo de identidades…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exporter le fichier d'identités…"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exportar arquivo de identidades…"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Экспортировать файл идентификаторов…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "导出身份文件…"
+          }
+        }
+      }
+    },
+    "Export your key unencrypted?": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schlüssel unverschlüsselt exportieren?"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Exportar tu clave sin cifrar?"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exporter votre clé sans chiffrement ?"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exportar sua chave sem criptografia?"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Экспортировать ключ без шифрования?"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "要以未加密形式导出你的密钥吗？"
           }
         }
       }
@@ -3130,6 +4826,389 @@
         }
       }
     },
+    "Give this entry a name.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gib diesem Eintrag einen Namen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ponle un nombre a esta entrada."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Donnez un nom à cette entrée."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dê um nome a esta entrada."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Укажите название записи."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请为此条目命名。"
+          }
+        }
+      }
+    },
+    "I've written it down": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ich habe ihn aufgeschrieben"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ya lo he anotado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je l'ai noté"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Já anotei"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Код записан"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "我已写下"
+          }
+        }
+      }
+    },
+    "Identities file is encrypted": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die Identitätsdatei ist verschlüsselt"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El archivo de identidades está cifrado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le fichier d'identités est chiffré"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O arquivo de identidades está criptografado"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Файл идентификаторов зашифрован"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "身份文件已加密"
+          }
+        }
+      }
+    },
+    "Identities file present.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Identitätsdatei vorhanden."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Archivo de identidades presente."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fichier d'identités présent."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arquivo de identidades presente."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Файл идентификаторов импортирован."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已有身份文件。"
+          }
+        }
+      }
+    },
+    "Identities file saved.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Identitätsdatei gespeichert."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Archivo de identidades guardado."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fichier d'identités enregistré."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arquivo de identidades salvo."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Файл идентификаторов сохранён."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "身份文件已保存。"
+          }
+        }
+      }
+    },
+    "If you lose this phone, your passage entries can't be read without it. Tap to back it up.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wenn du dieses Telefon verlierst, können deine passage-Einträge ohne den Schlüssel nicht gelesen werden. Tippe, um ihn zu sichern."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Si pierdes este teléfono, tus entradas de passage no se podrán leer sin ella. Toca para hacer una copia de seguridad."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Si vous perdez ce téléphone, vos entrées passage ne pourront pas être lues sans cette clé. Touchez pour la sauvegarder."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se você perder este celular, suas entradas do passage não poderão ser lidas sem ela. Toque para fazer backup."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Если вы потеряете этот телефон, ваши записи passage будет невозможно прочитать без этого ключа. Нажмите, чтобы создать резервную копию."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "如果你丢失了这部手机，没有此密钥就无法读取你的 passage 条目。轻点以备份密钥。"
+          }
+        }
+      }
+    },
+    "Import %lld entries": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld Eintrag importieren"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld Einträge importieren"
+                }
+              }
+            }
+          }
+        },
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Import %lld entry"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Import %lld entries"
+                }
+              }
+            }
+          }
+        },
+        "es": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Importar %lld entrada"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Importar %lld entradas"
+                }
+              }
+            }
+          }
+        },
+        "fr": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Importer %lld entrée"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Importer %lld entrées"
+                }
+              }
+            }
+          }
+        },
+        "pt-BR": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Importar %lld entrada"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Importar %lld entradas"
+                }
+              }
+            }
+          }
+        },
+        "ru": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Импортировать %lld запись"
+                }
+              },
+              "few": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Импортировать %lld записи"
+                }
+              },
+              "many": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Импортировать %lld записей"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Импортировать %lld записей"
+                }
+              }
+            }
+          }
+        },
+        "zh-Hans": {
+          "variations": {
+            "plural": {
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "导入 %lld 个条目"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "Import a key file in Settings first.": {
       "extractionState": "manual",
       "localizations": {
@@ -3212,6 +5291,88 @@
         }
       }
     },
+    "Import from Authenticator": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aus Authenticator importieren"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importar desde Authenticator"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importer depuis Authenticator"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importar do Authenticator"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Импорт из Authenticator"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "从 Authenticator 导入"
+          }
+        }
+      }
+    },
+    "Import identities file…": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Identitätsdatei importieren …"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importar archivo de identidades…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importer un fichier d'identités…"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importar arquivo de identidades…"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Импортировать файл идентификаторов…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "导入身份文件…"
+          }
+        }
+      }
+    },
     "Import key file…": {
       "comment": "Security-sensitive term — review carefully.",
       "extractionState": "manual",
@@ -3250,6 +5411,143 @@
           "stringUnit": {
             "state": "translated",
             "value": "导入密钥文件…"
+          }
+        }
+      }
+    },
+    "Imported %lld entries.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld Eintrag importiert."
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld Einträge importiert."
+                }
+              }
+            }
+          }
+        },
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Imported %lld entry."
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Imported %lld entries."
+                }
+              }
+            }
+          }
+        },
+        "es": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Se importó %lld entrada."
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Se importaron %lld entradas."
+                }
+              }
+            }
+          }
+        },
+        "fr": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld entrée importée."
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld entrées importées."
+                }
+              }
+            }
+          }
+        },
+        "pt-BR": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld entrada importada."
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld entradas importadas."
+                }
+              }
+            }
+          }
+        },
+        "ru": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Импортирована %lld запись."
+                }
+              },
+              "few": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Импортированы %lld записи."
+                }
+              },
+              "many": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Импортировано %lld записей."
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Импортировано %lld записей."
+                }
+              }
+            }
+          }
+        },
+        "zh-Hans": {
+          "variations": {
+            "plural": {
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "已导入 %lld 个条目。"
+                }
+              }
+            }
           }
         }
       }
@@ -3387,6 +5685,47 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "In Google Authenticator, choose Transfer accounts, then Export accounts. Scan every QR code it shows. Each account you pick becomes its own one-time code entry.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wähle in Google Authenticator „Konten übertragen“ und dann „Konten exportieren“. Scanne jeden angezeigten QR-Code. Jedes ausgewählte Konto wird zu einem eigenen Einmalcode-Eintrag."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En Google Authenticator, elige Transferir cuentas y luego Exportar cuentas. Escanea todos los códigos QR que muestre. Cada cuenta que elijas se convierte en su propia entrada de código de un solo uso."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dans Google Authenticator, choisissez Transférer des comptes, puis Exporter des comptes. Scannez chaque code QR affiché. Chaque compte sélectionné devient sa propre entrée de code à usage unique."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No Google Authenticator, escolha Transferir contas e depois Exportar contas. Escaneie todos os códigos QR exibidos. Cada conta que você escolher vira uma entrada própria de código de uso único."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "В Google Authenticator выберите «Transfer accounts», затем «Export accounts». Отсканируйте все QR-коды, которые он покажет. Каждый выбранный аккаунт станет отдельной записью с одноразовым кодом."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在 Google Authenticator 中，选择“转移帐号”，然后选择“导出帐号”。扫描它显示的每个二维码。你选择的每个帐号都会成为一个单独的一次性验证码条目。"
           }
         }
       }
@@ -4006,6 +6345,47 @@
           "stringUnit": {
             "state": "translated",
             "value": "密钥"
+          }
+        }
+      }
+    },
+    "Keys backup": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schlüssel-Backup"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copia de seguridad de claves"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sauvegarde des clés"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Backup das chaves"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Резервная копия ключей"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "密钥备份"
           }
         }
       }
@@ -4968,6 +7348,47 @@
         }
       }
     },
+    "No identities imported. A passage store needs the age identity it was encrypted to.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keine Identitäten importiert. Ein passage-Speicher benötigt die age-Identität, für die er verschlüsselt wurde."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No hay identidades importadas. Un almacén de passage necesita la identidad age para la que se cifró."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucune identité importée. Un coffre passage nécessite l'identité age pour laquelle il a été chiffré."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nenhuma identidade importada. Um cofre do passage precisa da identidade age para a qual foi criptografado."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Идентификаторы не импортированы. Для хранилища passage нужен идентификатор age, для которого оно было зашифровано."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "尚未导入任何身份。passage 密码库需要其加密时所指定的 age 身份。"
+          }
+        }
+      }
+    },
     "No imported key matches %@ (fingerprint or 16-hex key ID)": {
       "comment": "Security-sensitive term — review carefully.",
       "extractionState": "manual",
@@ -5295,6 +7716,47 @@
           "stringUnit": {
             "state": "translated",
             "value": "无"
+          }
+        }
+      }
+    },
+    "Not imported": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nicht importiert"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No importadas"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non importés"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não importadas"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Не импортировано"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未导入"
           }
         }
       }
@@ -5714,6 +8176,47 @@
       "extractionState": "manual",
       "shouldTranslate": false
     },
+    "PassPony already has every identity in that file.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PassPony hat bereits jede Identität aus dieser Datei."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PassPony ya tiene todas las identidades de ese archivo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PassPony possède déjà toutes les identités de ce fichier."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O PassPony já tem todas as identidades desse arquivo."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Все идентификаторы из этого файла уже есть в PassPony."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "该文件中的所有身份都已在 PassPony 中。"
+          }
+        }
+      }
+    },
     "PassPony is locked": {
       "extractionState": "manual",
       "localizations": {
@@ -5933,6 +8436,47 @@
         }
       }
     },
+    "Passphrase": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Passphrase"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frase de contraseña"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phrase secrète"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frase secreta"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Парольная фраза"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "密码短语"
+          }
+        }
+      }
+    },
     "Password": {
       "extractionState": "manual",
       "localizations": {
@@ -6134,6 +8678,47 @@
           "stringUnit": {
             "state": "translated",
             "value": "周期（秒）"
+          }
+        }
+      }
+    },
+    "Plain export": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Klartext-Export"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exportación sin cifrar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Export en clair"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exportação sem criptografia"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Экспорт без шифрования"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "明文导出"
           }
         }
       }
@@ -6726,6 +9311,47 @@
         }
       }
     },
+    "Recovery code": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wiederherstellungscode"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Código de recuperación"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Code de récupération"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Código de recuperação"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Код восстановления"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "恢复码"
+          }
+        }
+      }
+    },
     "Remote": {
       "comment": "Security-sensitive term — review carefully.",
       "extractionState": "manual",
@@ -7151,6 +9777,252 @@
         }
       }
     },
+    "Restore": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wiederherstellen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restaurar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restauration"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restaurar"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Восстановление"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "恢复"
+          }
+        }
+      }
+    },
+    "Restore backup": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Backup wiederherstellen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restaurar copia de seguridad"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restaurer la sauvegarde"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restaurar backup"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Восстановить резервную копию"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "恢复备份"
+          }
+        }
+      }
+    },
+    "Restore from backup…": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aus Backup wiederherstellen …"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restaurar desde copia de seguridad…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restaurer depuis une sauvegarde…"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restaurar do backup…"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Восстановить из резервной копии…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "从备份恢复…"
+          }
+        }
+      }
+    },
+    "Restore keys from a .passpony backup. They are added to the keys already here; nothing is replaced.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stelle Schlüssel aus einem .passpony-Backup wieder her. Sie werden zu den hier bereits vorhandenen Schlüsseln hinzugefügt; nichts wird ersetzt."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restaura claves desde una copia de seguridad .passpony. Se añaden a las claves que ya hay aquí; no se reemplaza nada."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restaurez des clés à partir d'une sauvegarde .passpony. Elles sont ajoutées aux clés déjà présentes ; rien n'est remplacé."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restaure chaves de um backup .passpony. Elas são adicionadas às chaves que já estão aqui; nada é substituído."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Восстановите ключи из резервной копии .passpony. Они добавляются к уже имеющимся ключам; ничего не заменяется."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "从 .passpony 备份恢复密钥。它们会被添加到已有的密钥中，不会替换任何内容。"
+          }
+        }
+      }
+    },
+    "Restored %@.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ wiederhergestellt."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restaurado: %@."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restauré : %@."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restaurado: %@."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Восстановлено: %@."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已恢复 %@。"
+          }
+        }
+      }
+    },
+    "Restored. Every key in the backup was already here.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wiederhergestellt. Alle Schlüssel aus dem Backup waren bereits vorhanden."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restaurada. Todas las claves de la copia de seguridad ya estaban aquí."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restauration terminée. Toutes les clés de la sauvegarde étaient déjà présentes."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restaurado. Todas as chaves do backup já estavam aqui."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Восстановлено. Все ключи из резервной копии уже были здесь."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已恢复。备份中的所有密钥都已存在。"
+          }
+        }
+      }
+    },
     "Results": {
       "extractionState": "manual",
       "localizations": {
@@ -7233,6 +10105,47 @@
           "stringUnit": {
             "state": "translated",
             "value": "保存"
+          }
+        }
+      }
+    },
+    "Save backup…": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Backup speichern …"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guardar copia de seguridad…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enregistrer la sauvegarde…"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salvar backup…"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сохранить резервную копию…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "保存备份…"
           }
         }
       }
@@ -7356,6 +10269,47 @@
           "stringUnit": {
             "state": "translated",
             "value": "扫描二维码"
+          }
+        }
+      }
+    },
+    "Scan export codes": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exportcodes scannen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Escanear códigos de exportación"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scanner les codes d'exportation"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Escanear códigos de exportação"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сканировать коды экспорта"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "扫描导出码"
           }
         }
       }
@@ -7647,6 +10601,88 @@
         }
       }
     },
+    "Show next code": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nächsten Code anzeigen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar el siguiente código"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Afficher le code suivant"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar próximo código"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Показать следующий код"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "显示下一个验证码"
+          }
+        }
+      }
+    },
+    "Show the code again": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Code erneut anzeigen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volver a mostrar el código"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Afficher à nouveau le code"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar o código novamente"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Показать код ещё раз"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "再次显示恢复码"
+          }
+        }
+      }
+    },
     "Show welcome tour again": {
       "extractionState": "manual",
       "localizations": {
@@ -7777,6 +10813,47 @@
     "Spike: in-extension capabilities": {
       "extractionState": "manual",
       "shouldTranslate": false
+    },
+    "Start over": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Von vorn beginnen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Empezar de nuevo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recommencer"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recomeçar"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Начать заново"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "重新开始"
+          }
+        }
+      }
     },
     "Status": {
       "extractionState": "manual",
@@ -8190,6 +11267,47 @@
         }
       }
     },
+    "Sync copies your encrypted entries, not your keys. A new phone can clone your store but can't read it without a key backup.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sync kopiert deine verschlüsselten Einträge, nicht deine Schlüssel. Ein neues Telefon kann deinen Speicher klonen, ihn aber ohne Schlüssel-Backup nicht lesen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sincronizar copia tus entradas cifradas, no tus claves. Un teléfono nuevo puede clonar tu almacén, pero no podrá leerlo sin una copia de seguridad de las claves."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La synchronisation copie vos entrées chiffrées, pas vos clés. Un nouveau téléphone peut cloner votre coffre, mais ne peut pas le lire sans sauvegarde des clés."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sincronizar copia suas entradas criptografadas, não suas chaves. Um novo celular pode clonar seu cofre, mas não consegue lê-lo sem um backup das chaves."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Синхронизация копирует ваши зашифрованные записи, но не ключи. Новый телефон сможет клонировать хранилище, но не сможет прочитать его без резервной копии ключей."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "同步只会复制你已加密的条目，不会复制你的密钥。新手机可以克隆你的密码库，但没有密钥备份就无法读取其中的内容。"
+          }
+        }
+      }
+    },
     "Sync now": {
       "extractionState": "manual",
       "localizations": {
@@ -8309,6 +11427,621 @@
           "stringUnit": {
             "state": "translated",
             "value": "该二维码不是一次性验证码。%@"
+          }
+        }
+      }
+    },
+    "That backup is damaged or incomplete. Nothing was restored.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dieses Backup ist beschädigt oder unvollständig. Es wurde nichts wiederhergestellt."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esa copia de seguridad está dañada o incompleta. No se restauró nada."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cette sauvegarde est endommagée ou incomplète. Rien n'a été restauré."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esse backup está danificado ou incompleto. Nada foi restaurado."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Эта резервная копия повреждена или неполна. Ничего не восстановлено."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "该备份已损坏或不完整。未恢复任何内容。"
+          }
+        }
+      }
+    },
+    "That backup was made by a newer version of PassPony. Update the app to restore it.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dieses Backup wurde mit einer neueren Version von PassPony erstellt. Aktualisiere die App, um es wiederherzustellen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esa copia de seguridad se hizo con una versión más reciente de PassPony. Actualiza la app para restaurarla."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cette sauvegarde a été créée par une version plus récente de PassPony. Mettez l'app à jour pour la restaurer."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esse backup foi feito por uma versão mais recente do PassPony. Atualize o app para restaurá-lo."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Эта резервная копия создана более новой версией PassPony. Обновите приложение, чтобы восстановить её."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "该备份由较新版本的 PassPony 创建。请更新应用后再恢复。"
+          }
+        }
+      }
+    },
+    "That code is from a different export. Finish this one or start over.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dieser Code stammt aus einem anderen Export. Schließe diesen ab oder beginne von vorn."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ese código es de otra exportación. Termina esta o empieza de nuevo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ce code provient d'une autre exportation. Terminez celle-ci ou recommencez."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esse código é de outra exportação. Termine esta ou recomece."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Этот код из другого экспорта. Завершите текущий или начните заново."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "该导出码属于另一次导出。请先扫描完当前这次导出，或重新开始。"
+          }
+        }
+      }
+    },
+    "That export code couldn't be read. Scan it again.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dieser Exportcode konnte nicht gelesen werden. Scanne ihn erneut."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo leer ese código de exportación. Escanéalo de nuevo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ce code d'exportation est illisible. Scannez-le à nouveau."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não foi possível ler esse código de exportação. Escaneie-o novamente."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Не удалось прочитать этот код экспорта. Отсканируйте его ещё раз."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法读取该导出码。请重新扫描。"
+          }
+        }
+      }
+    },
+    "That file couldn't be read.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diese Datei konnte nicht gelesen werden."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo leer ese archivo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ce fichier est illisible."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não foi possível ler esse arquivo."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Не удалось прочитать этот файл."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法读取该文件。"
+          }
+        }
+      }
+    },
+    "That file has no usable age identity.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diese Datei enthält keine nutzbare age-Identität."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ese archivo no tiene ninguna identidad age utilizable."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ce fichier ne contient aucune identité age utilisable."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esse arquivo não tem nenhuma identidade age utilizável."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "В этом файле нет пригодного идентификатора age."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "该文件中没有可用的 age 身份。"
+          }
+        }
+      }
+    },
+    "That file isn't a PassPony backup.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diese Datei ist kein PassPony-Backup."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ese archivo no es una copia de seguridad de PassPony."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ce fichier n'est pas une sauvegarde PassPony."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esse arquivo não é um backup do PassPony."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Этот файл не является резервной копией PassPony."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "该文件不是 PassPony 备份。"
+          }
+        }
+      }
+    },
+    "That file needs more memory to unlock than this device allows.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zum Entsperren dieser Datei wird mehr Arbeitsspeicher benötigt, als dieses Gerät erlaubt."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ese archivo necesita más memoria para desbloquearse de la que permite este dispositivo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le déverrouillage de ce fichier nécessite plus de mémoire que cet appareil n'en autorise."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esse arquivo precisa de mais memória para ser desbloqueado do que este dispositivo permite."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Для разблокировки этого файла нужно больше памяти, чем позволяет это устройство."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "解锁该文件所需的内存超出了此设备允许的范围。"
+          }
+        }
+      }
+    },
+    "That isn't a Google Authenticator export code.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Das ist kein Exportcode von Google Authenticator."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ese no es un código de exportación de Google Authenticator."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ce n'est pas un code d'exportation Google Authenticator."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esse não é um código de exportação do Google Authenticator."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Это не код экспорта Google Authenticator."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "这不是 Google Authenticator 导出码。"
+          }
+        }
+      }
+    },
+    "That recovery code doesn't open this backup.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dieser Wiederherstellungscode öffnet dieses Backup nicht."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ese código de recuperación no abre esta copia de seguridad."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ce code de récupération n'ouvre pas cette sauvegarde."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esse código de recuperação não abre este backup."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Этот код восстановления не открывает эту резервную копию."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "该恢复码无法打开此备份。"
+          }
+        }
+      }
+    },
+    "That recovery code has a character codes never use.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dieser Wiederherstellungscode enthält ein Zeichen, das in Codes nie vorkommt."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ese código de recuperación tiene un carácter que los códigos nunca usan."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ce code de récupération contient un caractère qui n'est jamais utilisé dans les codes."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esse código de recuperação tem um caractere que os códigos nunca usam."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "В этом коде восстановления есть символ, который в кодах никогда не используется."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "该恢复码包含恢复码中从不使用的字符。"
+          }
+        }
+      }
+    },
+    "That recovery code has a typo. Check each group against what you wrote down.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dieser Wiederherstellungscode enthält einen Tippfehler. Vergleiche jede Gruppe mit dem, was du aufgeschrieben hast."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ese código de recuperación tiene un error. Compara cada grupo con lo que anotaste."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ce code de récupération contient une faute de frappe. Vérifiez chaque groupe par rapport à ce que vous avez noté."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esse código de recuperação tem um erro de digitação. Confira cada grupo com o que você anotou."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "В этом коде восстановления опечатка. Сверьте каждую группу с тем, что вы записали."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "该恢复码有输入错误。请对照你写下的内容逐组检查。"
+          }
+        }
+      }
+    },
+    "That's a Google Authenticator export. Use Import from Authenticator in the store list menu.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Das ist ein Export aus Google Authenticator. Nutze „Aus Authenticator importieren“ im Menü der Speicherliste."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eso es una exportación de Google Authenticator. Usa Importar desde Authenticator en el menú de la lista del almacén."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il s'agit d'une exportation Google Authenticator. Utilisez Importer depuis Authenticator dans le menu de la liste du coffre."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Isso é uma exportação do Google Authenticator. Use Importar do Authenticator no menu da lista de cofres."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Это экспорт из Google Authenticator. Используйте пункт «Импорт из Authenticator» в меню списка хранилища."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "这是 Google Authenticator 导出码。请使用密码库列表菜单中的“从 Authenticator 导入”。"
+          }
+        }
+      }
+    },
+    "That's a valid code, but not this one. Check what you wrote down.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Das ist ein gültiger Code, aber nicht der richtige. Prüfe, was du aufgeschrieben hast."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ese código es válido, pero no es este. Revisa lo que anotaste."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ce code est valide, mais ce n'est pas le bon. Vérifiez ce que vous avez noté."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esse código é válido, mas não é este. Confira o que você anotou."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Это допустимый код, но не тот. Проверьте, что вы записали."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "这是有效的恢复码，但不是本次的恢复码。请检查你写下的内容。"
+          }
+        }
+      }
+    },
+    "The backup can't be opened without this code, and PassPony can't show it again after this.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ohne diesen Code lässt sich das Backup nicht öffnen, und PassPony kann ihn danach nicht erneut anzeigen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La copia de seguridad no se puede abrir sin este código, y PassPony no podrá volver a mostrarlo después de esto."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La sauvegarde ne peut pas être ouverte sans ce code, et PassPony ne pourra plus l'afficher après cette étape."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O backup não pode ser aberto sem este código, e o PassPony não poderá mostrá-lo novamente depois disso."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Без этого кода резервную копию невозможно открыть, и после этого PassPony не сможет показать его снова."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "没有此恢复码就无法打开备份，并且此后 PassPony 无法再次显示它。"
           }
         }
       }
@@ -8778,6 +12511,47 @@
         }
       }
     },
+    "This counter-based (HOTP) link has no counter.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dieser zählerbasierte Link (HOTP) enthält keinen Zähler."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Este enlace basado en contador (HOTP) no tiene contador."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ce lien basé sur un compteur (HOTP) n'a pas de compteur."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Este link baseado em contador (HOTP) não tem contador."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "В этой ссылке со счётчиком (HOTP) нет значения счётчика."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此基于计数器（HOTP）的链接缺少计数器值。"
+          }
+        }
+      }
+    },
     "This deletes \"%@\" from the store. This can't be undone.": {
       "extractionState": "manual",
       "localizations": {
@@ -8815,6 +12589,47 @@
           "stringUnit": {
             "state": "translated",
             "value": "这将从密码库中删除“%@”。此操作无法撤销。"
+          }
+        }
+      }
+    },
+    "This device couldn't generate a recovery code. Try again.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dieses Gerät konnte keinen Wiederherstellungscode erzeugen. Versuche es erneut."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Este dispositivo no pudo generar un código de recuperación. Inténtalo de nuevo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cet appareil n'a pas pu générer de code de récupération. Réessayez."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Este dispositivo não conseguiu gerar um código de recuperação. Tente novamente."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Не удалось сгенерировать код восстановления на этом устройстве. Попробуйте ещё раз."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此设备无法生成恢复码。请重试。"
           }
         }
       }
@@ -8942,43 +12757,84 @@
         }
       }
     },
-    "This isn't an otpauth:// one-time code link. Counter-based (HOTP) codes and Google Authenticator export codes aren't supported.": {
+    "This is your recovery code. Write it down and keep it somewhere safe.": {
       "extractionState": "manual",
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Das ist kein otpauth://-Link für einen Einmalcode. Zählerbasierte Codes (HOTP) und Google-Authenticator-Exportcodes werden nicht unterstützt."
+            "value": "Das ist dein Wiederherstellungscode. Schreib ihn auf und bewahre ihn an einem sicheren Ort auf."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Esto no es un enlace otpauth:// de código de un solo uso. No se admiten códigos basados en contador (HOTP) ni códigos de exportación de Google Authenticator."
+            "value": "Este es tu código de recuperación. Anótalo y guárdalo en un lugar seguro."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ceci n'est pas un lien otpauth:// de code à usage unique. Les codes à compteur (HOTP) et les codes d'exportation Google Authenticator ne sont pas pris en charge."
+            "value": "Voici votre code de récupération. Notez-le et conservez-le en lieu sûr."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Isto não é um link otpauth:// de código de uso único. Códigos baseados em contador (HOTP) e códigos de exportação do Google Authenticator não são suportados."
+            "value": "Este é seu código de recuperação. Anote-o e guarde-o em um lugar seguro."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Это не ссылка otpauth:// на одноразовый код. Коды на основе счётчика (HOTP) и коды экспорта Google Authenticator не поддерживаются."
+            "value": "Это ваш код восстановления. Запишите его и храните в надёжном месте."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "这不是 otpauth:// 一次性验证码链接。不支持基于计数器的 (HOTP) 验证码和 Google Authenticator 导出码。"
+            "value": "这是你的恢复码。请把它写下来并妥善保管。"
+          }
+        }
+      }
+    },
+    "This isn't an otpauth:// one-time code link.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Das ist kein otpauth://-Einmalcode-Link."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Este no es un enlace otpauth:// de código de un solo uso."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ce n'est pas un lien de code à usage unique otpauth://."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Este não é um link otpauth:// de código de uso único."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Это не ссылка otpauth:// для одноразового кода."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "这不是 otpauth:// 一次性验证码链接。"
           }
         }
       }
@@ -9184,6 +13040,47 @@
           "stringUnit": {
             "state": "translated",
             "value": "开启自动填充后，登录时你的条目会直接出现在 QuickType 栏中。\n\n之后随时可以在 iOS 设置的“自动填充与密码”中管理。"
+          }
+        }
+      }
+    },
+    "Type the recovery code from what you wrote down.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gib den Wiederherstellungscode so ein, wie du ihn aufgeschrieben hast."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Escribe el código de recuperación tal como lo anotaste."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saisissez le code de récupération que vous avez noté."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Digite o código de recuperação que você anotou."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Введите код восстановления, который вы записали."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请根据你写下的内容输入恢复码。"
           }
         }
       }
@@ -10044,6 +13941,47 @@
         }
       }
     },
+    "Wrong passphrase, or that is not a passphrase-protected file.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Falsche Passphrase, oder die Datei ist nicht mit einer Passphrase geschützt."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frase de contraseña incorrecta, o ese archivo no está protegido con frase de contraseña."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phrase secrète incorrecte, ou ce fichier n'est pas protégé par une phrase secrète."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frase secreta incorreta, ou esse não é um arquivo protegido por frase secreta."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Неверная парольная фраза, или этот файл не защищён парольной фразой."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "密码短语错误，或该文件不受密码短语保护。"
+          }
+        }
+      }
+    },
     "Wrong passphrase.": {
       "comment": "Security-sensitive term — review carefully.",
       "extractionState": "manual",
@@ -10223,6 +14161,211 @@
         }
       }
     },
+    "Your age identities and any imported PGP keys, in one .passpony file locked with a recovery code. Keep the file wherever you like. Without the code it can't be opened.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deine age-Identitäten und alle importierten PGP-Schlüssel in einer .passpony-Datei, verschlossen mit einem Wiederherstellungscode. Bewahre die Datei auf, wo du möchtest. Ohne den Code lässt sie sich nicht öffnen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tus identidades age y las claves PGP que hayas importado, en un único archivo .passpony bloqueado con un código de recuperación. Guarda el archivo donde quieras. Sin el código no se puede abrir."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vos identités age et toutes les clés PGP importées, dans un seul fichier .passpony verrouillé par un code de récupération. Conservez le fichier où vous voulez. Sans le code, il ne peut pas être ouvert."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suas identidades age e as chaves PGP importadas, em um único arquivo .passpony bloqueado com um código de recuperação. Guarde o arquivo onde quiser. Sem o código, ele não pode ser aberto."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ваши идентификаторы age и все импортированные ключи PGP в одном файле .passpony, защищённом кодом восстановления. Храните файл где угодно. Без кода его невозможно открыть."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的 age 身份和所有已导入的 PGP 密钥，保存在一个用恢复码锁定的 .passpony 文件中。该文件可以存放在任何地方。没有恢复码就无法打开它。"
+          }
+        }
+      }
+    },
+    "Your age identities file as plain text, the same file the passage and age tools read.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deine age-Identitätsdatei als Klartext, dieselbe Datei, die die Tools passage und age lesen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu archivo de identidades age como texto sin cifrar, el mismo archivo que leen las herramientas passage y age."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Votre fichier d'identités age en texte clair, le même fichier que lisent les outils passage et age."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seu arquivo de identidades age em texto simples, o mesmo arquivo que as ferramentas passage e age leem."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ваш файл идентификаторов age в виде открытого текста, тот же файл, который читают утилиты passage и age."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "以明文形式导出你的 age 身份文件，即 passage 和 age 工具读取的同一个文件。"
+          }
+        }
+      }
+    },
+    "Your key isn't backed up": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Schlüssel ist nicht gesichert"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu clave no tiene copia de seguridad"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Votre clé n'est pas sauvegardée"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sua chave não tem backup"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Резервная копия ключа не создана"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的密钥尚未备份"
+          }
+        }
+      }
+    },
+    "Your keys are backed up.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deine Schlüssel sind gesichert."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tus claves tienen copia de seguridad."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vos clés sont sauvegardées."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suas chaves têm backup."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Резервная копия ключей создана."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的密钥已备份。"
+          }
+        }
+      }
+    },
+    "Your keys aren't backed up yet.": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deine Schlüssel sind noch nicht gesichert."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tus claves aún no tienen copia de seguridad."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vos clés ne sont pas encore sauvegardées."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suas chaves ainda não têm backup."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Резервная копия ключей ещё не создана."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的密钥尚未备份。"
+          }
+        }
+      }
+    },
     "Your passwords, in a store you own.\n\nPassPony speaks the same format as the pass and passage command-line tools: plain files, encrypted with your keys, synced with git.": {
       "extractionState": "manual",
       "localizations": {
@@ -10305,6 +14448,47 @@
         }
       }
     },
+    "counter-based": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "zählerbasiert"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "basado en contador"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "basé sur un compteur"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "baseado em contador"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "со счётчиком"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "基于计数器"
+          }
+        }
+      }
+    },
     "folder/name": {
       "extractionState": "manual",
       "localizations": {
@@ -10342,6 +14526,47 @@
           "stringUnit": {
             "state": "translated",
             "value": "文件夹/名称"
+          }
+        }
+      }
+    },
+    "has no secret": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "hat keinen geheimen Schlüssel"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "no tiene secreto"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "n'a pas de secret"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "não tem segredo"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "не содержит секрета"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "没有密钥"
           }
         }
       }
@@ -10641,7 +14866,48 @@
         }
       }
     },
-    "otpauth://totp/…": {
+    "or paste an otpauth-migration:// link": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "oder einen otpauth-migration://-Link einsetzen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "o pega un enlace otpauth-migration://"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ou collez un lien otpauth-migration://"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ou cole um link otpauth-migration://"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "или вставьте ссылку otpauth-migration://"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "或粘贴 otpauth-migration:// 链接"
+          }
+        }
+      }
+    },
+    "otpauth://…": {
       "extractionState": "manual",
       "shouldTranslate": false
     },
@@ -10776,6 +15042,88 @@
           "stringUnit": {
             "state": "translated",
             "value": "用户名"
+          }
+        }
+      }
+    },
+    "uses MD5, which PassPony and pass-otp don't support": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "nutzt MD5, das PassPony und pass-otp nicht unterstützen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "usa MD5, que PassPony y pass-otp no admiten"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "utilise MD5, que PassPony et pass-otp ne prennent pas en charge"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "usa MD5, que o PassPony e o pass-otp não suportam"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "использует MD5, который не поддерживают PassPony и pass-otp"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用了 PassPony 和 pass-otp 不支持的 MD5"
+          }
+        }
+      }
+    },
+    "uses settings PassPony doesn't support": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "nutzt Einstellungen, die PassPony nicht unterstützt"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "usa ajustes que PassPony no admite"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "utilise des paramètres que PassPony ne prend pas en charge"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "usa configurações que o PassPony não suporta"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "использует параметры, которые PassPony не поддерживает"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用了 PassPony 不支持的设置"
           }
         }
       }
