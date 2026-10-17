@@ -4370,6 +4370,47 @@
         }
       }
     },
+    "Every code in this export is scanned." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alle Codes dieses Exports sind gescannt."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Todos los códigos de esta exportación están escaneados."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tous les codes de cette exportation sont scannés."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Todos os códigos desta exportação foram escaneados."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Все коды этого экспорта отсканированы."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此次导出的所有导出码都已扫描。"
+          }
+        }
+      }
+    },
     "Every entry in scope is decrypted and re-encrypted to the recipients its directory currently resolves to." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -8178,6 +8219,47 @@
         }
       }
     },
+    "Now show the next code in Google Authenticator." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zeige jetzt den nächsten Code in Google Authenticator an."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ahora muestra el siguiente código en Google Authenticator."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Affichez maintenant le code suivant dans Google Authenticator."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Agora mostre o próximo código no Google Authenticator."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Теперь покажите следующий код в Google Authenticator."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "现在请在 Google Authenticator 中显示下一个导出码。"
+          }
+        }
+      }
+    },
     "off" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -9312,6 +9394,47 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "明文导出"
+          }
+        }
+      }
+    },
+    "Point the camera at a QR code Google Authenticator shows." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Richte die Kamera auf einen QR-Code, den Google Authenticator zeigt."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apunta la cámara a un código QR que muestre Google Authenticator."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pointez l'appareil photo vers un code QR affiché par Google Authenticator."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aponte a câmera para um código QR que o Google Authenticator mostra."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Наведите камеру на QR-код, который показывает Google Authenticator."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "将相机对准 Google Authenticator 显示的二维码。"
           }
         }
       }

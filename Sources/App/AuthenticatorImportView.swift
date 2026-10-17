@@ -1,4 +1,5 @@
 import AVFoundation
+import UIKit
 import SwiftUI
 
 /// Collects the QR codes of one Google Authenticator export: they share a
@@ -16,6 +17,9 @@ struct MigrationCollector {
 
     var scanned: Int { parts.count }
     var complete: Bool { total > 0 && parts.count >= total }
+
+    /// One flag per code of the export, true where that code is scanned.
+    var progress: [Bool] { (0..<total).map { parts[$0] != nil } }
 
     mutating func add(_ batch: MigrationBatch) -> Outcome {
         if let id = batchId, id != batch.batchId { return .otherExport }
@@ -82,10 +86,23 @@ struct AuthenticatorImportView: View {
                         pasted = ""
                     }
                     .disabled(pasted.trimmingCharacters(in: .whitespaces).isEmpty)
-                    if collector.total > 0 {
-                        Text("\(collector.scanned) of \(collector.total) codes scanned")
-                            .font(.footnote)
-                            .foregroundStyle(.secondary)
+                    if collector.total > 1 {
+                        VStack(alignment: .leading, spacing: 6) {
+                            ScanProgressBar(
+                                done: collector.progress,
+                                doneColor: .accentColor,
+                                todoColor: Color(.systemFill)
+                            )
+                            if collector.complete {
+                                Label("Every code in this export is scanned.", systemImage: "checkmark.circle.fill")
+                                    .font(.footnote)
+                            } else {
+                                Text("\(collector.scanned) of \(collector.total) codes scanned")
+                                    .font(.footnote)
+                                    .foregroundStyle(.secondary)
+                            }
+                        }
+                        .padding(.vertical, 4)
                     }
                 } footer: {
                     Text("In Google Authenticator, choose Transfer accounts, then Export accounts. Scan every QR code it shows. Each account you pick becomes its own one-time code entry.")
@@ -152,7 +169,9 @@ struct AuthenticatorImportView: View {
                         if feedback == nil { showScanner = false }
                         return feedback
                     },
-                    onClose: { showScanner = false }
+                    onClose: { showScanner = false },
+                    helpText: L("Point the camera at a QR code Google Authenticator shows."),
+                    nextHint: L("Now show the next code in Google Authenticator.")
                 )
             }
         }
@@ -196,19 +215,34 @@ struct AuthenticatorImportView: View {
             return ScanFeedback(message: error.ponyMessage)
         }
         let outcome = collector.add(batch)
+        let parts = collector.total > 1 ? collector.progress : nil
         let previous = Dictionary(uniqueKeysWithValues: rows.map { ($0.id, $0) })
         rows = collector.accounts.map { account in
             previous[account.uri] ?? Row(account: account, name: account.suggestedName)
         }
         switch outcome {
         case .otherExport:
-            return ScanFeedback(message: L("That code is from a different export. Finish this one or start over."))
+            return ScanFeedback(
+                message: L("That code is from a different export. Finish this one or start over."),
+                progress: parts
+            )
         case .duplicate(let scanned, let total):
-            return ScanFeedback(message: L("Already scanned. \(scanned) of \(total) codes so far."), isError: false)
+            return ScanFeedback(
+                message: L("Already scanned. \(scanned) of \(total) codes so far."),
+                isError: false,
+                progress: parts
+            )
         case .added(let scanned, let total):
-            return collector.complete
-                ? nil
-                : ScanFeedback(message: L("\(scanned) of \(total) codes scanned"), isError: false)
+            if collector.complete {
+                if total > 1 { UINotificationFeedbackGenerator().notificationOccurred(.success) }
+                return nil
+            }
+            return ScanFeedback(
+                message: L("\(scanned) of \(total) codes scanned"),
+                isError: false,
+                accepted: true,
+                progress: parts
+            )
         }
     }
 

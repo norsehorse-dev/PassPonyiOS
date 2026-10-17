@@ -13,19 +13,47 @@ import UIKit
 /// caller closes the scanner) or a message to show while scanning resumes,
 /// so a wrong kind of QR code (HOTP, a Google Authenticator export, a URL)
 /// is explained rather than silently ignored.
-/// What the scanner shows after a decode it did not accept: an error (a
-/// wrong kind of code) or, since 2.0, a progress note for a multi-code
-/// export. Scanning resumes after a moment either way.
+/// What the scanner shows after a decode that doesn't close it: an error
+/// (a wrong kind of code) or, since 2.0, a note about a multi-code export.
+/// `accepted` marks a code taken as the next part of the export, shown as
+/// a confirmation over the camera. `progress` has one flag per code of the
+/// export, true where scanned, and stays on screen until the scanner
+/// closes. Scanning resumes after a moment either way.
 struct ScanFeedback: Equatable {
     var message: String
     var isError = true
+    var accepted = false
+    var progress: [Bool]? = nil
+}
+
+/// One segment per code of a multi-code export, filled where that code is
+/// scanned, so it shows which codes are left as well as how many.
+struct ScanProgressBar: View {
+    var done: [Bool]
+    var doneColor: Color
+    var todoColor: Color
+
+    var body: some View {
+        HStack(spacing: 4) {
+            ForEach(done.indices, id: \.self) { i in
+                Capsule()
+                    .fill(done[i] ? doneColor : todoColor)
+                    .frame(height: 6)
+            }
+        }
+        .accessibilityHidden(true)
+    }
 }
 
 struct QRScannerScreen: View {
     var onDecoded: (String) -> ScanFeedback?
     var onClose: () -> Void
+    var helpText: String? = nil
+    var nextHint: String? = nil
 
     @State private var rejection: ScanFeedback?
+    @State private var confirmation: ScanFeedback?
+    @State private var progress: [Bool]?
     @State private var paused = false
     @State private var torchOn = false
     @State private var hasTorch = false
@@ -33,8 +61,14 @@ struct QRScannerScreen: View {
     var body: some View {
         ZStack {
             QRCameraView(paused: $paused, torchOn: torchOn, hasTorch: $hasTorch) { text in
-                if let message = onDecoded(text) {
-                    rejection = message
+                if let feedback = onDecoded(text) {
+                    if let parts = feedback.progress { progress = parts }
+                    if feedback.accepted {
+                        confirmation = feedback
+                        UINotificationFeedbackGenerator().notificationOccurred(.success)
+                    } else {
+                        rejection = feedback
+                    }
                     paused = true
                 }
             }
@@ -73,13 +107,35 @@ struct QRScannerScreen: View {
 
                 Spacer()
 
-                Text(rejection?.message ?? L("Point the camera at the QR code the site shows during two-factor setup."))
-                    .font(.callout)
-                    .foregroundStyle(rejection?.isError == true ? Color.red : Color.white)
-                    .multilineTextAlignment(.center)
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(.black.opacity(0.6))
+                VStack(spacing: 10) {
+                    if let progress {
+                        ScanProgressBar(done: progress, doneColor: .green, todoColor: .white.opacity(0.3))
+                    }
+                    Text(rejection?.message ?? idleText)
+                        .font(.callout)
+                        .foregroundStyle(rejection?.isError == true ? Color.red : Color.white)
+                        .multilineTextAlignment(.center)
+                }
+                .padding()
+                .frame(maxWidth: .infinity)
+                .background(.black.opacity(0.6))
+            }
+
+            if let confirmation {
+                VStack(spacing: 12) {
+                    Image(systemName: "checkmark.circle.fill")
+                        .font(.system(size: 64))
+                        .foregroundStyle(.green)
+                    Text(confirmation.message)
+                        .font(.headline)
+                        .foregroundStyle(.white)
+                        .multilineTextAlignment(.center)
+                }
+                .padding(.horizontal, 32)
+                .padding(.vertical, 24)
+                .background(.black.opacity(0.75), in: RoundedRectangle(cornerRadius: 20))
+                .padding(32)
+                .accessibilityElement(children: .combine)
             }
         }
         .background(Color.black)
@@ -90,6 +146,19 @@ struct QRScannerScreen: View {
             rejection = nil
             paused = false
         }
+        // A confirmed part of an export holds the camera long enough to
+        // move on to the next code, so the same one isn't reported again.
+        .task(id: confirmation) {
+            guard confirmation != nil else { return }
+            try? await Task.sleep(for: .seconds(1.5))
+            confirmation = nil
+            paused = false
+        }
+    }
+
+    private var idleText: String {
+        if progress != nil, let nextHint { return nextHint }
+        return helpText ?? L("Point the camera at the QR code the site shows during two-factor setup.")
     }
 }
 
