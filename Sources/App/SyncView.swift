@@ -206,6 +206,7 @@ struct SyncView: View {
                     await MainActor.run {
                         self.message = Self.describe(outcome)
                         model.refresh()
+                        if case .upToDate = outcome {} else { model.rebuildPasskeyIndex() }
                     }
                 }
             }

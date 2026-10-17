@@ -119,8 +119,9 @@ targets:
           NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).CredentialProviderViewController
           NSExtensionAttributes:
             # Required on modern iOS for the provider to appear in
-            # Settings > AutoFill & Passwords. Passwords only for now;
-            # add ProvidesOneTimeCodes / ProvidesPasskeys when the
-            # extension implements those request types.
+            # Settings > AutoFill & Passwords. Passwords, and passkeys
+            # since 2.0; add ProvidesOneTimeCodes when the extension
+            # implements that request type.
             ASCredentialProviderExtensionCapabilities:
               ProvidesPasswords: true
+              ProvidesPasskeys: true

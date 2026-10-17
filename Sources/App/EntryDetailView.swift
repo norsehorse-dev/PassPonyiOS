@@ -16,6 +16,14 @@ struct EntryDetailView: View {
     /// The last HOTP code shown; kept until the screen goes.
     @State private var hotpCode: String?
     @State private var hotpError: String?
+    /// The passkey waiting on the delete confirmation: its public ids only.
+    @State private var deletingPasskey: PasskeyRef?
+    @State private var passkeyError: String?
+
+    private struct PasskeyRef {
+        let credentialId: Data
+        let rpId: String
+    }
 
     var body: some View {
         List {
@@ -25,12 +33,14 @@ struct EntryDetailView: View {
                     // password to show, and 1.0 showed the URI as one.
                     otpSection(content, caption: "This entry is a one-time code only.")
                     fieldsSection(content)
+                    passkeysSection(content)
                 } else {
                     passwordSection(content)
                     fieldsSection(content)
                     if hasTotp(content) {
                         otpSection(content, caption: nil)
                     }
+                    passkeysSection(content)
                 }
             } else if let error {
                 Text(error).foregroundStyle(.red)
@@ -86,8 +96,24 @@ struct EntryDetailView: View {
                 dismiss()
             }
         }
+        .alert(
+            "Delete this passkey?",
+            isPresented: Binding(
+                get: { deletingPasskey != nil },
+                set: { if !$0 { deletingPasskey = nil } }
+            ),
+            presenting: deletingPasskey
+        ) { passkey in
+            Button("Delete passkey", role: .destructive) { removePasskey(passkey) }
+            Button("Cancel", role: .cancel) {}
+        } message: { passkey in
+            Text("You won't be able to sign in to \(passkey.rpId) with it anymore. Remove it from your account on the site too.")
+        }
         .task { load() }
-        .onDisappear { content = nil } // no lingering plaintext
+        .onDisappear {
+            content = nil // no lingering plaintext
+            deletingPasskey = nil
+        }
     }
 
     private func load() {
@@ -194,9 +220,55 @@ struct EntryDetailView: View {
         }
     }
 
+    /// 2.0 rc3: each passkey as one line, site and account, with delete.
+    /// The passkey itself is never shown or copied.
+    @ViewBuilder
+    private func passkeysSection(_ content: Data) -> some View {
+        let passkeys = entryPasskeys(content: content)
+        if !passkeys.isEmpty {
+            Section {
+                ForEach(passkeys, id: \.credentialId) { passkey in
+                    HStack {
+                        Image(systemName: "person.badge.key")
+                            .foregroundStyle(.secondary)
+                        if passkey.username.isEmpty {
+                            Text("Passkey for \(passkey.rpId)")
+                        } else {
+                            Text("Passkey for \(passkey.rpId), \(passkey.username)")
+                        }
+                        Spacer()
+                        Button(role: .destructive) {
+                            deletingPasskey = PasskeyRef(credentialId: passkey.credentialId, rpId: passkey.rpId)
+                        } label: {
+                            Image(systemName: "trash")
+                        }
+                        .buttonStyle(.borderless)
+                        .accessibilityLabel("Delete passkey")
+                    }
+                }
+                if let passkeyError {
+                    Text(passkeyError).font(.footnote).foregroundStyle(.red)
+                }
+            } header: {
+                Text("Passkeys")
+            }
+        }
+    }
+
+    private func removePasskey(_ passkey: PasskeyRef) {
+        guard let content else { return }
+        do {
+            self.content = try model.removePasskey(name: name, content: content, credentialId: passkey.credentialId)
+            passkeyError = nil
+        } catch {
+            passkeyError = error.ponyMessage
+        }
+    }
+
     @ViewBuilder
     private func fieldsSection(_ content: Data) -> some View {
-        let fields = entryFields(content: content)
+        // Passkey lines have their own section; their value is a key.
+        let fields = entryFields(content: content).filter { $0.key != "passkey" }
         if !fields.isEmpty {
             Section("Fields") {
                 ForEach(fields, id: \.key) { field in

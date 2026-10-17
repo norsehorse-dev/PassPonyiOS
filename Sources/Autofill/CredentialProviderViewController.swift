@@ -58,6 +58,17 @@ final class CredentialProviderViewController: ASCredentialProviderViewController
     override func provideCredentialWithoutUserInteraction(
         for credentialRequest: ASCredentialRequest
     ) {
+        if let passkeyRequest = credentialRequest as? ASPasskeyCredentialRequest {
+            guard UnlockGate.isFresh else { return cancel(.userInteractionRequired) }
+            switch passkeyAssertion(for: passkeyRequest) {
+            case .success(let credential):
+                extensionContext.completeAssertionRequest(using: credential)
+            case .failure(let error):
+                log.error("no-UI passkey failed: \(String(describing: error), privacy: .public)")
+                cancel(.userInteractionRequired)
+            }
+            return
+        }
         guard UnlockGate.isFresh else {
             log.info("no-UI fill: unlock window lapsed, escalating to UI")
             return cancel(.userInteractionRequired)
@@ -88,6 +99,21 @@ final class CredentialProviderViewController: ASCredentialProviderViewController
         for credentialRequest: ASCredentialRequest
     ) {
         AppLanguage.activate()
+        if let passkeyRequest = credentialRequest as? ASPasskeyCredentialRequest {
+            Task { @MainActor in
+                guard await UnlockGate.authenticate(reason: L("Unlock PassPony to use your passkey")) else {
+                    return self.cancel(.userCanceled)
+                }
+                switch self.passkeyAssertion(for: passkeyRequest) {
+                case .success(let credential):
+                    self.extensionContext.completeAssertionRequest(using: credential)
+                case .failure(let error):
+                    log.error("UI passkey failed: \(String(describing: error), privacy: .public)")
+                    self.cancel(.failed)
+                }
+            }
+            return
+        }
         Task { @MainActor in
             guard await UnlockGate.authenticate(reason: L("Unlock to fill your password")) else {
                 log.info("UI fill: authentication declined")
@@ -130,11 +156,126 @@ final class CredentialProviderViewController: ASCredentialProviderViewController
                 }
             )
         )
+        embed(host)
+    }
+
+    private func embed(_ host: UIViewController) {
         addChild(host)
         view.addSubview(host.view)
         host.view.frame = view.bounds
         host.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         host.didMove(toParent: self)
+    }
+
+    // MARK: Passkeys (2.0 rc3)
+
+    private func passkeyAssertion(
+        for request: ASPasskeyCredentialRequest
+    ) -> Result<ASPasskeyAssertionCredential, Error> {
+        guard
+            let identity = request.credentialIdentity as? ASPasskeyCredentialIdentity,
+            let entryName = PasskeyVault.entryName(for: identity)
+        else {
+            return .failure(ASExtensionError(.credentialIdentityNotFound))
+        }
+        return Result {
+            try PasskeyVault.assertion(
+                entryName: entryName,
+                rpId: identity.relyingPartyIdentifier,
+                credentialId: identity.credentialID,
+                clientDataHash: request.clientDataHash
+            )
+        }
+    }
+
+    /// The site asked to create a passkey and the person chose PassPony.
+    override func prepareInterface(forPasskeyRegistration registrationRequest: ASCredentialRequest) {
+        AppLanguage.activate()
+        guard
+            let request = registrationRequest as? ASPasskeyCredentialRequest,
+            let identity = request.credentialIdentity as? ASPasskeyCredentialIdentity
+        else {
+            return cancel(.failed)
+        }
+        guard request.supportedAlgorithms.contains(.ES256) else {
+            log.info("passkey registration: site offers no ES256")
+            return cancel(.failed)
+        }
+        let rpId = identity.relyingPartyIdentifier
+        // WebAuthn: a credential the site already lists means "already
+        // registered"; the site shows its own message for that.
+        let known = PasskeyIndex.forRpId(rpId, format: StorePaths.currentFormat)
+        if let excluded = request.excludedCredentials,
+           excluded.contains(where: { ex in known.contains { $0.credentialId == ex.credentialID } }) {
+            return cancel(.matchedExcludedCredential)
+        }
+        let clientDataHash = request.clientDataHash
+        let userHandle = identity.userHandle
+        let userName = identity.userName
+        embed(UIHostingController(rootView: PasskeyRegistrationView(
+            rpId: rpId,
+            userName: userName,
+            suggested: PasskeyVault.suggestedEntry(rpId: rpId),
+            onSave: { [weak self] entryName in
+                if !UnlockGate.isFresh {
+                    guard await UnlockGate.authenticate(reason: L("Unlock PassPony to use your passkey")) else {
+                        return L("PassPony needs to be unlocked to save the passkey.")
+                    }
+                }
+                do {
+                    let credential = try PasskeyVault.register(
+                        entryName: entryName,
+                        rpId: rpId,
+                        userHandle: userHandle,
+                        userName: userName,
+                        clientDataHash: clientDataHash
+                    )
+                    self?.extensionContext.completeRegistrationRequest(using: credential)
+                    return nil
+                } catch {
+                    log.error("passkey registration failed: \(String(describing: error), privacy: .public)")
+                    return error.ponyMessage
+                }
+            },
+            onCancel: { [weak self] in self?.cancel(.userCanceled) }
+        )))
+    }
+
+    /// iOS asks for PassPony's passkeys for a site (the person chose
+    /// PassPony rather than one of the suggested passkeys).
+    override func prepareCredentialList(
+        for serviceIdentifiers: [ASCredentialServiceIdentifier],
+        requestParameters: ASPasskeyCredentialRequestParameters
+    ) {
+        AppLanguage.activate()
+        let rpId = requestParameters.relyingPartyIdentifier
+        let allowed = requestParameters.allowedCredentials
+        let refs = PasskeyIndex.forRpId(rpId, format: StorePaths.currentFormat)
+            .filter { allowed.isEmpty || allowed.contains($0.credentialId) }
+        let clientDataHash = requestParameters.clientDataHash
+        embed(UIHostingController(rootView: PasskeyPickerView(
+            rpId: rpId,
+            refs: refs,
+            onPick: { [weak self] ref in
+                guard await UnlockGate.authenticate(reason: L("Unlock PassPony to use your passkey")) else {
+                    return L("PassPony needs to be unlocked to use the passkey.")
+                }
+                do {
+                    let credential = try PasskeyVault.assertion(
+                        entryName: ref.entryName,
+                        rpId: rpId,
+                        credentialId: ref.credentialId,
+                        clientDataHash: clientDataHash
+                    )
+                    self?.extensionContext.completeAssertionRequest(using: credential)
+                    return nil
+                } catch {
+                    log.error("passkey sign-in failed: \(String(describing: error), privacy: .public)")
+                    return error.ponyMessage
+                }
+            },
+            onCancel: { [weak self] in self?.cancel(.userCanceled) }
+        )))
     }
 }
 

@@ -3672,6 +3672,48 @@
         }
       }
     },
+    "Delete passkey" : {
+      "comment" : "Button and accessibility label that deletes one passkey from the entry.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Passkey löschen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eliminar llave de acceso"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Supprimer la clé d'accès"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Excluir chave de acesso"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить ключ доступа"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "删除通行密钥"
+          }
+        }
+      }
+    },
     "Delete SSH key" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -3709,6 +3751,48 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "删除 SSH 密钥"
+          }
+        }
+      }
+    },
+    "Delete this passkey?" : {
+      "comment" : "Title of the confirmation dialog before deleting a passkey.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diesen Passkey löschen?"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Eliminar esta llave de acceso?"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Supprimer cette clé d'accès ?"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Excluir esta chave de acesso?"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить этот ключ доступа?"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "删除此通行密钥？"
           }
         }
       }
@@ -4981,6 +5065,48 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "文件夹/名称"
+          }
+        }
+      }
+    },
+    "For %@" : {
+      "comment" : "Android only. Line in the save-passkey dialog. %@ is the website domain.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Für %@"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Para %@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pour %@"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Para %@"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Для %@"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "用于 %@"
           }
         }
       }
@@ -8501,6 +8627,48 @@
         }
       }
     },
+    "No passkeys" : {
+      "comment" : "iOS only. Empty-state title when PassPony has no passkey for the site.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keine Passkeys"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No hay llaves de acceso"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucune clé d'accès"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sem chaves de acesso"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нет ключей доступа"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "没有通行密钥"
+          }
+        }
+      }
+    },
     "No random number source is available: %@" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -9199,6 +9367,48 @@
         }
       }
     },
+    "Open passkey settings" : {
+      "comment" : "Android only. Button in Settings that opens the system passkey provider settings.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Passkey-Einstellungen öffnen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir ajustes de llaves de acceso"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouvrir les réglages des clés d'accès"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir ajustes de chaves de acesso"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Открыть настройки ключей доступа"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "打开通行密钥设置"
+          }
+        }
+      }
+    },
     "Open Settings" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -9540,6 +9750,132 @@
         }
       }
     },
+    "Passkey for %@" : {
+      "comment" : "One row in the Passkeys section. %@ is the website domain, for example webauthn.io.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Passkey für %@"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Llave de acceso para %@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clé d'accès pour %@"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chave de acesso para %@"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ключ доступа для %@"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ 的通行密钥"
+          }
+        }
+      }
+    },
+    "Passkey for %@, %@" : {
+      "comment" : "One row in the Passkeys section. First %@ is the website domain, second %@ is the account name on that site.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Passkey für %@, %@"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Llave de acceso para %@, %@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clé d'accès pour %@, %@"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chave de acesso para %@, %@"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ключ доступа для %@, %@"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@（%@）的通行密钥"
+          }
+        }
+      }
+    },
+    "Passkeys" : {
+      "comment" : "Section header on an entry's detail screen and in Settings, listing the passkeys stored in that entry. Use the platform's usual word for passkeys (Apple and Google localize it; many languages keep 'Passkeys' or use the official localized term).",
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Passkeys"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Llaves de acceso"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clés d'accès"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chaves de acesso"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ключи доступа"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通行密钥"
+          }
+        }
+      }
+    },
     "Passphrase" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -9626,6 +9962,48 @@
         }
       }
     },
+    "PassPony can save and use passkeys in your browser. Turn it on as a passkey provider in Passwords & accounts." : {
+      "comment" : "Android only. Settings text. 'Passwords & accounts' is the name of the Android system settings screen; use the name Android uses in this language if you know it, otherwise translate naturally.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PassPony kann Passkeys in deinem Browser sichern und verwenden. Aktiviere PassPony unter „Passwörter und Konten“ als Passkey-Anbieter."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PassPony puede guardar y usar llaves de acceso en tu navegador. Actívalo como proveedor de llaves de acceso en Contraseñas y cuentas."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PassPony peut enregistrer et utiliser des clés d'accès dans votre navigateur. Activez-le comme fournisseur de clés d'accès dans Mots de passe et comptes."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O PassPony pode salvar e usar chaves de acesso no seu navegador. Ative-o como provedor de chaves de acesso em Senhas e contas."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PassPony может сохранять и использовать ключи доступа в браузере. Включите PassPony как сервис ключей доступа в разделе «Пароли и аккаунты»."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PassPony 可以在浏览器中保存和使用通行密钥。请在“密码和帐号”中将其开启为通行密钥提供程序。"
+          }
+        }
+      }
+    },
     "PassPony doesn't support %@ SSH keys. Use an Ed25519, RSA or ECDSA key." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -9663,6 +10041,48 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "PassPony 不支持 %@ SSH 密钥。请使用 Ed25519、RSA 或 ECDSA 密钥。"
+          }
+        }
+      }
+    },
+    "PassPony has no passkey for %@." : {
+      "comment" : "iOS only. Empty-state description. %@ is the website domain.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PassPony hat keinen Passkey für %@."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PassPony no tiene ninguna llave de acceso para %@."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PassPony n'a aucune clé d'accès pour %@."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O PassPony não tem nenhuma chave de acesso para %@."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "В PassPony нет ключа доступа для %@."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PassPony 中没有 %@ 的通行密钥。"
           }
         }
       }
@@ -9845,6 +10265,90 @@
         }
       }
     },
+    "PassPony needs to be unlocked to save the passkey." : {
+      "comment" : "Error shown when the user cancels the unlock prompt while saving a new passkey.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PassPony muss entsperrt werden, um den Passkey zu sichern."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PassPony debe estar desbloqueado para guardar la llave de acceso."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PassPony doit être déverrouillé pour enregistrer la clé d'accès."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O PassPony precisa estar desbloqueado para salvar a chave de acesso."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Чтобы сохранить ключ доступа, нужно разблокировать PassPony."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "需要解锁 PassPony 才能保存通行密钥。"
+          }
+        }
+      }
+    },
+    "PassPony needs to be unlocked to use the passkey." : {
+      "comment" : "iOS only. Error shown when the user cancels the unlock prompt while signing in with a passkey.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PassPony muss entsperrt werden, um den Passkey zu verwenden."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PassPony debe estar desbloqueado para usar la llave de acceso."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PassPony doit être déverrouillé pour utiliser la clé d'accès."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O PassPony precisa estar desbloqueado para usar a chave de acesso."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Чтобы использовать ключ доступа, нужно разблокировать PassPony."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "需要解锁 PassPony 才能使用通行密钥。"
+          }
+        }
+      }
+    },
     "PassPony on GitHub" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -9882,6 +10386,90 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "GitHub 上的 PassPony"
+          }
+        }
+      }
+    },
+    "PassPony passkeys work in your browser for now." : {
+      "comment" : "Android only. Short notice that passkeys only work in web browsers, not in other apps, for now.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Passkeys von PassPony funktionieren vorerst nur in deinem Browser."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Por ahora, las llaves de acceso de PassPony funcionan en tu navegador."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Les clés d'accès PassPony fonctionnent dans votre navigateur pour l'instant."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Por enquanto, as chaves de acesso do PassPony funcionam no seu navegador."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пока ключи доступа PassPony работают только в браузере."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PassPony 的通行密钥目前只能在浏览器中使用。"
+          }
+        }
+      }
+    },
+    "PassPony passkeys work in your browser for now. Apps can't use them yet: checking that an app belongs to a website means contacting that website, and PassPony only ever talks to your own git remote." : {
+      "comment" : "Android only. Dialog shown when a non-browser app asks for a passkey. 'git remote' is the user's own git server; keep 'git' untranslated.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Passkeys von PassPony funktionieren vorerst nur in deinem Browser. Apps können sie noch nicht nutzen: Um zu prüfen, ob eine App zu einer Website gehört, müsste diese Website kontaktiert werden, und PassPony kommuniziert ausschließlich mit deinem eigenen Git-Remote."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Por ahora, las llaves de acceso de PassPony funcionan en tu navegador. Las apps aún no pueden usarlas: comprobar que una app pertenece a un sitio web implica contactar con ese sitio, y PassPony solo se comunica con tu propio remoto git."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Les clés d'accès PassPony fonctionnent dans votre navigateur pour l'instant. Les apps ne peuvent pas encore les utiliser : vérifier qu'une app appartient à un site web implique de contacter ce site, et PassPony ne communique qu'avec votre propre dépôt git distant."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Por enquanto, as chaves de acesso do PassPony funcionam no seu navegador. Os apps ainda não podem usá-las: verificar se um app pertence a um site exige entrar em contato com esse site, e o PassPony só se comunica com o seu próprio remoto git."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пока ключи доступа PassPony работают только в браузере. Приложения ещё не могут их использовать: чтобы проверить, что приложение принадлежит сайту, нужно связаться с этим сайтом, а PassPony обращается только к вашему собственному удалённому git-репозиторию."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PassPony 的通行密钥目前只能在浏览器中使用。应用暂时还无法使用它们：要确认某个应用属于某个网站，就必须联系该网站，而 PassPony 只会与你自己的 git 远程仓库通信。"
           }
         }
       }
@@ -11805,6 +12393,90 @@
         }
       }
     },
+    "Save passkey" : {
+      "comment" : "Title of the screen/dialog where the user confirms saving a new passkey.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Passkey sichern"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guardar llave de acceso"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enregistrer la clé d'accès"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Salvar chave de acesso"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сохранить ключ доступа"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "保存通行密钥"
+          }
+        }
+      }
+    },
+    "Save the passkey in your password store" : {
+      "comment" : "Android only. Subtitle shown under PassPony in the system's 'create passkey' sheet.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Passkey in deinem Passwort-Speicher sichern"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guarda la llave de acceso en tu almacén de contraseñas"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enregistrer la clé d'accès dans votre coffre de mots de passe"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Salvar a chave de acesso no seu cofre de senhas"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сохранить ключ доступа в хранилище паролей"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "将通行密钥保存到你的密码库中"
+          }
+        }
+      }
+    },
     "Saved. That's your first pass." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -12420,6 +13092,48 @@
         }
       }
     },
+    "Site" : {
+      "comment" : "iOS only. Label for the website domain on the save-passkey screen (a short label in a form row).",
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Website"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sitio"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Site"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Site"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сайт"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "网站"
+          }
+        }
+      }
+    },
     "Skip" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -12457,6 +13171,48 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "跳过"
+          }
+        }
+      }
+    },
+    "Something went wrong with this passkey." : {
+      "comment" : "Generic error when a passkey could not be created or used.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bei diesem Passkey ist etwas schiefgelaufen."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Algo salió mal con esta llave de acceso."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Un problème est survenu avec cette clé d'accès."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Algo deu errado com esta chave de acesso."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "С этим ключом доступа что-то пошло не так."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此通行密钥出了点问题。"
           }
         }
       }
@@ -14316,6 +15072,48 @@
         }
       }
     },
+    "The passkey is added to this entry. If it doesn't exist yet, PassPony creates it." : {
+      "comment" : "Help text under the field where the user picks which password-store entry the new passkey is saved in.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der Passkey wird diesem Eintrag hinzugefügt. Falls der Eintrag noch nicht existiert, legt PassPony ihn an."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La llave de acceso se añade a esta entrada. Si aún no existe, PassPony la crea."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La clé d'accès est ajoutée à cette entrée. Si elle n'existe pas encore, PassPony la crée."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A chave de acesso é adicionada a esta entrada. Se a entrada ainda não existir, o PassPony vai criá-la."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ключ доступа будет добавлен в эту запись. Если её ещё нет, PassPony её создаст."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通行密钥会添加到此条目中。如果该条目尚不存在，PassPony 会创建它。"
+          }
+        }
+      }
+    },
     "The passphrase is cached for %lld minutes (shared with autofill), then cleared." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -15437,6 +16235,48 @@
         }
       }
     },
+    "This site asked for a kind of passkey PassPony can't make." : {
+      "comment" : "iOS only. Error when the website requires a passkey key type PassPony doesn't support.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diese Website verlangt eine Art von Passkey, die PassPony nicht erstellen kann."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este sitio pidió un tipo de llave de acceso que PassPony no puede crear."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ce site a demandé un type de clé d'accès que PassPony ne peut pas créer."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este site pediu um tipo de chave de acesso que o PassPony não consegue criar."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Этот сайт запросил тип ключа доступа, который PassPony не умеет создавать."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此网站要求的通行密钥类型是 PassPony 无法创建的。"
+          }
+        }
+      }
+    },
     "This SSH key is protected with a passphrase. Enter it to import the key. PassPony then keeps the key protected by this device instead." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -15967,6 +16807,48 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "解锁"
+          }
+        }
+      }
+    },
+    "Unlock PassPony to use your passkey" : {
+      "comment" : "Reason shown in the system biometric / passcode prompt before a passkey is saved or used.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PassPony entsperren, um deinen Passkey zu verwenden"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Desbloquea PassPony para usar tu llave de acceso"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Déverrouillez PassPony pour utiliser votre clé d'accès"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Desbloqueie o PassPony para usar sua chave de acesso"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разблокируйте PassPony, чтобы использовать ключ доступа"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "解锁 PassPony 以使用你的通行密钥"
           }
         }
       }
@@ -17169,6 +18051,48 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "You won't be able to sign in to %@ with it anymore. Remove it from your account on the site too." : {
+      "comment" : "Body of the delete confirmation. %@ is the website domain. Second sentence tells the user to also remove the passkey in their account settings on that website.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du kannst dich damit nicht mehr bei %@ anmelden. Entferne ihn auch aus deinem Konto auf der Website."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ya no podrás iniciar sesión en %@ con ella. Elimínala también de tu cuenta en el sitio."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vous ne pourrez plus vous connecter à %@ avec cette clé. Supprimez-la aussi de votre compte sur le site."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Você não poderá mais fazer login em %@ com ela. Remova-a também da sua conta no site."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вы больше не сможете входить на %@ с его помощью. Удалите его также из своего аккаунта на сайте."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你将无法再用它登录 %@。请同时在该网站上从你的帐号中移除它。"
           }
         }
       }

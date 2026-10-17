@@ -56,6 +56,7 @@ final class AppModel: ObservableObject {
             #endif
             self.git = try? GitSync.open(root: root.path)
             refresh()
+            rebuildPasskeyIndex()
         } catch {
             lastError = error.ponyMessage
         }
@@ -85,6 +86,7 @@ final class AppModel: ObservableObject {
             let message = isNew ? commitMessageAdd(name: name)
                                 : commitMessageEdit(name: name)
             try? git?.commitPaths(paths: [file], message: message)
+            PasskeyIndex.updateEntry(name, content: content, format: format)
             refresh()
         } catch {
             lastError = error.ponyMessage
@@ -139,6 +141,7 @@ final class AppModel: ObservableObject {
                 paths: ["\(from).\(ext)", "\(to).\(ext)"],
                 message: commitMessageRename(from: from, to: to)
             )
+            PasskeyIndex.renameEntry(from: from, to: to, format: format)
             refresh()
             return true
         } catch {
@@ -320,6 +323,35 @@ final class AppModel: ObservableObject {
         try SshKeyStore.trust(host: host, key: key)
     }
 
+    // MARK: - 2.0 rc3: passkeys
+
+    /// Rebuild the passkey index from every entry, off the main actor, then
+    /// re-register identities with iOS. Runs on every store open, which
+    /// covers a clone, a format switch and a key import (entries that only
+    /// just became readable), and after a sync brings in changes.
+    func rebuildPasskeyIndex() {
+        let format = self.format
+        Task.detached(priority: .utility) {
+            let root = StorePaths.storeRoot(for: format).path
+            guard let store = try? PassStore.open(root: root, format: format) else { return }
+            PasskeyIndex.rebuild(store: store, backend: EngineProvider.engine(for: format), format: format)
+            await MainActor.run { self.refresh() }
+        }
+    }
+
+    /// Delete one passkey from an entry: rewrite the entry without that
+    /// line, commit, update the index. Returns the new content so the
+    /// detail screen shows it without decrypting again.
+    func removePasskey(name: String, content: Data, credentialId: Data) throws -> Data {
+        guard let store else { throw StoreError.NoStore }
+        let next = entryRemovePasskey(content: content, credentialId: credentialId)
+        try store.writeEntry(name: name, content: next, backend: engine)
+        try? git?.commitPaths(paths: [fileName(name)], message: commitMessagePasskeyRemove(name: name))
+        PasskeyIndex.updateEntry(name, content: next, format: format)
+        refresh()
+        return next
+    }
+
     func markKeysBackedUp() {
         KeyBackupState.markBackedUp()
         objectWillChange.send()
@@ -331,6 +363,7 @@ final class AppModel: ObservableObject {
             try store.removeEntry(name: name)
             let file = "\(name).\(format == .passage ? "age" : "gpg")"
             try? git?.commitPaths(paths: [file], message: commitMessageRemove(name: name))
+            PasskeyIndex.updateEntry(name, content: nil, format: format)
             refresh()
         } catch {
             lastError = error.ponyMessage

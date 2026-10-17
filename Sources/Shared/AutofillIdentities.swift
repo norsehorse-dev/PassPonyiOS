@@ -23,7 +23,10 @@ enum AutofillIdentities {
                         recordIdentifier: entry.name
                     )
                 }
-            store.replaceCredentialIdentities(identities)
+            // 2.0 rc3: passkeys come from the passkey index, which holds
+            // only site, entry name and the credential's public ids.
+            let passkeys: [ASCredentialIdentity] = PasskeyIndex.identities(format: StorePaths.currentFormat)
+            store.replaceCredentialIdentities(identities + passkeys)
         }
     }
 

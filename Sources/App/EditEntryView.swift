@@ -125,7 +125,9 @@ struct EditEntryView: View {
             uniquingKeysWith: { first, _ in first }
         )
         var seen = Set<String>()
-        self.fieldKeys = fields.map(\.key).filter { seen.insert($0).inserted }
+        // Passkey lines are shown and deleted on the detail screen, never
+        // edited as text: one changed byte would break the passkey.
+        self.fieldKeys = fields.map(\.key).filter { $0 != "passkey" && seen.insert($0).inserted }
         self.originalValues = pairs
         let pw = String(data: entryPassword(content: original), encoding: .utf8) ?? ""
         self.originalPassword = pw

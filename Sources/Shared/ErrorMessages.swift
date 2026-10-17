@@ -19,6 +19,7 @@ extension Error {
         case let error as BackupError: return error.ponyMessage
         case let error as MigrationError: return error.ponyMessage
         case let error as SshKeyError: return error.ponyMessage
+        case let error as PasskeyError: return error.ponyMessage
         case let error as AgeIdentityStore.ImportError: return error.ponyMessage
         default: return String(describing: self)
         }
@@ -185,6 +186,19 @@ extension AgeIdentityStore.ImportError {
             return L("Wrong passphrase, or that is not a passphrase-protected file.")
         case .tooCostly:
             return L("That file needs more memory to unlock than this device allows.")
+        }
+    }
+}
+
+/// 2.0 rc3: a passkey that could not be made or used. The detail stays in
+/// the log; the person gets one plain sentence.
+extension PasskeyError {
+    var ponyMessage: String {
+        switch self {
+        case .NoSupportedAlgorithm:
+            return L("This site asked for a kind of passkey PassPony can't make.")
+        default:
+            return L("Something went wrong with this passkey.")
         }
     }
 }

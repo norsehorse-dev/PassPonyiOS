@@ -87,6 +87,15 @@ only, and is read per sync; the core hands it to libssh2 from memory.
 SSH hosts are trusted on first use and pinned in a known_hosts file in
 the app container; a changed host key is refused.
 
+Passkeys (2.0) are stored as one `passkey:` line each inside the
+encrypted entry, so they sync and back up with the rest of the store and
+work on Android too. The autofill extension makes and uses them
+(`Sources/Autofill/PasskeyProvider.swift`): CryptoKit generates the P-256
+key, the core builds the WebAuthn bytes, and the unlock gate is the user
+verification. A small index in the app group (`passkeys-*.idx`) holds
+only the site, the entry name and the credential's public ids, so iOS can
+offer passkeys before anything is decrypted.
+
 ## Not yet
 
 - Smartcard decrypt (NFC and USB-C YubiKey). Scaffolding exists behind
