@@ -153,6 +153,10 @@ def main():
         sys.exit(f"No raw screenshots at {RAW}; run `bundle exec fastlane ios screenshots` first")
     for locale_dir in sorted(p for p in RAW.iterdir() if p.is_dir()):
         code = locale_dir.name
+        missing = [n for n in ("01Store", "02Entry", "03Sync") if not any(locale_dir.glob(f"*-{n}.png"))]
+        if missing:
+            print(f"skip {code}: no raw {', '.join(missing)} yet")
+            continue
         tagline = captions.get(code, {}).get("tagline") or captions["en-US"]["tagline"]
         loc = Locale(code, tagline)
         out = OUT / code

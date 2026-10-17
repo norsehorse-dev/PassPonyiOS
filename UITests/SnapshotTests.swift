@@ -28,9 +28,11 @@ final class SnapshotTests: XCTestCase {
         app.launchArguments += ["-seedDemoStore"]
         app.launch()
 
-        // 1. The store, folders first like `pass ls`.
+        // 1. The store, folders first like `pass ls`. The sync button is
+        // only hittable once nothing (an unlock prompt) covers the list.
         let web = app.staticTexts["web"]
         XCTAssertTrue(web.waitForExistence(timeout: 30))
+        XCTAssertTrue(app.buttons["syncButton"].isHittable, "something covers the store list")
         snapshot("01Store")
 
         // 2. An entry: password, fields, one-time code, passkey.
