@@ -1,0 +1,163 @@
+{
+  "en-US": {
+    "tagline": "Encrypted files you own.\nSynced with your own git server.",
+    "01Store": {
+      "headline": "Your passwords, your files",
+      "subline": "pass and passage stores on your iPhone"
+    },
+    "02Entry": {
+      "headline": "Logins, codes and passkeys",
+      "subline": "One entry per site, filled by AutoFill"
+    },
+    "03Sync": {
+      "headline": "Sync with your own git server",
+      "subline": "HTTPS or SSH, no account with us"
+    },
+    "04Backup": {
+      "headline": "Back up your keys",
+      "subline": "One file, locked with a recovery code"
+    },
+    "05Generator": {
+      "headline": "Strong passwords on tap",
+      "subline": "Pick the length and the characters"
+    }
+  },
+  "de-DE": {
+    "tagline": "Deine Dateien, verschlüsselt.\nSync mit deinem eigenen Git-Server.",
+    "01Store": {
+      "headline": "Deine Passwörter gehören dir",
+      "subline": "pass- und passage-Speicher fürs iPhone"
+    },
+    "02Entry": {
+      "headline": "Logins, Codes und Passkeys",
+      "subline": "Ein Eintrag pro Site, automatisch befüllt"
+    },
+    "03Sync": {
+      "headline": "Sync mit eigenem Git-Server",
+      "subline": "HTTPS oder SSH, kein Konto bei uns"
+    },
+    "04Backup": {
+      "headline": "Sichere deine Schlüssel",
+      "subline": "Eine Datei, die nur dein Code öffnet"
+    },
+    "05Generator": {
+      "headline": "Starke Passwörter per Tipp",
+      "subline": "Wähle Länge und Zeichen selbst"
+    }
+  },
+  "es-ES": {
+    "tagline": "Archivos cifrados que son tuyos.\nSincronizados con tu servidor git.",
+    "01Store": {
+      "headline": "Tus contraseñas, tus archivos",
+      "subline": "Almacenes de pass y passage en tu iPhone"
+    },
+    "02Entry": {
+      "headline": "Contraseñas, códigos y llaves",
+      "subline": "Una entrada por sitio, con Autorrelleno"
+    },
+    "03Sync": {
+      "headline": "Sincroniza con tu servidor git",
+      "subline": "HTTPS o SSH, sin cuenta con nosotros"
+    },
+    "04Backup": {
+      "headline": "Haz copia de tus claves",
+      "subline": "Un archivo con código de recuperación"
+    },
+    "05Generator": {
+      "headline": "Contraseñas seguras al instante",
+      "subline": "Elige la longitud y los caracteres"
+    }
+  },
+  "fr-FR": {
+    "tagline": "Vos fichiers chiffrés, à vous.\nSynchronisés sur votre serveur git.",
+    "01Store": {
+      "headline": "Vos mots de passe, à vous",
+      "subline": "Coffres pass et passage sur votre iPhone"
+    },
+    "02Entry": {
+      "headline": "Comptes, codes, clés d'accès",
+      "subline": "Tout-en-un, avec Remplissage automatique"
+    },
+    "03Sync": {
+      "headline": "Synchro sur votre serveur git",
+      "subline": "HTTPS ou SSH, sans compte chez nous"
+    },
+    "04Backup": {
+      "headline": "Sauvegardez vos clés",
+      "subline": "Un seul fichier, un code de récupération"
+    },
+    "05Generator": {
+      "headline": "Des mots de passe en béton",
+      "subline": "Choisissez la longueur et les caractères"
+    }
+  },
+  "pt-BR": {
+    "tagline": "Arquivos criptografados só seus.\nSincronizados no seu servidor git.",
+    "01Store": {
+      "headline": "Suas senhas, seus arquivos",
+      "subline": "Cofres pass e passage no seu iPhone"
+    },
+    "02Entry": {
+      "headline": "Senha, código e chave de acesso",
+      "subline": "Preenchimento Automático em cada site"
+    },
+    "03Sync": {
+      "headline": "Sincronize no seu servidor git",
+      "subline": "HTTPS ou SSH, sem conta com a gente"
+    },
+    "04Backup": {
+      "headline": "Faça backup das suas chaves",
+      "subline": "Um só arquivo, com código de recuperação"
+    },
+    "05Generator": {
+      "headline": "Senhas fortes num toque",
+      "subline": "Escolha o comprimento e os caracteres"
+    }
+  },
+  "ru": {
+    "tagline": "Ваши зашифрованные файлы.\nСинхронизация с вашим git-сервером.",
+    "01Store": {
+      "headline": "Ваши пароли, ваши файлы",
+      "subline": "Хранилища pass и passage на iPhone"
+    },
+    "02Entry": {
+      "headline": "Логины, коды и ключи доступа",
+      "subline": "Одна запись на сайт, с Автозаполнением"
+    },
+    "03Sync": {
+      "headline": "Синхронизация через свой git",
+      "subline": "HTTPS или SSH, без аккаунта у нас"
+    },
+    "04Backup": {
+      "headline": "Резервная копия ключей",
+      "subline": "Один файл под кодом восстановления"
+    },
+    "05Generator": {
+      "headline": "Надёжные пароли за секунду",
+      "subline": "Выберите длину и набор символов"
+    }
+  },
+  "zh-Hans": {
+    "tagline": "加密文件，归你所有。\n用你自己的 git 服务器同步。",
+    "01Store": {
+      "headline": "你的密码，你的文件",
+      "subline": "iPhone 上的 pass 与 passage 密码库"
+    },
+    "02Entry": {
+      "headline": "登录、验证码和通行密钥",
+      "subline": "每个网站一个条目，自动填充搞定"
+    },
+    "03Sync": {
+      "headline": "同步到你自己的 git 服务器",
+      "subline": "HTTPS 或 SSH，无需注册我们的帐号"
+    },
+    "04Backup": {
+      "headline": "备份你的密钥",
+      "subline": "一个文件，用恢复码锁好"
+    },
+    "05Generator": {
+      "headline": "强密码，一点即得",
+      "subline": "长度和字符，由你来定"
+    }
+  }
+}

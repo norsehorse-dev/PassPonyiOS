@@ -1,4 +1,5 @@
 import AgePonyCore
+import CryptoKit
 import Foundation
 import SwiftUI
 
@@ -447,32 +448,47 @@ final class AppModel: ObservableObject {
     /// seeded once into an empty store after the tour completes.
     private func seedDemoStore(_ store: PassStore) throws {
         let demo: [(String, String)] = [
-            ("web/github.com", "tr0ut-mantle-vivid-42\nusername: kevin\nurl: github.com\notpauth://totp/GitHub:kevin?secret=JBSWY3DPEHPK3PXP&issuer=GitHub\n"),
-            ("web/gitlab.com", "brindle-ox-cardigan-7\nusername: kevin\nurl: gitlab.com\n"),
-            ("web/google.com", "quartz-lantern-mirth-19\nusername: kevin.stewart\notpauth://totp/Google:kevin.stewart?secret=NBSWY3DPO5XXE3DE&issuer=Google\n"),
-            ("web/amazon.com", "saddle-comet-birch-88\nusername: kevin@example.com\nurl: amazon.com\n"),
-            ("web/netflix.com", "velvet-abacus-north-3\nusername: kevin@example.com\n"),
+            ("web/github.com", "tr0ut-mantle-vivid-42\nusername: pony\nurl: github.com\notpauth://totp/GitHub:pony?secret=JBSWY3DPEHPK3PXP&issuer=GitHub\n"),
+            ("web/gitlab.com", "brindle-ox-cardigan-7\nusername: pony\nurl: gitlab.com\n"),
+            ("web/google.com", "quartz-lantern-mirth-19\nusername: pony.rider\notpauth://totp/Google:pony.rider?secret=NBSWY3DPO5XXE3DE&issuer=Google\n"),
+            ("web/amazon.com", "saddle-comet-birch-88\nusername: pony@example.com\nurl: amazon.com\n"),
+            ("web/netflix.com", "velvet-abacus-north-3\nusername: pony@example.com\n"),
             ("web/reddit.com", "gable-onyx-pretzel-51\nusername: norsehorse\n"),
             ("web/wikipedia.org", "ember-latch-copper-24\nusername: NorseHorse\n"),
-            ("mail/fastmail.com", "battery-staple-orchard-6\nusername: kevin@example.com\notpauth://totp/Fastmail:kevin?secret=MFRGGZDFMZTWQ2LK&issuer=Fastmail\n"),
-            ("mail/proton.me", "walnut-frost-gallop-77\nusername: kevin@proton.me\n"),
-            ("finance/paypal.com", "cinder-maple-quill-30\nusername: kevin@example.com\notpauth://totp/PayPal:kevin?secret=JBSWY3DPEHPK3PXQ&issuer=PayPal\n"),
-            ("finance/wise.com", "harbor-tulip-anvil-12\nusername: kevin@example.com\n"),
+            ("mail/fastmail.com", "battery-staple-orchard-6\nusername: pony@example.com\notpauth://totp/Fastmail:pony?secret=MFRGGZDFMZTWQ2LK&issuer=Fastmail\n"),
+            ("mail/proton.me", "walnut-frost-gallop-77\nusername: pony@proton.me\n"),
+            ("finance/paypal.com", "cinder-maple-quill-30\nusername: pony@example.com\notpauth://totp/PayPal:pony?secret=JBSWY3DPEHPK3PXQ&issuer=PayPal\n"),
+            ("finance/wise.com", "harbor-tulip-anvil-12\nusername: pony@example.com\n"),
             ("finance/bank.example", "hunter2-but-much-longer\nurl: bank.example\nnote: ask branch for wire limits\n"),
-            ("work/vpn", "juniper-cobalt-relay-9\nusername: kstewart\n"),
-            ("work/vpn-2fa", "otpauth://totp/Work%20VPN:kstewart?secret=JBSWY3DPEHPK3PXQ&issuer=Work%20VPN\n"),
-            ("work/slack.com", "pommel-drift-signal-64\nusername: kevin@example.com\nurl: norsehorse.slack.com\n"),
-            ("work/jira.example.com", "griffin-mortar-plume-28\nusername: kstewart\n"),
+            ("work/vpn", "juniper-cobalt-relay-9\nusername: ppony\n"),
+            ("work/vpn-2fa", "otpauth://totp/Work%20VPN:ppony?secret=JBSWY3DPEHPK3PXQ&issuer=Work%20VPN\n"),
+            ("work/slack.com", "pommel-drift-signal-64\nusername: pony@example.com\nurl: norsehorse.slack.com\n"),
+            ("work/jira.example.com", "griffin-mortar-plume-28\nusername: ppony\n"),
             ("wifi/home", "pony-passphrase-9000\n"),
             ("wifi/office", "stable-gateway-4242\n"),
             ("dev/registry.example.com", "tarpit-nimbus-octave-55\nusername: norsehorse-dev\n"),
         ]
         for (name, content) in demo {
-            try store.writeEntry(
-                name: name,
-                content: Data(content.utf8),
-                backend: engine
-            )
+            var bytes = Data(content.utf8)
+            // A passkey for the GitHub entry, so the passkeys section shows
+            // up in screenshots; made like a real registration.
+            if name == "web/github.com" {
+                let key = P256.Signing.PrivateKey()
+                let point = key.publicKey.rawRepresentation
+                if let passkey = try? passkeyRegister(
+                    rpId: "github.com",
+                    userHandle: Data("pony".utf8),
+                    username: "pony",
+                    userDisplayName: "pony",
+                    keyPkcs8: key.derRepresentation,
+                    x: Data(point.prefix(32)),
+                    y: Data(point.suffix(32)),
+                    userVerified: true
+                ) {
+                    bytes = entryAddPasskey(content: bytes, value: passkey.value)
+                }
+            }
+            try store.writeEntry(name: name, content: bytes, backend: engine)
         }
     }
     #endif

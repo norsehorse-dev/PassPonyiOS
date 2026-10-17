@@ -9,6 +9,15 @@ struct PassPonyApp: App {
         // resolves a string, so a launch in an overridden language starts
         // correct everywhere.
         AppLanguage.activate()
+        #if DEBUG
+        // App Store screenshots (fastlane snapshot, -seedDemoStore): skip
+        // the tour and the key backup banner so the UI test lands straight
+        // on the demo store. DEBUG builds only.
+        if ProcessInfo.processInfo.arguments.contains("-seedDemoStore") {
+            UserDefaults.standard.set(true, forKey: "passpony.onboardingCompleted")
+            KeyBackupState.markBackedUp()
+        }
+        #endif
     }
 
     var body: some Scene {

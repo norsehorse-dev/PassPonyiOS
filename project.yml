@@ -20,8 +20,8 @@ settings:
     # Version, build number, and team live HERE, not in the Xcode UI.
     # This is a generated project: anything set in Xcode's target editor
     # is silently reverted to these values on the next xcodegen run.
-    MARKETING_VERSION: "1.1"
-    CURRENT_PROJECT_VERSION: "3"
+    MARKETING_VERSION: "2.0.0"
+    CURRENT_PROJECT_VERSION: "1"
     DEVELOPMENT_TEAM: 4AVJZV35G8
     CODE_SIGN_STYLE: Automatic
     TARGETED_DEVICE_FAMILY: "1"
@@ -43,6 +43,18 @@ schemes:
         PassPony: all
     run:
       config: Debug
+  # App Store screenshots only: fastlane snapshot runs this scheme's test
+  # action (UITests/SnapshotTests.swift) against a DEBUG build launched with
+  # -seedDemoStore. See fastlane/Snapfile.
+  PassPonySnapshots:
+    build:
+      targets:
+        PassPony: all
+        PassPonyUITests: [test]
+    test:
+      config: Debug
+      targets:
+        - PassPonyUITests
 
 targets:
   PassPony:
@@ -125,3 +137,16 @@ targets:
             ASCredentialProviderExtensionCapabilities:
               ProvidesPasswords: true
               ProvidesPasskeys: true
+
+  PassPonyUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - UITests
+    dependencies:
+      - target: PassPony
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: dev.norsehorse.passpony.uitests
+        TEST_TARGET_NAME: PassPony
+        GENERATE_INFOPLIST_FILE: YES

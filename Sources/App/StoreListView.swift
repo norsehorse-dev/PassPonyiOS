@@ -72,6 +72,7 @@ struct StoreListView: View {
                 } label: {
                     Image(systemName: "arrow.triangle.2.circlepath")
                 }
+                .accessibilityIdentifier("syncButton")
             }
             ToolbarItem(placement: .topBarLeading) {
                 Button {
@@ -79,6 +80,7 @@ struct StoreListView: View {
                 } label: {
                     Image(systemName: "gearshape")
                 }
+                .accessibilityIdentifier("settingsButton")
             }
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
@@ -86,6 +88,7 @@ struct StoreListView: View {
                 } label: {
                     Image(systemName: "plus")
                 }
+                .accessibilityIdentifier("addButton")
             }
             ToolbarItem(placement: .topBarTrailing) {
                 Menu {
@@ -99,9 +102,11 @@ struct StoreListView: View {
                     } label: {
                         Label("Back up keys", systemImage: "externaldrive")
                     }
+                    .accessibilityIdentifier("backupKeysButton")
                 } label: {
                     Image(systemName: "ellipsis.circle")
                 }
+                .accessibilityIdentifier("moreMenu")
             }
         }
         .sheet(isPresented: $showingAdd) {
@@ -119,6 +124,7 @@ struct StoreListView: View {
                     .toolbar {
                         ToolbarItem(placement: .confirmationAction) {
                             Button("Done") { showingBackup = false }
+                                .accessibilityIdentifier("backupDoneButton")
                         }
                     }
             }

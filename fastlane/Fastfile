@@ -1,0 +1,104 @@
+default_platform(:ios)
+
+before_all do
+  Dotenv.overload("../.env") if File.exist?("../.env")
+end
+
+def asc_api_key
+  app_store_connect_api_key(
+    key_id: ENV.fetch("ASC_KEY_ID"),
+    issuer_id: ENV.fetch("ASC_ISSUER_ID"),
+    key_filepath: ENV.fetch("ASC_KEY_FILEPATH"),
+    duration: 1200,
+    in_house: false
+  )
+end
+
+APP_ID = "dev.norsehorse.passpony"
+
+platform :ios do
+  desc "Capture the raw App Store screenshots into fastlane/raw_screenshots (demo store UI test)"
+  lane :screenshots do
+    sh("cd .. && xcodegen generate")
+    capture_screenshots
+  end
+
+  desc "Frame the raw screenshots with captions into fastlane/screenshots, and make the header and search result assets (needs Pillow: pip3 install pillow)"
+  lane :frame do
+    sh("cd .. && python3 tools/frame_screenshots.py")
+    sh("cd .. && python3 tools/creative_assets.py")
+  end
+
+  desc "Write the live App Store listing text into fastlane/metadata (every locale it has), so the repo starts from what is published"
+  lane :pull_metadata do
+    asc_api_key
+    app = Spaceship::ConnectAPI::App.find(APP_ID)
+    platform = Spaceship::ConnectAPI::Platform::IOS
+    version = app.get_live_app_store_version(platform: platform) || app.get_edit_app_store_version(platform: platform)
+    version.get_app_store_version_localizations.each do |loc|
+      dir = File.join("metadata", loc.locale)
+      FileUtils.mkdir_p(dir)
+      {
+        "description" => loc.description,
+        "keywords" => loc.keywords,
+        "promotional_text" => loc.promotional_text,
+        "release_notes" => loc.whats_new,
+        "marketing_url" => loc.marketing_url,
+        "support_url" => loc.support_url
+      }.each { |name, value| File.write(File.join(dir, "#{name}.txt"), value.to_s) }
+    end
+    info = app.fetch_live_app_info || app.fetch_edit_app_info
+    info.get_app_info_localizations.each do |loc|
+      dir = File.join("metadata", loc.locale)
+      FileUtils.mkdir_p(dir)
+      File.write(File.join(dir, "name.txt"), loc.name.to_s)
+      File.write(File.join(dir, "subtitle.txt"), loc.subtitle.to_s)
+      File.write(File.join(dir, "privacy_url.txt"), loc.privacy_policy_url.to_s)
+    end
+    UI.success("Listing text written to fastlane/metadata")
+  end
+
+  desc "Upload metadata and the framed screenshots to the App Store version, no binary, no submission. Usage: fastlane metadata version:2.0.0"
+  lane :metadata do |options|
+    version = options[:version] || UI.user_error!("pass version:, e.g. fastlane metadata version:2.0.0")
+    asc_api_key
+    deliver(
+      app_version: version,
+      skip_binary_upload: true,
+      skip_screenshots: false,
+      overwrite_screenshots: true,
+      submit_for_review: false,
+      force: true,
+      run_precheck_before_submit: false,
+      precheck_include_in_app_purchases: false
+    )
+  end
+
+  desc "Delete EVERY screenshot from the editable App Store version, all locales (clears stuck or duplicated assets the ASC UI can't remove)"
+  lane :nuke_screenshots do
+    asc_api_key
+    app = Spaceship::ConnectAPI::App.find(APP_ID)
+    version = app.get_edit_app_store_version(platform: Spaceship::ConnectAPI::Platform::IOS)
+    deleted = 0
+    version.get_app_store_version_localizations.each do |localization|
+      localization.get_app_screenshot_sets.each do |set|
+        set.app_screenshots.each do |shot|
+          shot.delete!
+          deleted += 1
+        end
+      end
+    end
+    UI.success("Deleted #{deleted} screenshots")
+  end
+
+  desc "Make the App Store screenshots exactly match fastlane/screenshots, touching neither metadata nor the binary"
+  lane :fix_screenshots do
+    asc_api_key
+    deliver(
+      sync_screenshots: true,
+      skip_binary_upload: true,
+      skip_metadata: true,
+      force: true
+    )
+  end
+end

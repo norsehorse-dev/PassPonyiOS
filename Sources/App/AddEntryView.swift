@@ -41,6 +41,7 @@ struct AddEntryView: View {
                         }
                         .buttonStyle(.borderless)
                         .accessibilityLabel("Generator settings")
+                        .accessibilityIdentifier("generatorSettingsButton")
                     }
                 }
                 Section("Fields (optional)") {
@@ -74,6 +75,7 @@ struct AddEntryView: View {
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") { dismiss() }
+                        .accessibilityIdentifier("addCancelButton")
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Save") { save() }

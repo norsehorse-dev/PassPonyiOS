@@ -61,6 +61,7 @@ struct BackupView: View {
                         }
                     }
                     .disabled(!hasAgeIdentities && pgpKeyCount == 0 && !SshKeyStore.hasKey)
+                    .accessibilityIdentifier("createBackupButton")
                 case .showCode(let code):
                     Text("This is your recovery code. Write it down and keep it somewhere safe.")
                     HStack {

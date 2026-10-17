@@ -105,6 +105,7 @@ struct GeneratorSheet: View {
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") { dismiss() }
+                        .accessibilityIdentifier("generatorCancelButton")
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Use password") {

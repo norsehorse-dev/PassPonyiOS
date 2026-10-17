@@ -1,0 +1,27 @@
+scheme("PassPonySnapshots")
+
+# PassPony is iPhone only. The 6.9" set is the one App Store Connect
+# requires; it scales down for smaller iPhones. One run per App Store
+# locale the app is translated into.
+devices([
+  "iPhone 17 Pro Max",
+])
+
+languages([
+  "en-US",
+  "de-DE",
+  "es-ES",
+  "fr-FR",
+  "pt-BR",
+  "ru",
+  "zh-Hans",
+])
+
+launch_arguments(["-seedDemoStore"])
+
+# Raw captures. tools/frame_screenshots.py turns them into the captioned
+# frames in fastlane/screenshots, which is what deliver uploads.
+output_directory("./fastlane/raw_screenshots")
+clear_previous_screenshots(true)
+override_status_bar(true)
+dark_mode(false)

@@ -6,3 +6,20 @@ build/
 .DS_Store
 *.xcuserstate
 xcuserdata/
+
+# fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/README.md
+fastlane/raw_screenshots/
+fastlane/screenshots/
+fastlane/creative_assets/
+fastlane/test_output/
+fastlane/derivedData/
+fastlane/metadata/review_information/
+
+# Env / secrets
+.env
+.env.*
+*.p8
+__pycache__/
