@@ -1,0 +1,1 @@
+totp,2fa,otp,gpg,pgp,age,openpgp,autofill,passkey,ssh,offline,private,encrypted,cli,keychain,linux

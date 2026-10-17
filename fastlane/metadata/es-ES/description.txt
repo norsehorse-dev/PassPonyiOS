@@ -1,0 +1,34 @@
+PassPony es un gestor de contraseñas para quienes quieren ser dueños de sus contraseñas. Cada entrada es un archivo cifrado en un almacén que tú controlas, con el mismo formato que las herramientas de línea de comandos pass y passage. Tu Mac, tu servidor y tu teléfono pueden trabajar con el mismo almacén.
+
+POR QUÉ UN ALMACÉN BASADO EN ARCHIVOS
+Una entrada, un archivo: la contraseña en la primera línea y todo lo demás después.
+Cifrado con tus claves: identidades age para almacenes passage y claves OpenPGP para almacenes pass.
+Sincronizado con git por HTTPS o SSH: clona tu almacén existente, publica uno nuevo y resuelve los conflictos entrada por entrada, nunca con una fusión silenciosa.
+Interoperable: los commits siguen el formato de la CLI de pass, así que el almacén sigue siendo totalmente utilizable desde las herramientas de escritorio.
+
+USO DIARIO
+Autorrelleno: tus contraseñas aparecen encima del teclado cuando inicias sesión. Solo se indexan los nombres de las entradas; no se descifra nada hasta que rellenas.
+Llaves de acceso: guarda una llave de acceso para un sitio e inicia sesión con ella. Se guarda en la entrada de ese sitio, cifrada con tus claves, y se sincroniza como todo lo demás.
+Códigos de un solo uso: TOTP con un anillo de cuenta atrás, contadores HOTP e importación desde una exportación de Google Authenticator.
+Desbloqueo con Face ID o Touch ID, con un margen de cinco minutos compartido con el Autorrelleno.
+Portapapeles efímero: lo que copias se queda solo en el dispositivo y se borra a los 45 segundos.
+Edición por campos que conserva exactamente los bytes de las líneas que no toca.
+
+TUS CLAVES SIGUEN SIENDO TUYAS
+Haz una copia de seguridad de todas las claves de tu teléfono en un solo archivo protegido con un código de recuperación y restáurala en un teléfono nuevo.
+La sincronización por SSH usa una clave creada en tu teléfono o importada; se confía en cada servidor la primera vez que te conectas y se rechaza una clave de servidor que haya cambiado.
+Los teléfonos que comparten un almacén añaden cada uno su propia clave pública al sincronizar, y tú apruebas cada clave nueva antes de que tus entradas se vuelvan a cifrar para ella. Las claves secretas nunca salen de un dispositivo.
+
+PRIVACIDAD DESDE LA ARQUITECTURA
+Sin cuenta, sin registro, sin servidor de PassPony. La única conexión de red es el remoto git que tú configures.
+Sin analíticas, sin anuncios, sin rastreo.
+Código abierto, Apache-2.0. La app completa y su núcleo en Rust están publicados en un repositorio git público para que cualquiera pueda auditarlos.
+
+FORMATOS
+Los almacenes passage cifran con identidades age modernas.
+Los almacenes pass cifran con claves OpenPGP (Cv25519 y X25519/Ed25519 por software). Los almacenes con claves RSA necesitan una tarjeta inteligente, que todavía no es compatible.
+Cada formato tiene su propio almacén; cambiar de uno a otro nunca afecta al otro.
+
+Disponible en inglés, español, francés, alemán, chino simplificado, portugués de Brasil y ruso.
+
+Si ya usas pass o passage, PassPony es la mitad móvil que le faltaba a tu configuración. Si nunca los has usado, con el tour de bienvenida añadirás tu primera entrada en más o menos un minuto.

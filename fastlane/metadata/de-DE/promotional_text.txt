@@ -1,0 +1,1 @@
+Open-Source-Passwortmanager für pass- und passage-Speicher. Neu in 2.0: Passkeys, SSH-Sync, Schlüssel-Backups und Telefone, die sich einen Speicher teilen.

@@ -1,0 +1,1 @@
+Open-source password manager for pass and passage stores. New in 2.0: passkeys, SSH sync, key backups, and phones that share one store.

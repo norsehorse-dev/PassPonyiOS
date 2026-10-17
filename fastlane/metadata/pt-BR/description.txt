@@ -1,0 +1,34 @@
+O PassPony é um gestor de senhas para quem quer ser dono das próprias senhas. Cada entrada é um arquivo criptografado em um cofre que você controla, no mesmo formato das ferramentas de linha de comando pass e passage. Seu Mac, seu servidor e seu celular podem trabalhar no mesmo cofre.
+
+POR QUE UM COFRE BASEADO EM ARQUIVOS
+Uma entrada, um arquivo: a senha na primeira linha e todo o resto depois dela.
+Criptografado com suas chaves: identidades age para cofres do passage, chaves OpenPGP para cofres do pass.
+Sincronizado com git via HTTPS ou SSH: clone seu cofre existente, publique um novo e resolva conflitos por entrada, nunca com uma mesclagem silenciosa.
+Interoperável: os commits seguem o formato da CLI do pass, então o cofre continua totalmente utilizável pelas ferramentas de desktop.
+
+USO NO DIA A DIA
+Preenchimento Automático: suas senhas aparecem acima do teclado quando você inicia sessão. Apenas os nomes das entradas são indexados; nada é descriptografado até você preencher.
+Chaves de acesso: salve uma chave de acesso para um site e inicie sessão com ela. Ela fica na entrada desse site, criptografada com suas chaves, e é sincronizada como todo o resto.
+Códigos de uso único: TOTP com anel de contagem regressiva, contadores HOTP e importação a partir de uma exportação do Google Authenticator.
+Desbloqueio com Face ID ou Touch ID, com um período de tolerância de cinco minutos compartilhado com o Preenchimento Automático.
+Área de transferência temporária: as cópias ficam só neste dispositivo e são apagadas após 45 segundos.
+Edição por campo que preserva exatamente os bytes das linhas que não são alteradas.
+
+SUAS CHAVES CONTINUAM SUAS
+Faça backup de todas as chaves do seu celular em um único arquivo protegido por um código de recuperação e restaure-o em um celular novo.
+A sincronização por SSH usa uma chave criada no seu celular ou importada; os hosts são considerados confiáveis no primeiro uso e uma chave de host alterada é recusada.
+Celulares com um cofre em comum adicionam, cada um, a própria chave pública ao cofre ao sincronizar, e você aprova cada chave nova antes que suas entradas sejam recriptografadas para ela. As chaves secretas nunca saem do dispositivo.
+
+PRIVADO POR ARQUITETURA
+Sem conta, sem cadastro, sem servidor do PassPony. A única conexão de rede é o remoto git que você configurar.
+Sem análise de uso, sem anúncios, sem rastreamento.
+Código aberto, Apache-2.0. O app completo e seu núcleo em Rust estão publicados em um repositório git público para qualquer pessoa auditar.
+
+FORMATOS
+Cofres do passage criptografam com identidades age modernas.
+Cofres do pass criptografam com chaves OpenPGP (Cv25519 e X25519/Ed25519 em software). Cofres com chaves RSA precisam de um cartão inteligente, que ainda não é compatível.
+Cada formato tem o próprio cofre; trocar de formato nunca afeta o outro.
+
+Localizado em inglês, espanhol, francês, alemão, chinês simplificado, português brasileiro e russo.
+
+Se você já usa o pass ou o passage, o PassPony é a metade móvel que faltava na sua configuração. Se você nunca os usou, o tour de boas-vindas vai levar você a adicionar sua primeira senha em cerca de um minuto.

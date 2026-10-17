@@ -1,0 +1,1 @@
+Gestionnaire de mots de passe open source pour coffres pass et passage. Nouveau en 2.0 : clés d'accès, synchro SSH, sauvegarde des clés, téléphones partageant un coffre.

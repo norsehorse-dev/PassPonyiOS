@@ -1,0 +1,1 @@
+Gestor de contraseñas de código abierto para almacenes pass y passage. Nuevo en 2.0: llaves de acceso, sincronización SSH, copias de claves y teléfonos con almacén común.

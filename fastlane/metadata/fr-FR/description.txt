@@ -1,0 +1,34 @@
+PassPony est un gestionnaire de mots de passe pour celles et ceux qui veulent rester maîtres de leurs mots de passe. Chaque entrée est un fichier chiffré dans un coffre que vous contrôlez, au même format que les outils en ligne de commande pass et passage. Votre Mac, votre serveur et votre téléphone peuvent tous travailler sur le même coffre.
+
+POURQUOI UN COFFRE À BASE DE FICHIERS
+Une entrée, un fichier : le mot de passe sur la première ligne, tout le reste à la suite.
+Chiffré avec vos clés : identités age pour les coffres passage, clés OpenPGP pour les coffres pass.
+Synchronisé avec git via HTTPS ou SSH : clonez votre coffre existant, publiez-en un nouveau et résolvez les conflits entrée par entrée, jamais par une fusion silencieuse.
+Interopérable : les commits respectent le format de la CLI pass, le coffre reste donc entièrement utilisable depuis les outils de bureau.
+
+AU QUOTIDIEN
+Remplissage automatique : vos mots de passe apparaissent au-dessus du clavier lorsque vous vous connectez. Seuls les noms des entrées sont indexés ; rien n'est déchiffré avant le remplissage.
+Clés d'accès : enregistrez une clé d'accès pour un site et connectez-vous avec. Elle est conservée dans l'entrée de ce site, chiffrée avec vos clés, et se synchronise comme tout le reste.
+Codes à usage unique : TOTP avec anneau de compte à rebours, compteurs HOTP et import depuis un export Google Authenticator.
+Déverrouillage par Face ID ou Touch ID, avec un délai de grâce de cinq minutes partagé avec le remplissage automatique.
+Presse-papiers éphémère : les copies restent locales et sont effacées après 45 secondes.
+Modification champ par champ, qui conserve à l'octet près les lignes auxquelles elle ne touche pas.
+
+VOS CLÉS RESTENT LES VÔTRES
+Sauvegardez toutes les clés de votre téléphone dans un seul fichier verrouillé par un code de récupération, et restaurez-le sur un nouveau téléphone.
+La synchronisation SSH utilise une clé créée sur votre téléphone ou importée ; les hôtes sont approuvés à la première utilisation et une clé d'hôte modifiée est refusée.
+Les téléphones qui partagent un coffre y ajoutent chacun leur propre clé publique lors de la synchronisation, et vous approuvez chaque nouvelle clé avant que vos entrées ne soient rechiffrées pour elle. Les clés secrètes ne quittent jamais un appareil.
+
+PRIVÉ DE PAR SON ARCHITECTURE
+Aucun compte, aucune inscription, aucun serveur PassPony. La seule connexion réseau est le dépôt distant git que vous configurez.
+Aucune statistique d'utilisation, aucune publicité, aucun pistage.
+Open source, Apache-2.0. L'app complète et son cœur en Rust sont publiés dans un dépôt git public, que chacun peut auditer.
+
+FORMATS
+Les coffres passage chiffrent avec des identités age modernes.
+Les coffres pass chiffrent avec des clés OpenPGP (Cv25519 et X25519/Ed25519 en logiciel). Les coffres à clés RSA nécessitent une carte à puce, qui n'est pas encore prise en charge.
+Chaque format garde son propre coffre ; changer de format ne touche jamais à l'autre.
+
+Disponible en anglais, espagnol, français, allemand, chinois simplifié, portugais du Brésil et russe.
+
+Si vous utilisez déjà pass ou passage, PassPony est la moitié mobile qui manquait à votre configuration. Si vous ne les avez jamais utilisés, la visite guidée du premier lancement vous fera ajouter votre premier mot de passe en une minute environ.

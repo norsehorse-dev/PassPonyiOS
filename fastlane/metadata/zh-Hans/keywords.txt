@@ -1,0 +1,1 @@
+totp,2fa,otp,gpg,pgp,age,openpgp,passkey,ssh,cli,通行密钥,验证器,两步验证,动态口令,自动填充,离线,加密,隐私,钥匙串,密码本,密码箱,linux

@@ -1,0 +1,34 @@
+PassPony ist ein Passwortmanager für alle, die ihre Passwörter selbst besitzen wollen. Jeder Eintrag ist eine verschlüsselte Datei in einem Speicher, den du kontrollierst, im selben Format wie die Kommandozeilen-Tools pass und passage. Dein Mac, dein Server und dein Telefon können alle mit demselben Speicher arbeiten.
+
+WARUM EIN DATEIBASIERTER SPEICHER
+Ein Eintrag, eine Datei: das Passwort in der ersten Zeile, alles andere danach.
+Mit deinen Schlüsseln verschlüsselt: age-Identitäten für passage-Speicher, OpenPGP-Schlüssel für pass-Speicher.
+Synchronisiert mit git über HTTPS oder SSH: Klone deinen vorhandenen Speicher, veröffentliche einen neuen und löse Konflikte pro Eintrag, nie durch einen stillschweigenden Merge.
+Interoperabel: Commits entsprechen dem Format der pass-CLI, sodass der Speicher mit den Desktop-Tools voll nutzbar bleibt.
+
+IM ALLTAG
+Automatisch ausfüllen: Deine Passwörter erscheinen beim Anmelden über der Tastatur. Nur Eintragsnamen werden indexiert; entschlüsselt wird erst, wenn du ausfüllst.
+Passkeys: Sichere einen Passkey für eine Website und melde dich damit an. Er liegt im Eintrag dieser Website, mit deinen Schlüsseln verschlüsselt, und wird wie alles andere synchronisiert.
+Einmalcodes: TOTP mit Countdown-Ring, HOTP-Zähler und Import aus einem Export von Google Authenticator.
+Entsperren mit Face ID oder Touch ID, mit einer Schonfrist von fünf Minuten, die auch für das automatische Ausfüllen gilt.
+Flüchtige Zwischenablage: Kopien bleiben lokal und werden nach 45 Sekunden gelöscht.
+Bearbeitung einzelner Felder, bei der unberührte Zeilen Byte für Byte erhalten bleiben.
+
+DEINE SCHLÜSSEL BLEIBEN DEINE
+Sichere jeden Schlüssel auf deinem Telefon in einer Datei, die mit einem Wiederherstellungscode verschlossen ist, und stelle sie auf einem neuen Telefon wieder her.
+SSH-Sync nutzt einen Schlüssel, der auf deinem Telefon erstellt oder importiert wurde; Hosts werden beim ersten Kontakt als vertrauenswürdig übernommen, und ein geänderter Host-Schlüssel wird abgelehnt.
+Telefone, die sich einen Speicher teilen, fügen beim Sync jeweils ihren eigenen öffentlichen Schlüssel hinzu, und du gibst jeden neuen Schlüssel frei, bevor deine Einträge für ihn neu verschlüsselt werden. Geheime Schlüssel verlassen nie ein Gerät.
+
+PRIVATSPHÄRE DURCH ARCHITEKTUR
+Kein Konto, keine Registrierung, kein PassPony-Server. Die einzige Netzwerkverbindung ist das git-Remote, das du einrichtest.
+Keine Analysen, keine Werbung, kein Tracking.
+Open Source, Apache-2.0. Die komplette App und ihr Rust-Kern sind in einem öffentlichen git-Repository veröffentlicht, damit jeder sie prüfen kann.
+
+FORMATE
+passage-Speicher verschlüsseln mit modernen age-Identitäten.
+pass-Speicher verschlüsseln mit OpenPGP-Schlüsseln (Cv25519 und X25519/Ed25519 in Software). Speicher mit RSA-Schlüsseln benötigen eine Smartcard, die noch nicht unterstützt wird.
+Jedes Format hat seinen eigenen Speicher; ein Wechsel berührt den anderen nie.
+
+Lokalisiert auf Englisch, Spanisch, Französisch, Deutsch, vereinfachtem Chinesisch, brasilianischem Portugiesisch und Russisch.
+
+Wenn du pass oder passage bereits nutzt, ist PassPony die fehlende Telefon-Hälfte deines Setups. Falls du sie noch nie verwendet hast, bringt dich die Willkommenstour beim ersten Start dazu, in etwa einer Minute dein erstes Passwort hinzuzufügen.

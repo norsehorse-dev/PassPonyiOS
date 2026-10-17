@@ -1,0 +1,13 @@
+PassPony 2.0
+
+Llaves de acceso: guarda una llave de acceso para un sitio e inicia sesión con ella. Se guarda en la entrada de ese sitio, cifrada con tus claves, y se sincroniza con tus otros dispositivos, incluido PassPony en Android.
+
+Sincronización por SSH: usa un remoto SSH con una clave creada en la app o importada. Se confía en cada servidor la primera vez que te conectas, y se rechaza una clave de servidor que haya cambiado.
+
+Copias de seguridad de claves: guarda todas las claves de este teléfono en un solo archivo protegido con un código de recuperación y restáuralo en un teléfono nuevo. También se pueden importar archivos de identidades age protegidos con frase de contraseña, y al importar se añaden claves en lugar de reemplazarlas.
+
+Teléfonos que comparten un almacén: cada teléfono añade su propia clave pública al .age-recipients del almacén cuando sincroniza, y te pregunta antes de volver a cifrar tus entradas para uno nuevo.
+
+Códigos de un solo uso: contadores HOTP e importación desde un código QR de exportación de Google Authenticator.
+
+El margen de cinco minutos del bloqueo ahora empieza a contar cuando sales de la app.

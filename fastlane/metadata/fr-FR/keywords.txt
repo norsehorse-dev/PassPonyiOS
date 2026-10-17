@@ -1,0 +1,1 @@
+totp,2fa,otp,gpg,pgp,age,openpgp,passkey,ssh,coffre,gestionnaire,chiffré,clé,accès,authentificateur
