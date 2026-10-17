@@ -69,13 +69,24 @@ CJK_REGULAR_FONTS = [
 
 
 def font(candidates, size):
+    """The first candidate that exists. macOS's SF fonts are variable fonts
+    that load at their Regular weight, so the bold list asks for Bold and
+    the regular list for Medium when the font has those named instances."""
+    bold = candidates in (BOLD_FONTS, CJK_BOLD_FONTS)
     for entry in candidates:
         path, index = entry if isinstance(entry, tuple) else (entry, 0)
         if path and Path(path).exists():
             try:
-                return ImageFont.truetype(path, size, index=index)
+                f = ImageFont.truetype(path, size, index=index)
             except OSError:
-                return ImageFont.truetype(path, size)
+                f = ImageFont.truetype(path, size)
+            for name in (["Bold", "Semibold"] if bold else ["Medium", "Regular"]):
+                try:
+                    f.set_variation_by_name(name)
+                    break
+                except Exception:
+                    continue
+            return f
     sys.exit("No usable font found; set FRAME_FONT_BOLD and FRAME_FONT_REGULAR")
 
 

@@ -125,7 +125,7 @@ def search(loc, W=3840, H=2560):
     x0 = (W - (ic.width + gap + title_w)) / 2
     place(c, ic, x0 + ic.width / 2, round(150 * s) + ic.height / 2)
     draw.text((x0 + ic.width + gap, round(150 * s) + (ic.height - 180 * s) / 2), TITLE, font=head_font, fill="white")
-    centered_text(draw, loc.tagline.replace("\n", " "), font(loc.regular, round(92 * s)), W / 2, round(440 * s),
+    centered_text(draw, loc.tagline.replace("\n", "" if loc.code.startswith("zh") else " "), font(loc.regular, round(92 * s)), W / 2, round(440 * s),
                   (255, 255, 255, 235), W * 0.8, round(110 * s))
     ph = round(H * 0.72)
     y = H - ph / 2 + round(110 * s)
