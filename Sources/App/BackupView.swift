@@ -63,9 +63,19 @@ struct BackupView: View {
                     .disabled(!hasAgeIdentities && pgpKeyCount == 0)
                 case .showCode(let code):
                     Text("This is your recovery code. Write it down and keep it somewhere safe.")
-                    Text(verbatim: code)
-                        .font(.title3.monospaced())
-                        .textSelection(.disabled)
+                    HStack {
+                        Text(verbatim: code)
+                            .font(.title3.monospaced())
+                            .textSelection(.disabled)
+                        Spacer()
+                        Button {
+                            Clipboard.copyEphemeral(Data(code.utf8))
+                        } label: {
+                            Image(systemName: "doc.on.doc")
+                        }
+                        .buttonStyle(.borderless)
+                        .accessibilityLabel(Text("Copy"))
+                    }
                     Text("The backup can't be opened without this code, and PassPony can't show it again after this.")
                         .font(.footnote)
                         .foregroundStyle(.red)
