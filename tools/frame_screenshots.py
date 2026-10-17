@@ -53,19 +53,46 @@ REGULAR_FONTS = [
     "/System/Library/Fonts/SFNS.ttf",
     "/System/Library/Fonts/Supplemental/Arial.ttf",
 ]
-# (path, index inside a .ttc collection)
+# Font collections (.ttc) are searched for a Simplified Chinese face in the
+# wanted weight, so the order of faces inside the file doesn't matter.
 CJK_BOLD_FONTS = [
-    (os.environ.get("FRAME_FONT_CJK_BOLD", ""), 0),
-    ("/System/Library/Fonts/Hiragino Sans GB.ttc", 1),
-    ("/System/Library/Fonts/STHeiti Medium.ttc", 0),
-    ("/System/Library/Fonts/PingFang.ttc", 0),
+    os.environ.get("FRAME_FONT_CJK_BOLD", ""),
+    "/System/Library/Fonts/PingFang.ttc",
+    "/System/Library/Fonts/Hiragino Sans GB.ttc",
+    "/System/Library/Fonts/STHeiti Medium.ttc",
+    "/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc",
 ]
 CJK_REGULAR_FONTS = [
-    (os.environ.get("FRAME_FONT_CJK_REGULAR", ""), 0),
-    ("/System/Library/Fonts/Hiragino Sans GB.ttc", 0),
-    ("/System/Library/Fonts/STHeiti Light.ttc", 0),
-    ("/System/Library/Fonts/PingFang.ttc", 0),
+    os.environ.get("FRAME_FONT_CJK_REGULAR", ""),
+    "/System/Library/Fonts/PingFang.ttc",
+    "/System/Library/Fonts/Hiragino Sans GB.ttc",
+    "/System/Library/Fonts/STHeiti Light.ttc",
+    "/usr/share/fonts/opentype/noto/NotoSansCJK-Medium.ttc",
 ]
+CJK_FAMILY_HINTS = ("SC", "GB", "STHeiti", "Heiti")
+BOLD_STYLES = ("Semibold", "SemiBold", "Bold", "W6", "Medium")
+REGULAR_STYLES = ("Medium", "Regular", "W3", "Light")
+
+
+def collection_face(path, size, styles):
+    """The best face in a .ttc: a Simplified Chinese family in the first
+    style of `styles` that the collection has."""
+    faces = []
+    for index in range(64):
+        try:
+            f = ImageFont.truetype(path, size, index=index)
+        except OSError:
+            break
+        family, style = f.getname()
+        faces.append((family or "", style or "", f))
+    if not faces:
+        return None
+    sc = [x for x in faces if any(h in x[0] for h in CJK_FAMILY_HINTS)] or faces
+    for want in styles:
+        for family, style, f in sc:
+            if style.replace(" ", "") == want:
+                return f
+    return sc[0][2]
 
 
 def font(candidates, size):
@@ -73,13 +100,14 @@ def font(candidates, size):
     that load at their Regular weight, so the bold list asks for Bold and
     the regular list for Medium when the font has those named instances."""
     bold = candidates in (BOLD_FONTS, CJK_BOLD_FONTS)
-    for entry in candidates:
-        path, index = entry if isinstance(entry, tuple) else (entry, 0)
+    for path in candidates:
         if path and Path(path).exists():
-            try:
-                f = ImageFont.truetype(path, size, index=index)
-            except OSError:
-                f = ImageFont.truetype(path, size)
+            if path.lower().endswith(".ttc"):
+                f = collection_face(path, size, BOLD_STYLES if bold else REGULAR_STYLES)
+                if f is None:
+                    continue
+                return f
+            f = ImageFont.truetype(path, size)
             for name in (["Bold", "Semibold"] if bold else ["Medium", "Regular"]):
                 try:
                     f.set_variation_by_name(name)
