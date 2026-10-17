@@ -106,7 +106,7 @@ final class CredentialProviderViewController: ASCredentialProviderViewController
                 }
                 switch self.passkeyAssertion(for: passkeyRequest) {
                 case .success(let credential):
-                    self.extensionContext.completeAssertionRequest(using: credential)
+                    _ = await self.extensionContext.completeAssertionRequest(using: credential)
                 case .failure(let error):
                     log.error("UI passkey failed: \(String(describing: error), privacy: .public)")
                     self.cancel(.failed)
@@ -230,7 +230,7 @@ final class CredentialProviderViewController: ASCredentialProviderViewController
                         userName: userName,
                         clientDataHash: clientDataHash
                     )
-                    self?.extensionContext.completeRegistrationRequest(using: credential)
+                    _ = await self?.extensionContext.completeRegistrationRequest(using: credential)
                     return nil
                 } catch {
                     log.error("passkey registration failed: \(String(describing: error), privacy: .public)")
@@ -267,7 +267,7 @@ final class CredentialProviderViewController: ASCredentialProviderViewController
                         credentialId: ref.credentialId,
                         clientDataHash: clientDataHash
                     )
-                    self?.extensionContext.completeAssertionRequest(using: credential)
+                    _ = await self?.extensionContext.completeAssertionRequest(using: credential)
                     return nil
                 } catch {
                     log.error("passkey sign-in failed: \(String(describing: error), privacy: .public)")
