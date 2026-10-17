@@ -8,6 +8,9 @@ final class AppModel: ObservableObject {
     @Published var searchText = ""
     @Published var syncStatus: SyncStatus?
     @Published var lastError: String?
+    /// 2.0 rc4: keys another device added to `.age-recipients` that this
+    /// one has not been asked about. The Sync screen asks, one at a time.
+    @Published var pendingDeviceKeys: [String] = []
 
     /// Lives here rather than in StoreListView so the Settings sheet's
     /// presentation state sits outside any re-keyed subtree and can never
@@ -321,6 +324,73 @@ final class AppModel: ObservableObject {
     /// (from `GitError.UnknownHostKey`); the caller then retries.
     func trustHost(_ host: String, key: HostKey) throws {
         try SshKeyStore.trust(host: host, key: key)
+    }
+
+    // MARK: - 2.0 rc4: devices sharing a store
+
+    /// List this device in `.age-recipients` (committing and pushing when
+    /// that changed anything), then look for keys other devices added. A
+    /// failed push leaves the commit for the next Push; the sync itself
+    /// already succeeded.
+    func joinRecipients() async {
+        guard let store else { return }
+        let git = self.git
+        let format = self.format
+        let pending = await Task.detached(priority: .userInitiated) { () -> [String] in
+            if DeviceKeys.join(format: format, store: store, git: git) {
+                git?.setSsh(ssh: SshKeyStore.config())
+                try? git?.push()
+            }
+            return DeviceKeys.pending(format: format, store: store)
+        }.value
+        pendingDeviceKeys = pending
+        refresh()
+    }
+
+    /// After a clone: the keys already listed are the store's own choice.
+    func joinAfterClone() async {
+        if let store { DeviceKeys.baseline(format: format, store: store) }
+        await joinRecipients()
+    }
+
+    /// The person recognized `key`: re-encrypt what this device can read,
+    /// commit, push.
+    func approveDeviceKey(_ key: String) async throws -> ReencryptReport {
+        guard let store else { throw StoreError.NoStore }
+        let git = self.git
+        let format = self.format
+        let backend = engine
+        let (report, pending) = try await Task.detached(priority: .userInitiated) { () -> (ReencryptReport, [String]) in
+            let report = try DeviceKeys.approve(format: format, store: store, backend: backend, git: git, key: key)
+            if !report.rewritten.isEmpty {
+                git?.setSsh(ssh: SshKeyStore.config())
+                try git?.push()
+            }
+            return (report, DeviceKeys.pending(format: format, store: store))
+        }.value
+        pendingDeviceKeys = pending
+        refresh()
+        return report
+    }
+
+    /// The person did not recognize `key`: take it out of the file, push.
+    func removeDeviceKey(_ key: String) async throws {
+        guard let store else { throw StoreError.NoStore }
+        let git = self.git
+        let format = self.format
+        let pending = try await Task.detached(priority: .userInitiated) { () -> [String] in
+            try DeviceKeys.remove(format: format, store: store, git: git, key: key)
+            git?.setSsh(ssh: SshKeyStore.config())
+            try git?.push()
+            return DeviceKeys.pending(format: format, store: store)
+        }.value
+        pendingDeviceKeys = pending
+        refresh()
+    }
+
+    /// "Later": stop asking until the next sync.
+    func deferDeviceKeys() {
+        pendingDeviceKeys = []
     }
 
     // MARK: - 2.0 rc3: passkeys

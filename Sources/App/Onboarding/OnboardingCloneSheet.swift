@@ -64,8 +64,9 @@ struct OnboardingCloneSheet: View {
                 let root = StorePaths.storeRoot
                 try? FileManager.default.removeItem(at: root)
                 try FileManager.default.moveItem(at: tmp, to: root)
+                await MainActor.run { model.openStore() }
+                await model.joinAfterClone()
                 await MainActor.run {
-                    model.openStore()
                     busy = false
                     dismiss()
                     onCloned()

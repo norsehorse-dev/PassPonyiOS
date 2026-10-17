@@ -70,6 +70,42 @@ struct SyncView: View {
             } onCancel: {
                 message = L("Not connected. The host wasn't trusted.")
             }
+            // 2.0 rc4: another device listed its key in .age-recipients.
+            // Ask before re-encrypting anything to it, one key at a time.
+            .alert(
+                "New device key",
+                isPresented: Binding(
+                    get: { !busy && model.pendingDeviceKeys.first != nil },
+                    set: { if !$0 && !busy { model.deferDeviceKeys() } }
+                ),
+                presenting: model.pendingDeviceKeys.first
+            ) { key in
+                Button("Re-encrypt") {
+                    run {
+                        let report = try await model.approveDeviceKey(key)
+                        var text = L("Entries re-encrypted for the new key: \(report.rewritten.count).")
+                        if report.skipped > 0 {
+                            text += " " + L("Entries this device can't read, left for the device that saved them: \(Int(report.skipped)).")
+                        }
+                        await MainActor.run { message = text }
+                    }
+                }
+                Button("Remove key", role: .destructive) {
+                    run {
+                        try await model.removeDeviceKey(key)
+                        await MainActor.run {
+                            message = L("Key removed. Nothing saved from now on will be encrypted to it.")
+                        }
+                    }
+                }
+                Button("Later", role: .cancel) { model.deferDeviceKeys() }
+            } message: { key in
+                Text(verbatim: [
+                    L("Another device added this key to your store, so it can read what you save from now on:"),
+                    key,
+                    L("Check it against the key in PassPony's Settings on your other device. If it's yours, re-encrypt so that device can read your existing entries too. If you don't recognize it, remove it."),
+                ].joined(separator: "\n\n"))
+            }
         }
     }
 
@@ -152,6 +188,9 @@ struct SyncView: View {
                     } else {
                         git = try GitSync.`init`(root: root, format: model.format)
                     }
+                    if let store = await MainActor.run(body: { model.store }) {
+                        DeviceKeys.join(format: model.format, store: store, git: git)
+                    }
                     try git.setRemote(url: publishURL)
                     git.setSsh(ssh: SshKeyStore.config())
                     try git.push()
@@ -183,6 +222,7 @@ struct SyncView: View {
                     try? FileManager.default.removeItem(at: root)
                     try FileManager.default.moveItem(at: tmp, to: root)
                     await MainActor.run { model.openStore() }
+                    await model.joinAfterClone()
                 }
             }
             .disabled(cloneURL.isEmpty || busy)
@@ -208,6 +248,7 @@ struct SyncView: View {
                         model.refresh()
                         if case .upToDate = outcome {} else { model.rebuildPasskeyIndex() }
                     }
+                    await model.joinRecipients()
                 }
             }
             .disabled(busy)

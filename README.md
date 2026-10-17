@@ -96,6 +96,14 @@ verification. A small index in the app group (`passkeys-*.idx`) holds
 only the site, the entry name and the credential's public ids, so iOS can
 offer passkeys before anything is decrypted.
 
+Phones share a passage store through its root `.age-recipients` (2.0):
+after a sync, clone or publish, PassPony adds this device's public key
+there and commits, so everything saved from then on is readable by every
+listed device. When another device's key shows up, PassPony asks before
+re-encrypting the existing entries to it, or removing it
+(`Sources/App/DeviceKeys.swift`). Secret keys never leave a device. pass stores'
+`.gpg-id` is left alone.
+
 ## Not yet
 
 - Smartcard decrypt (NFC and USB-C YubiKey). Scaffolding exists behind

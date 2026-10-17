@@ -1985,6 +1985,48 @@
         }
       }
     },
+    "Another device added this key to your store, so it can read what you save from now on:" : {
+      "comment" : "Dialog text shown above a long public key (age1...). The colon introduces the key on the next line.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ein anderes Gerät hat diesen Schlüssel zu deinem Speicher hinzugefügt und kann ab jetzt lesen, was du sicherst:"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otro dispositivo añadió esta clave a tu almacén, así que podrá leer lo que guardes a partir de ahora:"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Un autre appareil a ajouté cette clé à votre coffre. Il pourra lire tout ce que vous enregistrerez désormais :"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Outro dispositivo adicionou esta chave ao seu cofre, então ele poderá ler o que você salvar a partir de agora:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Другое устройство добавило этот ключ в ваше хранилище, поэтому оно сможет читать всё, что вы сохраните с этого момента:"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "另一台设备已将此密钥添加到你的密码库，此后你保存的内容它都能读取："
+          }
+        }
+      }
+    },
     "Anyone who gets this file can read your passage entries. Keep it somewhere only you can reach, or use the encrypted backup instead." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2555,6 +2597,48 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "更改…"
+          }
+        }
+      }
+    },
+    "Check it against the key in PassPony's Settings on your other device. If it's yours, re-encrypt so that device can read your existing entries too. If you don't recognize it, remove it." : {
+      "comment" : "Dialog help text. 'Settings' is the app's Settings screen. 'entries' are password-store entries. 're-encrypt' matches the app's existing Re-encrypt action.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vergleiche ihn mit dem Schlüssel in den Einstellungen von PassPony auf deinem anderen Gerät. Wenn es deiner ist, verschlüssle neu, damit das andere Gerät auch deine vorhandenen Einträge lesen kann. Wenn du ihn nicht erkennst, entferne ihn."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compárala con la clave que aparece en Ajustes de PassPony en tu otro dispositivo. Si es tuya, vuelve a cifrar para que ese dispositivo también pueda leer tus entradas existentes. Si no la reconoces, quítala."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comparez-la avec la clé affichée dans les Réglages de PassPony sur votre autre appareil. Si c'est la vôtre, rechiffrez pour que cet appareil puisse aussi lire vos entrées existantes. Si vous ne la reconnaissez pas, retirez-la."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compare-a com a chave nos Ajustes do PassPony no seu outro dispositivo. Se for sua, recriptografe para que esse dispositivo também possa ler suas entradas existentes. Se você não a reconhecer, remova-a."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сверьте его с ключом в настройках PassPony на другом устройстве. Если это ваш ключ, перешифруйте хранилище, чтобы то устройство могло читать и уже существующие записи. Если вы его не узнаёте, уберите его."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "请将它与你另一台设备上 PassPony“设置”中的密钥进行核对。如果是你的密钥，请重新加密，让那台设备也能读取你现有的条目。如果你不认识它，请将其移除。"
           }
         }
       }
@@ -4573,6 +4657,90 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "条目"
+          }
+        }
+      }
+    },
+    "Entries re-encrypted for the new key: %lld." : {
+      "comment" : "Result message. %lld is a count of password-store entries.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Für den neuen Schlüssel neu verschlüsselte Einträge: %lld."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Entradas que se volvieron a cifrar para la nueva clave: %lld."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Entrées rechiffrées pour la nouvelle clé : %lld."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Entradas recriptografadas para a nova chave: %lld."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Записей перешифровано для нового ключа: %lld."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已为新密钥重新加密的条目：%lld。"
+          }
+        }
+      }
+    },
+    "Entries this device can't read, left for the device that saved them: %lld." : {
+      "comment" : "Result message appended after the previous one. %lld is a count of entries this device could not decrypt, so they were left unchanged for the device that created them.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einträge, die dieses Gerät nicht lesen kann, bleiben für das Gerät, das sie gesichert hat: %lld."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Entradas que este dispositivo no puede leer, sin cambios para el dispositivo que las guardó: %lld."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Entrées que cet appareil ne peut pas lire, laissées pour l'appareil qui les a enregistrées : %lld."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Entradas que este dispositivo não consegue ler, mantidas para o dispositivo que as salvou: %lld."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Записей, недоступных этому устройству и оставленных для устройства, которое их сохранило: %lld."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此设备无法读取、已留给保存它们的设备处理的条目：%lld。"
           }
         }
       }
@@ -7338,6 +7506,48 @@
         }
       }
     },
+    "Key removed. Nothing saved from now on will be encrypted to it." : {
+      "comment" : "Result message after removing an unknown key.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schlüssel entfernt. Was du ab jetzt sicherst, wird nicht mehr für ihn verschlüsselt."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se quitó la clave. Nada de lo que se guarde a partir de ahora se cifrará para ella."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clé retirée. Rien de ce que vous enregistrerez désormais ne sera chiffré pour elle."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chave removida. Nada do que for salvo a partir de agora será criptografado para ela."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ключ убран. Всё, что вы сохраните с этого момента, не будет шифроваться для него."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "密钥已移除。此后保存的内容都不会再为它加密。"
+          }
+        }
+      }
+    },
     "Key unlocked." : {
       "comment" : "Security-sensitive term — review carefully.",
       "extractionState" : "manual",
@@ -7499,6 +7709,48 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "语言"
+          }
+        }
+      }
+    },
+    "Later" : {
+      "comment" : "Dialog button: decide later (asked again on the next sync).",
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Später"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Más tarde"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plus tard"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mais tarde"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Позже"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "稍后"
           }
         }
       }
@@ -8088,6 +8340,48 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "名称（例如 web/github）"
+          }
+        }
+      }
+    },
+    "New device key" : {
+      "comment" : "Title of a dialog shown after syncing when another of the user's devices added its public encryption key to the shared password store.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neuer Geräteschlüssel"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nueva clave de dispositivo"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nouvelle clé d'appareil"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nova chave de dispositivo"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Новый ключ устройства"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新设备密钥"
           }
         }
       }
@@ -11633,6 +11927,48 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "移除"
+          }
+        }
+      }
+    },
+    "Remove key" : {
+      "comment" : "Destructive dialog button: removes the unknown key from the store's recipients list.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schlüssel entfernen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quitar clave"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Retirer la clé"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remover chave"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Убрать ключ"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "移除密钥"
           }
         }
       }
