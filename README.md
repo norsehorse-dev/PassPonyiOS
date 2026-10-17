@@ -8,8 +8,18 @@ keys, git sync. SwiftUI app over the shared Rust core (PassPonyCore).
   other store's data.
 - Live TOTP with a countdown ring. Set up a one-time code by scanning
   the QR code, pasting the otpauth:// link, or typing the key; entries
-  written by pass otp insert show their code too. Ephemeral, local-only
-  clipboard that clears after 45 seconds.
+  written by pass otp insert show their code too. Counter-based (HOTP)
+  codes advance and commit the counter the way `pass otp code` does.
+  Ephemeral, local-only clipboard that clears after 45 seconds.
+- Import from Google Authenticator: scan its export QR codes and each
+  account becomes its own one-time code entry.
+- Import an existing age identity for passage stores, plaintext or
+  passphrase-protected (the `age -p` format gopass's age backend writes).
+  Imported identities are added to the ones already here.
+- Keys backup: an encrypted `.passpony` backup of every key on the
+  device, locked with a generated recovery code (a plain age file; see
+  PassPonyCore's `docs/BACKUP.md`), a plain identities export, and
+  restore. The same file restores on PassPony for Android.
 - Password generator with length, character class, and symbol set
   options, remembered per device. The defaults match pass generate.
 - Diagnostics screen (Settings, then Diagnostics) with a copyable report
@@ -77,7 +87,6 @@ load; release builds trap instead.
 - Smartcard decrypt (NFC and USB-C YubiKey). Scaffolding exists behind
   the spike memo in PassPonyCore docs.
 - SSH remotes for git sync; use HTTPS with a token for now.
-- Passphrase-protected identities files for passage.
 
 ## License
 

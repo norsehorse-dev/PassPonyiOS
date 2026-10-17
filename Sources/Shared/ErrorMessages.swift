@@ -16,6 +16,9 @@ extension Error {
         case let error as StoreError: return error.ponyMessage
         case let error as TotpError: return error.ponyMessage
         case let error as GenerateError: return error.ponyMessage
+        case let error as BackupError: return error.ponyMessage
+        case let error as MigrationError: return error.ponyMessage
+        case let error as AgeIdentityStore.ImportError: return error.ponyMessage
         default: return String(describing: self)
         }
     }
@@ -79,8 +82,10 @@ extension StoreError {
 extension TotpError {
     var ponyMessage: String {
         switch self {
-        case .NotTotpUri:
-            return L("This isn't an otpauth:// one-time code link. Counter-based (HOTP) codes and Google Authenticator export codes aren't supported.")
+        case .NotTotpUri, .NotHotpUri:
+            return L("This isn't an otpauth:// one-time code link.")
+        case .MissingCounter:
+            return L("This counter-based (HOTP) link has no counter.")
         case .MissingSecret:
             return L("The code has no secret.")
         case .BadSecret:
@@ -102,6 +107,51 @@ extension GenerateError {
             return L("Turn on at least one kind of character.")
         case .Entropy(let reason):
             return L("No random number source is available: \(reason)")
+        }
+    }
+}
+
+extension BackupError {
+    var ponyMessage: String {
+        switch self {
+        case .NotABackup:
+            return L("That file isn't a PassPony backup.")
+        case .NewerVersion:
+            return L("That backup was made by a newer version of PassPony. Update the app to restore it.")
+        case .Damaged:
+            return L("That backup is damaged or incomplete. Nothing was restored.")
+        case .CodeLength:
+            return L("A recovery code has 30 characters.")
+        case .CodeCharacter:
+            return L("That recovery code has a character codes never use.")
+        case .CodeChecksum:
+            return L("That recovery code has a typo. Check each group against what you wrote down.")
+        case .RandomUnavailable:
+            return L("This device couldn't generate a recovery code. Try again.")
+        }
+    }
+}
+
+extension MigrationError {
+    var ponyMessage: String {
+        switch self {
+        case .NotMigrationUri:
+            return L("That isn't a Google Authenticator export code.")
+        case .MissingData, .BadBase64, .BadPayload:
+            return L("That export code couldn't be read. Scan it again.")
+        }
+    }
+}
+
+extension AgeIdentityStore.ImportError {
+    var ponyMessage: String {
+        switch self {
+        case .noUsableIdentity:
+            return L("That file has no usable age identity.")
+        case .passphraseRequired, .wrongPassphrase:
+            return L("Wrong passphrase, or that is not a passphrase-protected file.")
+        case .tooCostly:
+            return L("That file needs more memory to unlock than this device allows.")
         }
     }
 }

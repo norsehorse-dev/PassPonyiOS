@@ -17,6 +17,8 @@ struct OnboardingPage: View {
     @State private var format = StorePaths.currentFormat
     @State private var showCloneSheet = false
     @State private var importingKeys = false
+    @State private var importingAgeIdentities = false
+    @State private var restoringBackup = false
     @State private var showAddSheet = false
     @State private var entryCountBeforeAdd = 0
     @State private var autofillEnabled = false
@@ -161,8 +163,10 @@ struct OnboardingPage: View {
 
     @ViewBuilder
     private var importArea: some View {
-        if model.entries.isEmpty {
-            VStack(spacing: 12) {
+        VStack(spacing: 12) {
+            // A clone populates entries; the key step stays reachable after
+            // it, since a cloned store is exactly when the key is needed.
+            if model.entries.isEmpty {
                 Button {
                     showCloneSheet = true
                 } label: {
@@ -170,6 +174,21 @@ struct OnboardingPage: View {
                         .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(.borderedProminent)
+            } else {
+                existingIndicator
+            }
+            if format == .passage {
+                Button {
+                    importingAgeIdentities = true
+                } label: {
+                    Label("Import identities file…", systemImage: "square.and.arrow.down")
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.bordered)
+                .ageIdentitiesImporter(isPresented: $importingAgeIdentities) { result in
+                    status = result
+                }
+            } else {
                 Button {
                     importingKeys = true
                 } label: {
@@ -178,8 +197,17 @@ struct OnboardingPage: View {
                 }
                 .buttonStyle(.bordered)
             }
-        } else {
-            existingIndicator
+            // A PassPony backup carries keys for both formats.
+            Button {
+                restoringBackup = true
+            } label: {
+                Label("Restore from backup…", systemImage: "externaldrive")
+                    .frame(maxWidth: .infinity)
+            }
+            .buttonStyle(.bordered)
+            .backupRestorer(isPresented: $restoringBackup) { result in
+                status = result
+            }
         }
     }
 

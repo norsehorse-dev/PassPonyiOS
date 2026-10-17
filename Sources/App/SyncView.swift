@@ -58,7 +58,7 @@ struct SyncView: View {
     }
 
     private var statusSection: some View {
-        Section("Status") {
+        Section {
             if let st = model.syncStatus {
                 LabeledContent("Unpushed", value: "\(st.ahead)")
                 LabeledContent("Behind remote", value: "\(st.behind)")
@@ -72,6 +72,11 @@ struct SyncView: View {
                 Text("No git repository — clone a store or use local-only mode.")
                     .foregroundStyle(.secondary)
             }
+        } header: {
+            Text("Status")
+        } footer: {
+            // 2.0: sync carries encrypted entries only.
+            Text("Sync copies your encrypted entries, not your keys. A new phone can clone your store but can't read it without a key backup.")
         }
     }
 

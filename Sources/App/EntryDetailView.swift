@@ -13,6 +13,9 @@ struct EntryDetailView: View {
     /// (the "Set up one-time code" shortcut). A flag, never a secret.
     @State private var editOpensOtp = false
     @State private var showingMove = false
+    /// The last HOTP code shown; kept until the screen goes.
+    @State private var hotpCode: String?
+    @State private var hotpError: String?
 
     var body: some View {
         List {
@@ -20,13 +23,13 @@ struct EntryDetailView: View {
                 if entryIsOtpOnly(content: content) {
                     // Line 1 is the URI (`pass otp insert`): there is no
                     // password to show, and 1.0 showed the URI as one.
-                    totpSection(content, caption: "This entry is a one-time code only.")
+                    otpSection(content, caption: "This entry is a one-time code only.")
                     fieldsSection(content)
                 } else {
                     passwordSection(content)
                     fieldsSection(content)
                     if hasTotp(content) {
-                        totpSection(content, caption: nil)
+                        otpSection(content, caption: nil)
                     }
                 }
             } else if let error {
@@ -95,10 +98,71 @@ struct EntryDetailView: View {
         }
     }
 
-    /// Whether the entry carries a parsable `otpauth://totp/` line. Cheap:
-    /// a parse of already-decrypted bytes, no re-decryption.
+    /// Whether the entry carries an `otpauth://` line, TOTP or (2.0) HOTP.
+    /// Cheap: a parse of already-decrypted bytes, no re-decryption.
     private func hasTotp(_ content: Data) -> Bool {
-        entryTotpSummary(content: content) != nil
+        entryOtpKind(content: content) != nil
+    }
+
+    @ViewBuilder
+    private func otpSection(_ content: Data, caption: LocalizedStringKey?) -> some View {
+        if entryOtpKind(content: content) == .hotp {
+            hotpSection(content, caption: caption)
+        } else {
+            totpSection(content, caption: caption)
+        }
+    }
+
+    /// Counter-based code: nothing is shown until asked. "Show next code"
+    /// advances the counter, saves and commits the entry, then shows the
+    /// code, the same as `pass otp code`.
+    @ViewBuilder
+    private func hotpSection(_ content: Data, caption: LocalizedStringKey?) -> some View {
+        Section {
+            if let line = entryOtpSummaryLine(content: content) {
+                Text(verbatim: line).font(.footnote).foregroundStyle(.secondary)
+            }
+            if let hotpCode {
+                HStack {
+                    Text(verbatim: groupedCode(hotpCode))
+                        .font(.system(.title2, design: .monospaced))
+                        .textSelection(.enabled)
+                    Spacer()
+                    Button {
+                        Clipboard.copyEphemeral(Data(hotpCode.utf8))
+                    } label: {
+                        Image(systemName: "doc.on.doc")
+                    }
+                    .buttonStyle(.borderless)
+                }
+            }
+            Button("Show next code") {
+                do {
+                    let advance = try model.advanceHotp(name: name, content: content)
+                    self.content = advance.content
+                    hotpCode = advance.code
+                    hotpError = nil
+                } catch {
+                    hotpError = error.ponyMessage
+                }
+            }
+            if let hotpError {
+                Text(hotpError).font(.footnote).foregroundStyle(.red)
+            }
+        } header: {
+            Text("One-time code")
+        } footer: {
+            VStack(alignment: .leading, spacing: 4) {
+                Text("Each code uses up one counter value and is saved to the entry, the same as pass otp code.")
+                if let caption { Text(caption) }
+            }
+        }
+    }
+
+    private func groupedCode(_ code: String) -> String {
+        guard code.count == 6 || code.count == 8 else { return code }
+        let mid = code.index(code.startIndex, offsetBy: code.count / 2)
+        return "\(code[..<mid]) \(code[mid...])"
     }
 
     @ViewBuilder

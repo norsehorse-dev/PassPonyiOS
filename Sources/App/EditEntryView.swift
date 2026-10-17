@@ -99,8 +99,9 @@ struct EditEntryView: View {
     private let fieldKeys: [String]
     private let originalValues: [String: String]
     private let originalPassword: String
-    /// The entry's code as loaded, without its secret; nil when it has none.
-    private let originalTotp: TotpSummary?
+    /// The entry's code as loaded (TOTP or HOTP), as its summary line; nil
+    /// when it has none.
+    private let originalTotp: String?
     /// Line 1 is the URI (what `pass otp insert` writes): no password to edit.
     private let otpOnly: Bool
 
@@ -128,7 +129,9 @@ struct EditEntryView: View {
         self.originalValues = pairs
         let pw = String(data: entryPassword(content: original), encoding: .utf8) ?? ""
         self.originalPassword = pw
-        self.originalTotp = entryTotpSummary(content: original)
+        self.originalTotp = entryOtpKind(content: original) == nil
+            ? nil
+            : (entryOtpSummaryLine(content: original) ?? "")
         self.otpOnly = entryIsOtpOnly(content: original)
         _password = State(initialValue: pw)
         _values = State(initialValue: pairs)
@@ -235,8 +238,8 @@ struct EditEntryView: View {
         Section("One-time code") {
             switch otpauthEdit {
             case .set(let uri):
-                if let pending = try? totpDescribe(uri: uri) {
-                    Text(totpSummaryLine(pending))
+                if let pending = otpSummaryLine(uri: uri) {
+                    Text(pending)
                 }
                 if originalTotp == nil {
                     Text("Added when you save.")
@@ -265,7 +268,9 @@ struct EditEntryView: View {
                     .buttonStyle(.borderless)
             case .unchanged:
                 if let originalTotp {
-                    Text(totpSummaryLine(originalTotp))
+                    if !originalTotp.isEmpty {
+                        Text(originalTotp)
+                    }
                     HStack {
                         Button("Replace…") { showingOtpSetup = true }
                         Spacer()

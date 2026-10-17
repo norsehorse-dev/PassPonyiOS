@@ -18,6 +18,9 @@ struct SettingsView: View {
     @State private var lockedKeys: [String] = []
     @State private var gpgIDLines: [String] = []
     @State private var message: String?
+    @State private var importingAge = false
+    @State private var ageHints: [String] = []
+    @State private var agePresent = false
 
     var body: some View {
         NavigationStack {
@@ -90,6 +93,51 @@ struct SettingsView: View {
                              ? "A pass store encrypts to the keys listed in its .gpg-id. Initialize once with your imported keys."
                              : "Re-keying a live store is the re-encrypt flow — coming with the subtree preview.")
                     }
+                }
+
+                if format == .passage {
+                    Section {
+                        (agePresent
+                            ? Text("Identities file present.")
+                            : Text("No identities imported. A passage store needs the age identity it was encrypted to."))
+                            .font(.footnote)
+                            .foregroundStyle(.secondary)
+                        ForEach(ageHints, id: \.self) { hint in
+                            Text(verbatim: hint)
+                                .font(.caption.monospaced())
+                                .foregroundStyle(.secondary)
+                        }
+                        Button {
+                            importingAge = true
+                        } label: {
+                            Label("Import identities file…", systemImage: "square.and.arrow.down")
+                        }
+                        .ageIdentitiesImporter(isPresented: $importingAge) { result in
+                            message = result
+                            refreshKeys()
+                        }
+                    } header: {
+                        Text("Age identities")
+                    }
+                }
+
+                Section {
+                    NavigationLink {
+                        BackupView()
+                    } label: {
+                        Label {
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text("Back up and restore keys")
+                                Text("Encrypted backup, plain export, restore")
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                            }
+                        } icon: {
+                            Image(systemName: "externaldrive")
+                        }
+                    }
+                } header: {
+                    Text("Backup")
                 }
 
                 Section("Maintenance") {
@@ -285,6 +333,8 @@ struct SettingsView: View {
             )
         }
         lockedKeys = PGPKeyStore.lockedKeyFiles
+        agePresent = AgeIdentityStore.hasIdentities
+        ageHints = AgeIdentityStore.publicKeyHints()
     }
 
     private func unlockKeys() {

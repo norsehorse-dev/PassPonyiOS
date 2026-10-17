@@ -54,8 +54,8 @@ struct AddEntryView: View {
                 }
                 Section("One-time code (optional)") {
                     if let otpauth {
-                        if let summary = try? totpDescribe(uri: otpauth) {
-                            Text(totpSummaryLine(summary))
+                        if let summary = otpSummaryLine(uri: otpauth) {
+                            Text(summary)
                         }
                         HStack {
                             Button("Change…") { showingOtpSetup = true }

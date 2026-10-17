@@ -10,9 +10,33 @@ struct StoreListView: View {
     @EnvironmentObject var model: AppModel
     @State private var showingAdd = false
     @State private var showingSync = false
+    @State private var showingAuthenticatorImport = false
+    @State private var showingBackup = false
 
     var body: some View {
         List {
+            // 2.0: PassPony generates an age identity on first run, and git
+            // sync never carries it, so say so until it is backed up.
+            if !KeyBackupState.backedUp, model.format == .passage, AgeIdentityStore.hasIdentities {
+                Section {
+                    Button {
+                        showingBackup = true
+                    } label: {
+                        Label {
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text("Your key isn't backed up")
+                                    .foregroundStyle(.primary)
+                                Text("If you lose this phone, your passage entries can't be read without it. Tap to back it up.")
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                            }
+                        } icon: {
+                            Image(systemName: "exclamationmark.triangle.fill")
+                                .foregroundStyle(.red)
+                        }
+                    }
+                }
+            }
             if let status = model.syncStatus, status.ahead > 0 {
                 Section {
                     Label(
@@ -63,12 +87,41 @@ struct StoreListView: View {
                     Image(systemName: "plus")
                 }
             }
+            ToolbarItem(placement: .topBarTrailing) {
+                Menu {
+                    Button {
+                        showingAuthenticatorImport = true
+                    } label: {
+                        Label("Import from Authenticator", systemImage: "qrcode")
+                    }
+                    Button {
+                        showingBackup = true
+                    } label: {
+                        Label("Back up keys", systemImage: "externaldrive")
+                    }
+                } label: {
+                    Image(systemName: "ellipsis.circle")
+                }
+            }
         }
         .sheet(isPresented: $showingAdd) {
             AddEntryView()
         }
         .sheet(isPresented: $showingSync) {
             SyncView()
+        }
+        .sheet(isPresented: $showingAuthenticatorImport) {
+            AuthenticatorImportView()
+        }
+        .sheet(isPresented: $showingBackup) {
+            NavigationStack {
+                BackupView()
+                    .toolbar {
+                        ToolbarItem(placement: .confirmationAction) {
+                            Button("Done") { showingBackup = false }
+                        }
+                    }
+            }
         }
         .sheet(isPresented: $model.showingSettings) {
             SettingsView()

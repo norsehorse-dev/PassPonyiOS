@@ -31,6 +31,18 @@ enum UnlockGate {
         defaults.set(Date().timeIntervalSince1970, forKey: lastUnlockKey)
     }
 
+    /// 2.0: the grace window counts from when the app last left the
+    /// foreground unlocked, not from the last unlock, so a long session
+    /// followed by a quick trip to the file picker or camera does not come
+    /// back to the lock screen. Only refreshes an existing stamp: after a
+    /// panic lock there is none, and leaving does not create one. Call it
+    /// only while unlocked; backgrounding the lock screen must never turn a
+    /// stale stamp into a free unlock.
+    static func markLeftForeground() {
+        guard defaults.double(forKey: lastUnlockKey) > 0 else { return }
+        defaults.set(Date().timeIntervalSince1970, forKey: lastUnlockKey)
+    }
+
     /// The panic-lock action and background-expiry both land here.
     static func lock() {
         defaults.removeObject(forKey: lastUnlockKey)

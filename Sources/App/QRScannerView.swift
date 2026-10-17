@@ -13,11 +13,19 @@ import UIKit
 /// caller closes the scanner) or a message to show while scanning resumes,
 /// so a wrong kind of QR code (HOTP, a Google Authenticator export, a URL)
 /// is explained rather than silently ignored.
+/// What the scanner shows after a decode it did not accept: an error (a
+/// wrong kind of code) or, since 2.0, a progress note for a multi-code
+/// export. Scanning resumes after a moment either way.
+struct ScanFeedback: Equatable {
+    var message: String
+    var isError = true
+}
+
 struct QRScannerScreen: View {
-    var onDecoded: (String) -> String?
+    var onDecoded: (String) -> ScanFeedback?
     var onClose: () -> Void
 
-    @State private var rejection: String?
+    @State private var rejection: ScanFeedback?
     @State private var paused = false
     @State private var torchOn = false
     @State private var hasTorch = false
@@ -65,9 +73,9 @@ struct QRScannerScreen: View {
 
                 Spacer()
 
-                Text(rejection ?? L("Point the camera at the QR code the site shows during two-factor setup."))
+                Text(rejection?.message ?? L("Point the camera at the QR code the site shows during two-factor setup."))
                     .font(.callout)
-                    .foregroundStyle(rejection == nil ? Color.white : Color.red)
+                    .foregroundStyle(rejection?.isError == true ? Color.red : Color.white)
                     .multilineTextAlignment(.center)
                     .padding()
                     .frame(maxWidth: .infinity)

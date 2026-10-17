@@ -1,3 +1,4 @@
+import AgePonyCore
 import Foundation
 import SwiftUI
 
@@ -144,6 +145,153 @@ final class AppModel: ObservableObject {
             lastError = error.ponyMessage
             return false
         }
+    }
+
+    // MARK: - 2.0 rc1: HOTP, Authenticator import, keys backup
+
+    func hasEntry(_ name: String) -> Bool {
+        store?.hasEntry(name: name) ?? false
+    }
+
+    private func fileName(_ name: String) -> String {
+        "\(name).\(format == .passage ? "age" : "gpg")"
+    }
+
+    /// Next HOTP code, pass-otp style: the counter is advanced and the
+    /// entry written and committed ("Increment HOTP counter for <name>.")
+    /// before the code is returned, so a code is never shown whose counter
+    /// was not saved.
+    func advanceHotp(name: String, content: Data) throws -> HotpAdvance {
+        guard let store else { throw StoreError.NoStore }
+        let next = try entryHotpNext(content: content)
+        try store.writeEntry(name: name, content: next.content, backend: engine)
+        try? git?.commitPaths(paths: [fileName(name)], message: commitMessageHotpIncrement(name: name))
+        refresh()
+        return next
+    }
+
+    /// Write OTP-only entries (the URI as the whole entry, what
+    /// `pass otp insert` writes), one commit each with pass-otp's message.
+    /// Returns how many were written before any failure, which is rethrown.
+    func addOtpEntries(_ items: [(name: String, uri: String)]) throws -> Int {
+        guard let store else { throw StoreError.NoStore }
+        var written = 0
+        defer { refresh() }
+        for item in items {
+            try store.writeEntry(name: item.name, content: Data("\(item.uri)\n".utf8), backend: engine)
+            try? git?.commitPaths(paths: [fileName(item.name)], message: commitMessageOtpAdd(name: item.name))
+            written += 1
+        }
+        return written
+    }
+
+    /// Import an identities file (plain or passphrase-protected) for the
+    /// passage store and reopen so entries waiting on that key decrypt. The
+    /// scrypt work runs off the main actor.
+    func importAgeIdentities(_ data: Data, passphrase: String?) async throws -> AgeIdentityStore.ImportResult {
+        let result = try await Task.detached(priority: .userInitiated) {
+            try AgeIdentityStore.importIdentitiesFile(data, passphrase: passphrase)
+        }.value
+        openStore()
+        return result
+    }
+
+    /// An encrypted `.passpony` backup of every key on this device: the age
+    /// identities file and each file in pgp-keys/, encrypted to the
+    /// canonical recovery code (see PassPonyCore docs/BACKUP.md).
+    func buildBackup(recoveryCode: String) async throws -> Data {
+        try await Task.detached(priority: .userInitiated) {
+            var sections: [BackupSection] = []
+            if let text = AgeIdentityStore.exportText() {
+                sections.append(BackupSection(kind: backupKindAgeIdentities(), name: "", data: Data(text.utf8)))
+            }
+            let keyFiles = (try? FileManager.default.contentsOfDirectory(
+                at: PGPKeyStore.keyDirectory, includingPropertiesForKeys: nil
+            )) ?? []
+            for url in keyFiles.sorted(by: { $0.lastPathComponent < $1.lastPathComponent }) {
+                if let data = try? Data(contentsOf: url) {
+                    sections.append(BackupSection(kind: backupKindPgpSecretKey(), name: url.lastPathComponent, data: data))
+                }
+            }
+            var plaintext = backupEncode(sections: sections)
+            defer { plaintext.resetBytes(in: 0..<plaintext.count) }
+            return try Age.encrypt(plaintext: plaintext, passphrase: recoveryCode)
+        }.value
+    }
+
+    struct RestoreResult {
+        var identitiesAdded = 0
+        var identitiesPresent = 0
+        var pgpKeysAdded = 0
+        var pgpKeysPresent = 0
+        var unknownSections = 0
+    }
+
+    /// Restore a `.passpony` backup with the canonical recovery code. Age
+    /// identities are merged, never replacing what is here; a PGP key file
+    /// is added unless an identical one is present, and a different file
+    /// under the same name is kept beside it. A wrong code or a damaged
+    /// backup throws before anything is written.
+    func restoreBackup(_ data: Data, recoveryCode: String) async throws -> RestoreResult {
+        let result = try await Task.detached(priority: .userInitiated) { () throws -> RestoreResult in
+            var plaintext = try AgeIdentityStore.decryptWithPassphrase(data, passphrase: recoveryCode)
+            let sections: [BackupSection]
+            do {
+                sections = try backupDecode(plaintext: plaintext)
+            } catch {
+                plaintext.resetBytes(in: 0..<plaintext.count)
+                throw error
+            }
+            plaintext.resetBytes(in: 0..<plaintext.count)
+            var r = RestoreResult()
+            for section in sections {
+                switch section.kind {
+                case backupKindAgeIdentities():
+                    let text = String(decoding: section.data, as: UTF8.self)
+                    let imported = try AgeIdentityStore.importIdentities(text)
+                    r.identitiesAdded += imported.added
+                    r.identitiesPresent += imported.alreadyPresent
+                case backupKindPgpSecretKey():
+                    if try AppModel.restorePgpKey(name: section.name, data: section.data) {
+                        r.pgpKeysAdded += 1
+                    } else {
+                        r.pgpKeysPresent += 1
+                    }
+                default:
+                    r.unknownSections += 1
+                }
+            }
+            return r
+        }.value
+        if result.identitiesAdded == 0, result.identitiesPresent > 0,
+           result.identitiesPresent == AgeIdentityStore.identityCount() {
+            KeyBackupState.markBackedUp()
+        }
+        openStore()
+        return result
+    }
+
+    /// True when written, false when an identical file was already there.
+    nonisolated private static func restorePgpKey(name: String, data: Data) throws -> Bool {
+        PGPKeyStore.ensureDirectory()
+        let safe = URL(fileURLWithPath: name.isEmpty ? "restored-key.asc" : name).lastPathComponent
+        let base = (safe as NSString).deletingPathExtension
+        let ext = (safe as NSString).pathExtension
+        var target = PGPKeyStore.keyDirectory.appendingPathComponent(safe)
+        var n = 2
+        while FileManager.default.fileExists(atPath: target.path) {
+            if (try? Data(contentsOf: target)) == data { return false }
+            let candidate = ext.isEmpty ? "\(base)-restored-\(n)" : "\(base)-restored-\(n).\(ext)"
+            target = PGPKeyStore.keyDirectory.appendingPathComponent(candidate)
+            n += 1
+        }
+        try data.write(to: target, options: [.completeFileProtection])
+        return true
+    }
+
+    func markKeysBackedUp() {
+        KeyBackupState.markBackedUp()
+        objectWillChange.send()
     }
 
     func deleteEntry(_ name: String) {

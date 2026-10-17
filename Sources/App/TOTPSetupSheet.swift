@@ -42,7 +42,8 @@ struct TOTPSetupSheet: View {
             let text = pasted.trimmingCharacters(in: .whitespacesAndNewlines)
             guard !text.isEmpty else { return nil }
             return Result<String, Error> {
-                _ = try totpDescribe(uri: text)
+                // TOTP or, since 2.0, HOTP (counter-based) links.
+                try validateOtpUri(text)
                 return text
             }
         case .key:
@@ -90,7 +91,7 @@ struct TOTPSetupSheet: View {
                 switch tab {
                 case .paste:
                     Section {
-                        TextField("otpauth://totp/…", text: $pasted, axis: .vertical)
+                        TextField("otpauth://…", text: $pasted, axis: .vertical)
                             .lineLimit(2...4)
                             .textInputAutocapitalization(.never)
                             .autocorrectionDisabled()
@@ -160,12 +161,20 @@ struct TOTPSetupSheet: View {
                     Section { Text(problem).foregroundStyle(.red).font(.footnote) }
                 }
 
-                if let uri = candidateURI, let summary = try? totpDescribe(uri: uri) {
+                if let uri = candidateURI, let summary = otpSummaryLine(uri: uri) {
                     Section("Preview") {
-                        Text(totpSummaryLine(summary))
-                        // A one-line entry whose first line is the URI is the
-                        // shape `pass otp insert` writes; the ring reads it as is.
-                        TOTPRingView(content: Data("\(uri)\n".utf8))
+                        Text(summary)
+                        if otpUriKind(uri: uri) == .totp {
+                            // A one-line entry whose first line is the URI is the
+                            // shape `pass otp insert` writes; the ring reads it as is.
+                            TOTPRingView(content: Data("\(uri)\n".utf8))
+                        } else {
+                            // No preview for HOTP: showing a code would use up
+                            // a counter value before the entry is saved.
+                            Text("Counter-based code. Codes are shown on the entry, one at a time, when you ask for the next one.")
+                                .font(.footnote)
+                                .foregroundStyle(.secondary)
+                        }
                     }
                 }
             }
@@ -189,13 +198,16 @@ struct TOTPSetupSheet: View {
                 QRScannerScreen(
                     onDecoded: { text in
                         do {
-                            _ = try totpDescribe(uri: text)
+                            try validateOtpUri(text)
                             pasted = text
                             tab = .paste
                             showScanner = false
                             return nil
                         } catch {
-                            return L("That QR code isn't a one-time code. \(error.ponyMessage)")
+                            if text.hasPrefix("otpauth-migration:") {
+                                return ScanFeedback(message: L("That's a Google Authenticator export. Use Import from Authenticator in the store list menu."))
+                            }
+                            return ScanFeedback(message: L("That QR code isn't a one-time code. \(error.ponyMessage)"))
                         }
                     },
                     onClose: { showScanner = false }

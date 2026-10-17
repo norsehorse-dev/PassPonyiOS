@@ -69,6 +69,9 @@ struct RootView: View {
             guard onboardingCompleted else { return }
             switch phase {
             case .background:
+                // Restart the grace window from now while unlocked; a
+                // locked app stays locked.
+                if !locked { UnlockGate.markLeftForeground() }
                 if !UnlockGate.isFresh { locked = true }
             case .active:
                 model.importInbox()
