@@ -60,7 +60,7 @@ struct BackupView: View {
                             message = error.ponyMessage
                         }
                     }
-                    .disabled(!hasAgeIdentities && pgpKeyCount == 0)
+                    .disabled(!hasAgeIdentities && pgpKeyCount == 0 && !SshKeyStore.hasKey)
                 case .showCode(let code):
                     Text("This is your recovery code. Write it down and keep it somewhere safe.")
                     HStack {
@@ -102,7 +102,7 @@ struct BackupView: View {
             } header: {
                 Text("Encrypted backup")
             } footer: {
-                Text("Your age identities and any imported PGP keys, in one .passpony file locked with a recovery code. Keep the file wherever you like. Without the code it can't be opened.")
+                Text("Your age identities, any imported PGP keys and the SSH key, in one .passpony file locked with a recovery code. Keep the file wherever you like. Without the code it can't be opened.")
             }
 
             if hasAgeIdentities {

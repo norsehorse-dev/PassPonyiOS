@@ -14,6 +14,7 @@ struct BackupRestorer: ViewModifier {
     @State private var code = ""
     @State private var dialogError: String?
     @State private var busy = false
+    @State private var sshToConfirm: SshKey?
 
     func body(content: Content) -> some View {
         content
@@ -66,6 +67,30 @@ struct BackupRestorer: ViewModifier {
                 }
                 .interactiveDismissDisabled(busy)
             }
+            // The backup's SSH key differs from this app's: replacing it could
+            // lock the app out of a host that only knows the current key.
+            .confirmationDialog(
+                "Replace this app's SSH key?",
+                isPresented: Binding(get: { sshToConfirm != nil }, set: { if !$0 { sshToConfirm = nil } }),
+                titleVisibility: .visible,
+                presenting: sshToConfirm
+            ) { key in
+                Button("Replace", role: .destructive) {
+                    sshToConfirm = nil
+                    do {
+                        try model.replaceSshKey(key)
+                        onResult(L("The SSH key from the backup is now this app's key."))
+                    } catch {
+                        onResult(error.ponyMessage)
+                    }
+                }
+                Button("Keep current key", role: .cancel) {
+                    sshToConfirm = nil
+                    onResult(L("Kept the current SSH key."))
+                }
+            } message: { _ in
+                Text("The backup has a different SSH key from the one this app uses now. Git hosts that only know the current key will stop accepting this app if you replace it.")
+            }
     }
 
     private func submit() {
@@ -85,6 +110,7 @@ struct BackupRestorer: ViewModifier {
                 let result = try await model.restoreBackup(data, recoveryCode: canonical)
                 pending = nil
                 onResult(restoreSummary(result))
+                sshToConfirm = result.sshKeyToConfirm
             } catch AgeIdentityStore.ImportError.wrongPassphrase {
                 dialogError = L("That recovery code doesn't open this backup.")
             } catch {
@@ -99,9 +125,15 @@ func restoreSummary(_ r: AppModel.RestoreResult) -> String {
     var parts: [String] = []
     if r.identitiesAdded > 0 { parts.append(L("\(r.identitiesAdded) age identities")) }
     if r.pgpKeysAdded > 0 { parts.append(L("\(r.pgpKeysAdded) PGP keys")) }
-    var message = parts.isEmpty
-        ? L("Restored. Every key in the backup was already here.")
-        : L("Restored \(parts.joined(separator: ", ")).")
+    if r.sshKeyRestored { parts.append(L("the SSH key")) }
+    var message: String
+    if !parts.isEmpty {
+        message = L("Restored \(parts.joined(separator: ", ")).")
+    } else if r.sshKeyToConfirm != nil {
+        message = L("The backup's SSH key is different from this app's.")
+    } else {
+        message = L("Restored. Every key in the backup was already here.")
+    }
     if r.unknownSections > 0 {
         message += " " + L("\(r.unknownSections) items from a newer version were skipped.")
     }

@@ -205,6 +205,9 @@ final class AppModel: ObservableObject {
             if let text = AgeIdentityStore.exportText() {
                 sections.append(BackupSection(kind: backupKindAgeIdentities(), name: "", data: Data(text.utf8)))
             }
+            if let key = SshKeyStore.load() {
+                sections.append(BackupSection(kind: backupKindSshPrivateKey(), name: "", data: Data(key.privateKey.utf8)))
+            }
             let keyFiles = (try? FileManager.default.contentsOfDirectory(
                 at: PGPKeyStore.keyDirectory, includingPropertiesForKeys: nil
             )) ?? []
@@ -225,6 +228,11 @@ final class AppModel: ObservableObject {
         var pgpKeysAdded = 0
         var pgpKeysPresent = 0
         var unknownSections = 0
+        /// The backup's SSH key became this app's key (it had none).
+        var sshKeyRestored = false
+        /// The backup's SSH key differs from the one this app has; the
+        /// caller asks before `replaceSshKey`. Nothing was changed yet.
+        var sshKeyToConfirm: SshKey?
     }
 
     /// Restore a `.passpony` backup with the canonical recovery code. Age
@@ -257,6 +265,18 @@ final class AppModel: ObservableObject {
                     } else {
                         r.pgpKeysPresent += 1
                     }
+                case backupKindSshPrivateKey():
+                    guard let restored = try? sshImportKey(data: section.data, passphrase: nil) else {
+                        r.unknownSections += 1
+                        continue
+                    }
+                    let current = SshKeyStore.load()
+                    if current == nil && !SshKeyStore.hasKey {
+                        try SshKeyStore.save(restored)
+                        r.sshKeyRestored = true
+                    } else if current?.fingerprint != restored.fingerprint {
+                        r.sshKeyToConfirm = restored
+                    }
                 default:
                     r.unknownSections += 1
                 }
@@ -287,6 +307,17 @@ final class AppModel: ObservableObject {
         }
         try data.write(to: target, options: [.completeFileProtection])
         return true
+    }
+
+    /// The user chose the backup's SSH key over the one this app had.
+    func replaceSshKey(_ key: SshKey) throws {
+        try SshKeyStore.save(key)
+    }
+
+    /// Pin an SSH host's key after the user confirmed its fingerprint
+    /// (from `GitError.UnknownHostKey`); the caller then retries.
+    func trustHost(_ host: String, key: HostKey) throws {
+        try SshKeyStore.trust(host: host, key: key)
     }
 
     func markKeysBackedUp() {

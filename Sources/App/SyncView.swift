@@ -13,6 +13,7 @@ struct SyncView: View {
     @State private var message: String?
     @State private var conflictPath: String?
     @State private var conflictContinuation: CheckedContinuation<ConflictChoice, Never>?
+    @State private var hostPrompt: HostPrompt?
 
     var body: some View {
         NavigationStack {
@@ -31,6 +32,10 @@ struct SyncView: View {
                 }
                 if let message {
                     Section { Text(message).font(.footnote) }
+                }
+                // 2.0 rc2: SSH remotes use the app's key and pinned hosts.
+                Section("SSH") {
+                    NavigationLink("SSH key and trusted hosts") { SshKeyView() }
                 }
             }
             .navigationTitle("Sync")
@@ -53,6 +58,17 @@ struct SyncView: View {
                 Button("Keep both") { resolve(.keepBoth) }
             } message: {
                 Text("This entry changed on this device and on another device.")
+            }
+            .hostKeyTrust($hostPrompt) { prompt in
+                do {
+                    try model.trustHost(prompt.host, key: prompt.key)
+                } catch {
+                    message = error.ponyMessage
+                    return
+                }
+                run(prompt.retry)
+            } onCancel: {
+                message = L("Not connected. The host wasn't trusted.")
             }
         }
     }
@@ -91,7 +107,7 @@ struct SyncView: View {
                     .lineLimit(1)
                     .truncationMode(.middle)
             }
-            TextField("New URL (https://user:token@…)", text: $publishURL)
+            TextField("New URL (https://user:token@… or git@host:…)", text: $publishURL)
                 .textInputAutocapitalization(.never)
                 .autocorrectionDisabled()
                 .keyboardType(.URL)
@@ -123,7 +139,7 @@ struct SyncView: View {
     /// init (commits everything, CLI-style messages) → set origin → push.
     private var publishSection: some View {
         Section {
-            TextField("https://user:token@host/you/store.git", text: $publishURL)
+            TextField("https://user:token@host/you/store.git or git@host:you/store.git", text: $publishURL)
                 .textInputAutocapitalization(.never)
                 .autocorrectionDisabled()
                 .keyboardType(.URL)
@@ -137,6 +153,7 @@ struct SyncView: View {
                         git = try GitSync.`init`(root: root, format: model.format)
                     }
                     try git.setRemote(url: publishURL)
+                    git.setSsh(ssh: SshKeyStore.config())
                     try git.push()
                     await MainActor.run { model.openStore() }
                 }
@@ -145,7 +162,7 @@ struct SyncView: View {
         } header: {
             Text("Publish this store")
         } footer: {
-            Text("Commits the current store and pushes it to an empty remote. SSH remotes land with the SSH-auth work; use HTTPS with a token for now.")
+            Text("Commits the current store and pushes it to an empty remote. SSH remotes use the SSH key set up under SSH key and trusted hosts.")
         }
     }
 
@@ -153,7 +170,7 @@ struct SyncView: View {
     /// directory first so a failed clone never harms the current store.
     private var cloneSection: some View {
         Section {
-            TextField("https://user:token@host/you/store.git", text: $cloneURL)
+            TextField("https://user:token@host/you/store.git or git@host:you/store.git", text: $cloneURL)
                 .textInputAutocapitalization(.never)
                 .autocorrectionDisabled()
                 .keyboardType(.URL)
@@ -161,7 +178,7 @@ struct SyncView: View {
                 run {
                     let tmp = StorePaths.container.appendingPathComponent("clone-tmp")
                     try? FileManager.default.removeItem(at: tmp)
-                    _ = try GitSync.cloneFrom(url: cloneURL, dest: tmp.path, depth: nil)
+                    _ = try GitSync.cloneWithSsh(url: cloneURL, dest: tmp.path, depth: nil, ssh: SshKeyStore.config())
                     let root = StorePaths.storeRoot
                     try? FileManager.default.removeItem(at: root)
                     try FileManager.default.moveItem(at: tmp, to: root)
@@ -184,6 +201,7 @@ struct SyncView: View {
                     let resolver = UIResolver { path in
                         await self.ask(path: path)
                     }
+                    git.setSsh(ssh: SshKeyStore.config())
                     let outcome = try git.sync(resolver: resolver)
                     await MainActor.run {
                         self.message = Self.describe(outcome)
@@ -194,7 +212,9 @@ struct SyncView: View {
             .disabled(busy)
             Button("Push") {
                 run {
-                    try model.git?.push()
+                    guard let git = model.git else { throw GitError.NoRepository }
+                    git.setSsh(ssh: SshKeyStore.config())
+                    try git.push()
                     await MainActor.run { model.refresh() }
                 }
             }
@@ -208,6 +228,8 @@ struct SyncView: View {
         Task.detached {
             do {
                 try await work()
+            } catch GitError.UnknownHostKey(let host, let key) {
+                await MainActor.run { self.hostPrompt = HostPrompt(host: host, key: key, retry: work) }
             } catch {
                 await MainActor.run { self.message = error.ponyMessage }
             }

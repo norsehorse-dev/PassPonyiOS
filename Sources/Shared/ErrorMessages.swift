@@ -18,6 +18,7 @@ extension Error {
         case let error as GenerateError: return error.ponyMessage
         case let error as BackupError: return error.ponyMessage
         case let error as MigrationError: return error.ponyMessage
+        case let error as SshKeyError: return error.ponyMessage
         case let error as AgeIdentityStore.ImportError: return error.ponyMessage
         default: return String(describing: self)
         }
@@ -56,8 +57,40 @@ extension GitError {
             return L("The remote history was rewritten. Re-clone the store to continue.")
         case .DirtyWorkdir:
             return L("The store has local changes that aren't committed yet.")
+        case .UnknownHostKey(let host, _):
+            return L("Unknown SSH host \(host).")
+        case .HostKeyChanged(let host, _, _):
+            return L("The SSH host key for \(host) has changed, so PassPony won't connect. If the server was rebuilt or rekeyed, forget the host under SSH key and trusted hosts, then connect again and check the new fingerprint.")
+        case .NoHostKey:
+            return L("The SSH host didn't send a usable host key.")
+        case .SshKeyMissing:
+            return L("This is an SSH remote and PassPony has no SSH key yet. Set one up under SSH key and trusted hosts.")
+        case .SshAuthFailed:
+            return L("The SSH host didn't accept PassPony's key. Check that its public key is added to your account on the host.")
         case .Other(let reason):
             return L("Git error: \(reason)")
+        }
+    }
+}
+
+/// An SSH key file that could not be imported, or a key that could not be made.
+extension SshKeyError {
+    var ponyMessage: String {
+        switch self {
+        case .NeedsPassphrase:
+            return L("This SSH key needs its passphrase.")
+        case .WrongPassphrase:
+            return L("Wrong passphrase for this SSH key.")
+        case .LegacyPem:
+            return L("This is an older PEM key. Convert it to the OpenSSH format first with ssh-keygen -p -f and the file name.")
+        case .PublicKey:
+            return L("That's a public key. Pick the private key file, the one without .pub.")
+        case .NotAKey:
+            return L("That file isn't an OpenSSH private key.")
+        case .Unsupported(let algorithm):
+            return L("PassPony doesn't support \(algorithm) SSH keys. Use an Ed25519, RSA or ECDSA key.")
+        case .Random:
+            return L("This device couldn't generate an SSH key. Try again.")
         }
     }
 }

@@ -82,11 +82,15 @@ software RSA decrypt is deliberately absent from the core. DEBUG builds
 fall back to a byte-flip stand-in engine only when a real engine cannot
 load; release builds trap instead.
 
+The SSH key for git remotes (2.0) lives in the Keychain, this device
+only, and is read per sync; the core hands it to libssh2 from memory.
+SSH hosts are trusted on first use and pinned in a known_hosts file in
+the app container; a changed host key is refused.
+
 ## Not yet
 
 - Smartcard decrypt (NFC and USB-C YubiKey). Scaffolding exists behind
   the spike memo in PassPonyCore docs.
-- SSH remotes for git sync; use HTTPS with a token for now.
 
 ## License
 

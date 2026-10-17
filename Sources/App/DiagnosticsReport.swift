@@ -17,6 +17,10 @@ struct DiagnosticsReport: Equatable {
         var dirty: Bool
         /// Already reduced to a host by `remoteHost`; nil when no remote.
         var remoteHost: String?
+        /// `https`, `ssh`, ...; nil when no remote. Never the URL's user.
+        var scheme: String? = nil
+        /// SSH remotes: whether the host's key is pinned. Never the key.
+        var hostPinned: Bool? = nil
     }
 
     enum KeyInfo: Equatable {
@@ -40,6 +44,8 @@ struct DiagnosticsReport: Equatable {
     /// A BCP 47 tag, or empty for "follow the system".
     var languageTag: String
     var keys: KeyInfo
+    /// The SSH key's algorithm (`ssh-ed25519`), or nil with none. Never the key.
+    var sshKey: String? = nil
 
     func render() -> String {
         var lines: [String] = []
@@ -54,7 +60,10 @@ struct DiagnosticsReport: Equatable {
         if let git {
             var value = "ahead \(git.ahead), behind \(git.behind)"
             if git.dirty { value += ", dirty" }
-            value += ", remote \(git.remoteHost ?? "none")"
+            value += ", remote "
+            if let scheme = git.scheme { value += "\(scheme) " }
+            value += git.remoteHost ?? "none"
+            if let pinned = git.hostPinned { value += pinned ? " (host pinned)" : " (host not pinned)" }
             lines.append("Git: \(value)")
         } else {
             lines.append("Git: not configured")
@@ -67,6 +76,7 @@ struct DiagnosticsReport: Equatable {
         case .passage(let present):
             lines.append("Keys: \(present ? "identities file present" : "no identities file")")
         }
+        lines.append("SSH key: \(sshKey ?? "none")")
         return lines.joined(separator: "\n")
     }
 

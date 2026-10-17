@@ -11,12 +11,13 @@ struct OnboardingCloneSheet: View {
     @State private var url = ""
     @State private var busy = false
     @State private var error: String?
+    @State private var hostPrompt: HostPrompt?
 
     var body: some View {
         NavigationStack {
             Form {
                 Section {
-                    TextField("https://user:token@host/you/store.git", text: $url)
+                    TextField("https://user:token@host/you/store.git or git@host:you/store.git", text: $url)
                         .textInputAutocapitalization(.never)
                         .autocorrectionDisabled()
                         .keyboardType(.URL)
@@ -37,6 +38,17 @@ struct OnboardingCloneSheet: View {
                 }
             }
             .interactiveDismissDisabled(busy)
+            .hostKeyTrust($hostPrompt) { prompt in
+                do {
+                    try model.trustHost(prompt.host, key: prompt.key)
+                } catch {
+                    self.error = error.ponyMessage
+                    return
+                }
+                clone()
+            } onCancel: {
+                error = L("Not connected. The host wasn't trusted.")
+            }
         }
     }
 
@@ -48,7 +60,7 @@ struct OnboardingCloneSheet: View {
             do {
                 let tmp = StorePaths.container.appendingPathComponent("clone-tmp")
                 try? FileManager.default.removeItem(at: tmp)
-                _ = try GitSync.cloneFrom(url: target, dest: tmp.path, depth: nil)
+                _ = try GitSync.cloneWithSsh(url: target, dest: tmp.path, depth: nil, ssh: SshKeyStore.config())
                 let root = StorePaths.storeRoot
                 try? FileManager.default.removeItem(at: root)
                 try FileManager.default.moveItem(at: tmp, to: root)
@@ -57,6 +69,11 @@ struct OnboardingCloneSheet: View {
                     busy = false
                     dismiss()
                     onCloned()
+                }
+            } catch GitError.UnknownHostKey(let host, let key) {
+                await MainActor.run {
+                    busy = false
+                    hostPrompt = HostPrompt(host: host, key: key, retry: {})
                 }
             } catch {
                 await MainActor.run {

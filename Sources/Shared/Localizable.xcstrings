@@ -1356,6 +1356,47 @@
         }
       }
     },
+    "Add this to your git host, for example in GitHub's SSH keys settings or a server's authorized_keys file." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Füge ihn bei deinem Git-Host hinzu, zum Beispiel in den SSH-Schlüssel-Einstellungen von GitHub oder in der Datei authorized_keys eines Servers."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Añádela a tu servidor git, por ejemplo en los ajustes de claves SSH de GitHub o en el archivo authorized_keys de un servidor."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajoutez-la à votre hébergeur git, par exemple dans les réglages des clés SSH de GitHub ou dans le fichier authorized_keys d'un serveur."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adicione esta chave ao seu host git, por exemplo nas configurações de chaves SSH do GitHub ou no arquivo authorized_keys de um servidor."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавьте его на свой git-хостинг, например в настройки SSH-ключей на GitHub или в файл authorized_keys на сервере."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "请将它添加到你的 git 托管服务，例如 GitHub 的 SSH 密钥设置，或服务器的 authorized_keys 文件。"
+          }
+        }
+      }
+    },
     "Add your first pass" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2889,43 +2930,84 @@
         }
       }
     },
-    "Commits the current store and pushes it to an empty remote. SSH remotes land with the SSH-auth work; use HTTPS with a token for now." : {
+    "Commits the current store and pushes it to an empty remote. SSH remotes use the SSH key set up under SSH key and trusted hosts." : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Committet den aktuellen Speicher und pusht ihn zu einem leeren Remote. SSH-Remotes kommen mit der SSH-Auth-Arbeit; nutze vorerst HTTPS mit einem Token."
+            "value" : "Committet den aktuellen Speicher und pusht ihn zu einem leeren Remote. SSH-Remotes nutzen den SSH-Schlüssel, der unter „SSH-Schlüssel und vertrauenswürdige Hosts“ eingerichtet ist."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Confirma el almacén actual y lo envía a un remoto vacío. Los remotos SSH llegarán con el trabajo de autenticación SSH; por ahora usa HTTPS con un token."
+            "value" : "Confirma el almacén actual y lo envía a un remoto vacío. Los remotos SSH usan la clave SSH configurada en Clave SSH y servidores de confianza."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Committe le coffre actuel et le pousse vers un dépôt distant vide. Les distants SSH arriveront avec l'authentification SSH ; utilisez HTTPS avec un jeton pour l'instant."
+            "value" : "Committe le coffre actuel et le pousse vers un dépôt distant vide. Les distants SSH utilisent la clé SSH configurée dans Clé SSH et hôtes de confiance."
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Faz commit do cofre atual e o envia para um remoto vazio. Remotos SSH chegarão com o trabalho de autenticação SSH; por enquanto use HTTPS com um token."
+            "value" : "Faz commit do cofre atual e o envia para um remoto vazio. Remotos SSH usam a chave SSH configurada em Chave SSH e hosts confiáveis."
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Коммитит текущее хранилище и отправляет его в пустой удалённый репозиторий. Поддержка SSH появится вместе с SSH-аутентификацией; пока используйте HTTPS с токеном."
+            "value" : "Коммитит текущее хранилище и отправляет его в пустой удалённый репозиторий. Для удалённых репозиториев SSH используется SSH-ключ, настроенный в разделе «SSH-ключ и доверенные хосты»."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "提交当前密码库并推送到一个空的远程仓库。SSH 远程将随 SSH 认证功能一起推出；目前请使用带令牌的 HTTPS。"
+            "value" : "提交当前密码库并推送到一个空的远程仓库。SSH 远程仓库使用在“SSH 密钥和受信任的主机”中设置的 SSH 密钥。"
+          }
+        }
+      }
+    },
+    "Compare it with the fingerprint your git host publishes before you trust it." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vergleiche ihn mit dem Fingerabdruck, den dein Git-Host veröffentlicht, bevor du ihm vertraust."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compárala con la huella que publica tu servidor git antes de confiar en él."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comparez-la avec l'empreinte publiée par votre hébergeur git avant de faire confiance à cet hôte."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compare-a com a impressão digital que seu host git publica antes de confiar nele."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Прежде чем доверять, сравните его с отпечатком, который публикует ваш git-хостинг."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在信任之前，请将其与你的 git 托管服务公布的指纹进行比对。"
           }
         }
       }
@@ -3048,6 +3130,47 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "复制"
+          }
+        }
+      }
+    },
+    "Copy public key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Öffentlichen Schlüssel kopieren"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copiar clave pública"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copier la clé publique"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copiar chave pública"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скопировать открытый ключ"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "复制公钥"
           }
         }
       }
@@ -3545,6 +3668,88 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "删除条目？"
+          }
+        }
+      }
+    },
+    "Delete SSH key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SSH-Schlüssel löschen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eliminar clave SSH"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Supprimer la clé SSH"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Excluir chave SSH"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить SSH-ключ"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "删除 SSH 密钥"
+          }
+        }
+      }
+    },
+    "Delete this SSH key?" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diesen SSH-Schlüssel löschen?"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Eliminar esta clave SSH?"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Supprimer cette clé SSH ?"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Excluir esta chave SSH?"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить этот SSH-ключ?"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "删除此 SSH 密钥？"
           }
         }
       }
@@ -4780,6 +4985,129 @@
         }
       }
     },
+    "For ssh:// and git@host: remotes" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Für ssh://- und git@host:-Remotes"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Para remotos ssh:// y git@host:"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pour les distants ssh:// et git@host:"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Para remotos ssh:// e git@host:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Для удалённых репозиториев ssh:// и git@host:"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "用于 ssh:// 和 git@host: 远程仓库"
+          }
+        }
+      }
+    },
+    "Forget" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vergessen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Olvidar"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oublier"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esquecer"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Забыть"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "忘记"
+          }
+        }
+      }
+    },
+    "Forgot %@. The next connection asks again." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ vergessen. Bei der nächsten Verbindung wird erneut gefragt."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se olvidó %@. La próxima conexión volverá a preguntar."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hôte %@ oublié. La confirmation sera redemandée à la prochaine connexion."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ foi esquecido. A próxima conexão vai perguntar novamente."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Хост %@ забыт. При следующем подключении запрос появится снова."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已忘记 %@。下次连接时会再次询问。"
+          }
+        }
+      }
+    },
     "Format" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -4899,6 +5227,47 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "生成"
+          }
+        }
+      }
+    },
+    "Generate SSH key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SSH-Schlüssel generieren"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Generar clave SSH"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Générer une clé SSH"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gerar chave SSH"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сгенерировать SSH-ключ"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "生成 SSH 密钥"
           }
         }
       }
@@ -5030,6 +5399,47 @@
         }
       }
     },
+    "Git hosts that only know this key will stop accepting this app. A backup made after the key was set up still has a copy." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Git-Hosts, die nur diesen Schlüssel kennen, akzeptieren diese App dann nicht mehr. Ein Backup, das nach dem Einrichten des Schlüssels erstellt wurde, enthält weiterhin eine Kopie."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Los servidores git que solo conozcan esta clave dejarán de aceptar esta app. Una copia de seguridad hecha después de configurar la clave todavía la contiene."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Les hébergeurs git qui ne connaissent que cette clé n'accepteront plus cette app. Une sauvegarde créée après la configuration de la clé en conserve une copie."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Os hosts git que só conhecem esta chave vão deixar de aceitar este app. Um backup feito depois que a chave foi configurada ainda tem uma cópia dela."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Git-хостинги, которым известен только этот ключ, перестанут принимать это приложение. Резервная копия, созданная после настройки ключа, по-прежнему его содержит."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "仅认可此密钥的 git 托管服务将不再接受此应用。在设置该密钥之后创建的备份中仍保留一份副本。"
+          }
+        }
+      }
+    },
     "Give this entry a name." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5112,9 +5522,46 @@
         }
       }
     },
-    "https://user:token@host/you/store.git" : {
+    "https://user:token@host/you/store.git or git@host:you/store.git" : {
       "extractionState" : "manual",
-      "shouldTranslate" : false
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "https://user:token@host/you/store.git oder git@host:you/store.git"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "https://user:token@host/you/store.git o git@host:you/store.git"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "https://user:token@host/you/store.git ou git@host:you/store.git"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "https://user:token@host/you/store.git ou git@host:you/store.git"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "https://user:token@host/you/store.git или git@host:you/store.git"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "https://user:token@host/you/store.git 或 git@host:you/store.git"
+          }
+        }
+      }
     },
     "I've written it down" : {
       "extractionState" : "manual",
@@ -5358,6 +5805,47 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "如果你丢失了这部手机，没有此密钥就无法读取你的 passage 条目。轻点以备份密钥。"
+          }
+        }
+      }
+    },
+    "Import" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importieren"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importar"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importer"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importar"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Импортировать"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "导入"
           }
         }
       }
@@ -5701,6 +6189,47 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "导入密钥文件…"
+          }
+        }
+      }
+    },
+    "Import SSH key…" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SSH-Schlüssel importieren …"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importar clave SSH…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importer une clé SSH…"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importar chave SSH…"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Импортировать SSH-ключ…"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "导入 SSH 密钥…"
           }
         }
       }
@@ -6353,6 +6882,47 @@
         }
       }
     },
+    "Keep current key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktuellen Schlüssel behalten"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Conservar la clave actual"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Conserver la clé actuelle"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Manter a chave atual"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Оставить текущий ключ"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "保留当前密钥"
+          }
+        }
+      }
+    },
     "Keep the other version" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -6472,6 +7042,47 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "以下条目保留了两个版本：%@。"
+          }
+        }
+      }
+    },
+    "Kept the current SSH key." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der aktuelle SSH-Schlüssel wurde behalten."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se conservó la clave SSH actual."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clé SSH actuelle conservée."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A chave SSH atual foi mantida."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Оставлен текущий SSH-ключ."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已保留当前的 SSH 密钥。"
           }
         }
       }
@@ -7478,43 +8089,43 @@
         }
       }
     },
-    "New URL (https://user:token@…)" : {
+    "New URL (https://user:token@… or git@host:…)" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Neue URL (https://user:token@…)"
+            "value" : "Neue URL (https://user:token@… oder git@host:…)"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nueva URL (https://usuario:token@…)"
+            "value" : "Nueva URL (https://user:token@… o git@host:…)"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nouvelle URL (https://utilisateur:jeton@…)"
+            "value" : "Nouvelle URL (https://user:token@… ou git@host:…)"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nova URL (https://usuário:token@…)"
+            "value" : "Nova URL (https://user:token@… ou git@host:…)"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Новый URL (https://user:token@…)"
+            "value" : "Новый URL (https://user:token@… или git@host:…)"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "新 URL（https://user:token@…）"
+            "value" : "新 URL（https://user:token@… 或 git@host:…）"
           }
         }
       }
@@ -7972,6 +8583,47 @@
         }
       }
     },
+    "No SSH key yet. Generate one here, or import an OpenSSH private key, to sync with ssh:// and git@host: remotes." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Noch kein SSH-Schlüssel. Generiere hier einen oder importiere einen privaten OpenSSH-Schlüssel, um mit ssh://- und git@host:-Remotes zu synchronisieren."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aún no hay ninguna clave SSH. Genera una aquí o importa una clave privada OpenSSH para sincronizar con remotos ssh:// y git@host:."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucune clé SSH pour l'instant. Pour synchroniser avec les distants ssh:// et git@host:, générez-en une ici ou importez une clé privée OpenSSH."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ainda não há chave SSH. Gere uma aqui ou importe uma chave privada OpenSSH para sincronizar com remotos ssh:// e git@host:."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SSH-ключа пока нет. Сгенерируйте его здесь или импортируйте закрытый ключ OpenSSH, чтобы синхронизироваться с удалёнными репозиториями ssh:// и git@host:."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "尚无 SSH 密钥。请在此生成一个，或导入 OpenSSH 私钥，以便与 ssh:// 和 git@host: 远程仓库同步。"
+          }
+        }
+      }
+    },
     "No store is open." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -8137,6 +8789,47 @@
         }
       }
     },
+    "None yet. The first time PassPony connects to an SSH host, it shows the host's fingerprint and asks." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Noch keine. Wenn PassPony sich zum ersten Mal mit einem SSH-Host verbindet, zeigt es den Fingerabdruck des Hosts an und fragt nach."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aún no hay ninguno. La primera vez que PassPony se conecta a un servidor SSH, muestra la huella del servidor y te pregunta."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucun pour l'instant. La première fois que PassPony se connecte à un hôte SSH, il affiche l'empreinte de l'hôte et vous demande confirmation."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nenhum ainda. Na primeira vez que o PassPony se conecta a um host SSH, ele mostra a impressão digital do host e pergunta."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пока нет. При первом подключении к SSH-хосту PassPony показывает отпечаток хоста и спрашивает, доверять ли ему."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "尚无。PassPony 首次连接某个 SSH 主机时，会显示该主机的指纹并询问你。"
+          }
+        }
+      }
+    },
     "not configured" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -8174,6 +8867,47 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "未配置"
+          }
+        }
+      }
+    },
+    "Not connected. The host wasn't trusted." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nicht verbunden. Dem Host wurde nicht vertraut."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No conectado. No se confió en el servidor."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Non connecté. Vous n'avez pas fait confiance à l'hôte."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Não conectado. O host não foi marcado como confiável."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Подключение не установлено. Хост не добавлен в доверенные."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未连接。该主机未被信任。"
           }
         }
       }
@@ -8892,6 +9626,47 @@
         }
       }
     },
+    "PassPony doesn't support %@ SSH keys. Use an Ed25519, RSA or ECDSA key." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PassPony unterstützt keine %@-SSH-Schlüssel. Nutze einen Ed25519-, RSA- oder ECDSA-Schlüssel."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PassPony no admite claves SSH %@. Usa una clave Ed25519, RSA o ECDSA."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PassPony ne prend pas en charge les clés SSH %@. Utilisez une clé Ed25519, RSA ou ECDSA."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O PassPony não suporta chaves SSH %@. Use uma chave Ed25519, RSA ou ECDSA."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PassPony не поддерживает SSH-ключи типа %@. Используйте ключ Ed25519, RSA или ECDSA."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PassPony 不支持 %@ SSH 密钥。请使用 Ed25519、RSA 或 ECDSA 密钥。"
+          }
+        }
+      }
+    },
     "PassPony is locked" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -9517,6 +10292,88 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "预览"
+          }
+        }
+      }
+    },
+    "Public key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Öffentlicher Schlüssel"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clave pública"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clé publique"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chave pública"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Открытый ключ"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "公钥"
+          }
+        }
+      }
+    },
+    "Public key copied." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Öffentlicher Schlüssel kopiert."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clave pública copiada."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clé publique copiée."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chave pública copiada."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Открытый ключ скопирован."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "公钥已复制。"
           }
         }
       }
@@ -10229,6 +11086,88 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "保存时移除。"
+          }
+        }
+      }
+    },
+    "Replace" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ersetzen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reemplazar"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remplacer"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Substituir"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Заменить"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "替换"
+          }
+        }
+      }
+    },
+    "Replace this app's SSH key?" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SSH-Schlüssel dieser App ersetzen?"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Reemplazar la clave SSH de esta app?"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remplacer la clé SSH de cette app ?"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Substituir a chave SSH deste app?"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Заменить SSH-ключ этого приложения?"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "替换此应用的 SSH 密钥？"
           }
         }
       }
@@ -11530,6 +12469,293 @@
       "extractionState" : "manual",
       "shouldTranslate" : false
     },
+    "SSH" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SSH"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SSH"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SSH"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SSH"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SSH"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SSH"
+          }
+        }
+      }
+    },
+    "SSH key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SSH-Schlüssel"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clave SSH"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clé SSH"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chave SSH"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SSH-ключ"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SSH 密钥"
+          }
+        }
+      }
+    },
+    "SSH key and trusted hosts" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SSH-Schlüssel und vertrauenswürdige Hosts"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clave SSH y servidores de confianza"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clé SSH et hôtes de confiance"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chave SSH e hosts confiáveis"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SSH-ключ и доверенные хосты"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SSH 密钥和受信任的主机"
+          }
+        }
+      }
+    },
+    "SSH key deleted." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SSH-Schlüssel gelöscht."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clave SSH eliminada."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clé SSH supprimée."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chave SSH excluída."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SSH-ключ удалён."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SSH 密钥已删除。"
+          }
+        }
+      }
+    },
+    "SSH key generated. Add the public key to your git host." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SSH-Schlüssel generiert. Füge den öffentlichen Schlüssel bei deinem Git-Host hinzu."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clave SSH generada. Añade la clave pública a tu servidor git."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clé SSH générée. Ajoutez la clé publique à votre hébergeur git."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chave SSH gerada. Adicione a chave pública ao seu host git."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SSH-ключ сгенерирован. Добавьте открытый ключ на свой git-хостинг."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SSH 密钥已生成。请将公钥添加到你的 git 托管服务。"
+          }
+        }
+      }
+    },
+    "SSH key imported." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SSH-Schlüssel importiert."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clave SSH importada."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clé SSH importée."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chave SSH importada."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SSH-ключ импортирован."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SSH 密钥已导入。"
+          }
+        }
+      }
+    },
+    "SSH key passphrase" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SSH-Schlüssel-Passphrase"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Frase de contraseña de la clave SSH"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Phrase secrète de la clé SSH"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Frase secreta da chave SSH"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Парольная фраза SSH-ключа"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SSH 密钥的密码短语"
+          }
+        }
+      }
+    },
     "Start over" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -12434,6 +13660,47 @@
         }
       }
     },
+    "That file isn't an OpenSSH private key." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diese Datei ist kein privater OpenSSH-Schlüssel."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ese archivo no es una clave privada OpenSSH."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ce fichier n'est pas une clé privée OpenSSH."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esse arquivo não é uma chave privada OpenSSH."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Этот файл не является закрытым ключом OpenSSH."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "该文件不是 OpenSSH 私钥。"
+          }
+        }
+      }
+    },
     "That file needs more memory to unlock than this device allows." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -12721,6 +13988,47 @@
         }
       }
     },
+    "That's a public key. Pick the private key file, the one without .pub." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Das ist ein öffentlicher Schlüssel. Wähle die Datei mit dem privaten Schlüssel, also die ohne .pub."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esa es una clave pública. Elige el archivo de clave privada, el que no tiene .pub."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Il s'agit d'une clé publique. Choisissez le fichier de clé privée, celui sans .pub."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Essa é uma chave pública. Escolha o arquivo da chave privada, o que não tem .pub."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Это открытый ключ. Выберите файл закрытого ключа, без расширения .pub."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "这是公钥。请选择私钥文件，即不带 .pub 的那个。"
+          }
+        }
+      }
+    },
     "That's a valid code, but not this one. Check what you wrote down." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -12799,6 +14107,88 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "没有此恢复码就无法打开备份，并且此后 PassPony 无法再次显示它。"
+          }
+        }
+      }
+    },
+    "The backup has a different SSH key from the one this app uses now. Git hosts that only know the current key will stop accepting this app if you replace it." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Das Backup enthält einen anderen SSH-Schlüssel als den, den diese App gerade nutzt. Git-Hosts, die nur den aktuellen Schlüssel kennen, akzeptieren diese App nicht mehr, wenn du ihn ersetzt."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La copia de seguridad tiene una clave SSH distinta de la que usa ahora esta app. Si la reemplazas, los servidores git que solo conozcan la clave actual dejarán de aceptar esta app."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La sauvegarde contient une clé SSH différente de celle que cette app utilise actuellement. Si vous la remplacez, les hébergeurs git qui ne connaissent que la clé actuelle n'accepteront plus cette app."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O backup tem uma chave SSH diferente da que este app usa agora. Os hosts git que só conhecem a chave atual vão deixar de aceitar este app se você substituí-la."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "В резервной копии другой SSH-ключ, не тот, который это приложение использует сейчас. Если вы его замените, git-хостинги, которым известен только текущий ключ, перестанут принимать это приложение."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "备份中的 SSH 密钥与此应用当前使用的不同。如果你替换它，仅认可当前密钥的 git 托管服务将不再接受此应用。"
+          }
+        }
+      }
+    },
+    "The backup's SSH key is different from this app's." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der SSH-Schlüssel im Backup unterscheidet sich von dem dieser App."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La clave SSH de la copia de seguridad es distinta de la de esta app."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La clé SSH de la sauvegarde est différente de celle de cette app."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A chave SSH do backup é diferente da chave deste app."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SSH-ключ в резервной копии отличается от ключа этого приложения."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "备份中的 SSH 密钥与此应用的不同。"
           }
         }
       }
@@ -13227,6 +14617,211 @@
         }
       }
     },
+    "The SSH host didn't accept PassPony's key. Check that its public key is added to your account on the host." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der SSH-Host hat den Schlüssel von PassPony nicht akzeptiert. Prüfe, ob der zugehörige öffentliche Schlüssel deinem Konto auf dem Host hinzugefügt wurde."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El servidor SSH no aceptó la clave de PassPony. Comprueba que su clave pública esté añadida a tu cuenta en el servidor."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "L'hôte SSH n'a pas accepté la clé de PassPony. Vérifiez que sa clé publique est ajoutée à votre compte sur l'hôte."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O host SSH não aceitou a chave do PassPony. Verifique se a chave pública do PassPony foi adicionada à sua conta no host."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SSH-хост не принял ключ PassPony. Проверьте, что его открытый ключ добавлен в ваш аккаунт на хосте."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "该 SSH 主机不接受 PassPony 的密钥。请检查其公钥是否已添加到你在该主机上的帐号。"
+          }
+        }
+      }
+    },
+    "The SSH host didn't send a usable host key." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der SSH-Host hat keinen nutzbaren Host-Schlüssel gesendet."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El servidor SSH no envió una clave de servidor utilizable."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "L'hôte SSH n'a pas envoyé de clé d'hôte utilisable."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O host SSH não enviou uma chave de host utilizável."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SSH-хост не прислал пригодного ключа хоста."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "该 SSH 主机未发送可用的主机密钥。"
+          }
+        }
+      }
+    },
+    "The SSH host key for %@ has changed, so PassPony won't connect. If the server was rebuilt or rekeyed, forget the host under SSH key and trusted hosts, then connect again and check the new fingerprint." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der SSH-Host-Schlüssel für %@ hat sich geändert, daher verbindet sich PassPony nicht. Wenn der Server neu aufgesetzt oder mit neuen Schlüsseln versehen wurde, vergiss den Host unter „SSH-Schlüssel und vertrauenswürdige Hosts“, verbinde dich dann erneut und prüfe den neuen Fingerabdruck."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La clave del servidor SSH de %@ ha cambiado, así que PassPony no se conectará. Si el servidor se reconstruyó o cambió sus claves, olvida el servidor en Clave SSH y servidores de confianza, vuelve a conectarte y comprueba la nueva huella."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La clé d'hôte SSH de %@ a changé, PassPony ne se connectera donc pas. Si le serveur a été reconstruit ou a reçu de nouvelles clés, oubliez l'hôte dans Clé SSH et hôtes de confiance, puis reconnectez-vous et vérifiez la nouvelle empreinte."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A chave de host SSH de %@ mudou, então o PassPony não vai se conectar. Se o servidor foi reconstruído ou recebeu novas chaves, esqueça o host em Chave SSH e hosts confiáveis, conecte de novo e confira a nova impressão digital."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ключ SSH-хоста %@ изменился, поэтому PassPony не будет подключаться. Если сервер был переустановлен или получил новый ключ, забудьте этот хост в разделе «SSH-ключ и доверенные хосты», затем подключитесь снова и проверьте новый отпечаток."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ 的 SSH 主机密钥已更改，因此 PassPony 不会连接。如果服务器已重建或更换了密钥，请在“SSH 密钥和受信任的主机”中忘记该主机，然后重新连接并核对新的指纹。"
+          }
+        }
+      }
+    },
+    "the SSH key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SSH-Schlüssel"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "la clave SSH"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "la clé SSH"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "a chave SSH"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SSH-ключ"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SSH 密钥"
+          }
+        }
+      }
+    },
+    "The SSH key from the backup is now this app's key." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der SSH-Schlüssel aus dem Backup ist jetzt der Schlüssel dieser App."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La clave SSH de la copia de seguridad es ahora la clave de esta app."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La clé SSH de la sauvegarde est désormais celle de cette app."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A chave SSH do backup agora é a chave deste app."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SSH-ключ из резервной копии теперь используется этим приложением."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "备份中的 SSH 密钥现已成为此应用的密钥。"
+          }
+        }
+      }
+    },
     "The store has local changes that aren't committed yet." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -13264,6 +14859,47 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "密码库有尚未提交的本地更改。"
+          }
+        }
+      }
+    },
+    "This app's SSH key can't be unlocked on this device. Delete it, then generate, import or restore a key." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der SSH-Schlüssel dieser App lässt sich auf diesem Gerät nicht entsperren. Lösche ihn und generiere, importiere oder stelle dann einen Schlüssel wieder her."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La clave SSH de esta app no se puede desbloquear en este dispositivo. Elimínala y luego genera, importa o restaura una clave."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La clé SSH de cette app ne peut pas être déverrouillée sur cet appareil. Supprimez-la, puis générez, importez ou restaurez une clé."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Não é possível desbloquear a chave SSH deste app neste dispositivo. Exclua-a e depois gere, importe ou restaure uma chave."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удаётся разблокировать SSH-ключ этого приложения на этом устройстве. Удалите его, затем сгенерируйте, импортируйте или восстановите ключ."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此应用的 SSH 密钥无法在此设备上解锁。请将其删除，然后生成、导入或恢复一个密钥。"
           }
         }
       }
@@ -13391,6 +15027,47 @@
         }
       }
     },
+    "This device couldn't generate an SSH key. Try again." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dieses Gerät konnte keinen SSH-Schlüssel erzeugen. Versuche es erneut."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este dispositivo no pudo generar una clave SSH. Inténtalo de nuevo."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cet appareil n'a pas pu générer de clé SSH. Réessayez."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este dispositivo não conseguiu gerar uma chave SSH. Tente novamente."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось сгенерировать SSH-ключ на этом устройстве. Попробуйте ещё раз."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此设备无法生成 SSH 密钥。请重试。"
+          }
+        }
+      }
+    },
     "This entry changed on this device and on another device." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -13510,6 +15187,129 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "此条目不在密码库中。"
+          }
+        }
+      }
+    },
+    "This is an older PEM key. Convert it to the OpenSSH format first with ssh-keygen -p -f and the file name." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Das ist ein älterer PEM-Schlüssel. Wandle ihn zuerst mit ssh-keygen -p -f und dem Dateinamen in das OpenSSH-Format um."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esta es una clave PEM antigua. Primero conviértela al formato OpenSSH con ssh-keygen -p -f y el nombre del archivo."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Il s'agit d'une ancienne clé PEM. Convertissez-la d'abord au format OpenSSH avec ssh-keygen -p -f suivi du nom du fichier."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esta é uma chave PEM antiga. Converta-a primeiro para o formato OpenSSH com ssh-keygen -p -f e o nome do arquivo."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Это ключ в старом формате PEM. Сначала преобразуйте его в формат OpenSSH командой ssh-keygen -p -f с именем файла."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "这是较旧的 PEM 密钥。请先使用 ssh-keygen -p -f 加上文件名，将其转换为 OpenSSH 格式。"
+          }
+        }
+      }
+    },
+    "This is an SSH remote and PassPony has no SSH key yet. Set one up under SSH key and trusted hosts." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Das ist ein SSH-Remote, und PassPony hat noch keinen SSH-Schlüssel. Richte einen unter „SSH-Schlüssel und vertrauenswürdige Hosts“ ein."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este es un remoto SSH y PassPony aún no tiene ninguna clave SSH. Configura una en Clave SSH y servidores de confianza."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ce distant utilise SSH et PassPony n'a pas encore de clé SSH. Configurez-en une dans Clé SSH et hôtes de confiance."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este é um remoto SSH e o PassPony ainda não tem uma chave SSH. Configure uma em Chave SSH e hosts confiáveis."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Это удалённый репозиторий SSH, а у PassPony ещё нет SSH-ключа. Настройте его в разделе «SSH-ключ и доверенные хосты»."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "这是一个 SSH 远程仓库，而 PassPony 尚无 SSH 密钥。请在“SSH 密钥和受信任的主机”中设置一个。"
+          }
+        }
+      }
+    },
+    "This is the first connection to %@. Its key fingerprint is:" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Das ist die erste Verbindung zu %@. Sein Schlüssel-Fingerabdruck lautet:"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Es la primera conexión a %@. La huella de su clave es:"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "C'est la première connexion à %@. L'empreinte de sa clé est :"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esta é a primeira conexão com %@. A impressão digital da chave dele é:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Это первое подключение к хосту %@. Отпечаток его ключа:"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "这是首次连接到 %@。其密钥指纹为："
           }
         }
       }
@@ -13637,6 +15437,88 @@
         }
       }
     },
+    "This SSH key is protected with a passphrase. Enter it to import the key. PassPony then keeps the key protected by this device instead." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dieser SSH-Schlüssel ist mit einer Passphrase geschützt. Gib sie ein, um den Schlüssel zu importieren. PassPony schützt den Schlüssel danach stattdessen über dieses Gerät."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esta clave SSH está protegida con una frase de contraseña. Introdúcela para importar la clave. Después, PassPony mantiene la clave protegida por este dispositivo."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cette clé SSH est protégée par une phrase secrète. Saisissez-la pour importer la clé. PassPony protège ensuite la clé avec cet appareil plutôt qu'avec la phrase secrète."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esta chave SSH é protegida por uma frase secreta. Digite-a para importar a chave. Depois disso, o PassPony mantém a chave protegida por este dispositivo."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Этот SSH-ключ защищён парольной фразой. Введите её, чтобы импортировать ключ. После этого PassPony будет защищать ключ средствами этого устройства."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此 SSH 密钥受密码短语保护。请输入密码短语以导入该密钥。之后 PassPony 会改由此设备保护该密钥。"
+          }
+        }
+      }
+    },
+    "This SSH key needs its passphrase." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dieser SSH-Schlüssel braucht seine Passphrase."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esta clave SSH necesita su frase de contraseña."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cette clé SSH nécessite sa phrase secrète."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esta chave SSH precisa da frase secreta."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Для этого SSH-ключа нужна парольная фраза."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此 SSH 密钥需要输入密码短语。"
+          }
+        }
+      }
+    },
     "Torch" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -13674,6 +15556,129 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "手电筒"
+          }
+        }
+      }
+    },
+    "Trust and connect" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vertrauen und verbinden"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confiar y conectar"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Faire confiance et se connecter"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confiar e conectar"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Доверять и подключиться"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "信任并连接"
+          }
+        }
+      }
+    },
+    "Trust this host?" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diesem Host vertrauen?"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Confiar en este servidor?"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Faire confiance à cet hôte ?"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confiar neste host?"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Доверять этому хосту?"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "信任此主机？"
+          }
+        }
+      }
+    },
+    "Trusted hosts" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vertrauenswürdige Hosts"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Servidores de confianza"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hôtes de confiance"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hosts confiáveis"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Доверенные хосты"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "受信任的主机"
           }
         }
       }
@@ -13879,6 +15884,47 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "撤销"
+          }
+        }
+      }
+    },
+    "Unknown SSH host %@." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unbekannter SSH-Host %@."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Servidor SSH %@ desconocido."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hôte SSH %@ inconnu."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Host SSH desconhecido: %@."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Неизвестный SSH-хост: %@."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未知的 SSH 主机 %@。"
           }
         }
       }
@@ -14866,6 +16912,47 @@
         }
       }
     },
+    "Wrong passphrase for this SSH key." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Falsche Passphrase für diesen SSH-Schlüssel."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Frase de contraseña incorrecta para esta clave SSH."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Phrase secrète incorrecte pour cette clé SSH."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Frase secreta incorreta para esta chave SSH."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Неверная парольная фраза для этого SSH-ключа."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此 SSH 密钥的密码短语错误。"
+          }
+        }
+      }
+    },
     "Wrong passphrase, or that is not a passphrase-protected file." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -15086,47 +17173,6 @@
         }
       }
     },
-    "Your age identities and any imported PGP keys, in one .passpony file locked with a recovery code. Keep the file wherever you like. Without the code it can't be opened." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Deine age-Identitäten und alle importierten PGP-Schlüssel in einer .passpony-Datei, verschlossen mit einem Wiederherstellungscode. Bewahre die Datei auf, wo du möchtest. Ohne den Code lässt sie sich nicht öffnen."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tus identidades age y las claves PGP que hayas importado, en un único archivo .passpony bloqueado con un código de recuperación. Guarda el archivo donde quieras. Sin el código no se puede abrir."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vos identités age et toutes les clés PGP importées, dans un seul fichier .passpony verrouillé par un code de récupération. Conservez le fichier où vous voulez. Sans le code, il ne peut pas être ouvert."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Suas identidades age e as chaves PGP importadas, em um único arquivo .passpony bloqueado com um código de recuperação. Guarde o arquivo onde quiser. Sem o código, ele não pode ser aberto."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ваши идентификаторы age и все импортированные ключи PGP в одном файле .passpony, защищённом кодом восстановления. Храните файл где угодно. Без кода его невозможно открыть."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "你的 age 身份和所有已导入的 PGP 密钥，保存在一个用恢复码锁定的 .passpony 文件中。该文件可以存放在任何地方。没有恢复码就无法打开它。"
-          }
-        }
-      }
-    },
     "Your age identities file as plain text, the same file the passage and age tools read." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -15164,6 +17210,47 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "以明文形式导出你的 age 身份文件，即 passage 和 age 工具读取的同一个文件。"
+          }
+        }
+      }
+    },
+    "Your age identities, any imported PGP keys and the SSH key, in one .passpony file locked with a recovery code. Keep the file wherever you like. Without the code it can't be opened." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deine age-Identitäten, alle importierten PGP-Schlüssel und der SSH-Schlüssel in einer .passpony-Datei, verschlossen mit einem Wiederherstellungscode. Bewahre die Datei auf, wo du möchtest. Ohne den Code lässt sie sich nicht öffnen."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tus identidades age, las claves PGP que hayas importado y la clave SSH, en un único archivo .passpony bloqueado con un código de recuperación. Guarda el archivo donde quieras. Sin el código no se puede abrir."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vos identités age, toutes les clés PGP importées et la clé SSH, dans un seul fichier .passpony verrouillé par un code de récupération. Conservez le fichier où vous voulez. Sans le code, il ne peut pas être ouvert."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Suas identidades age, as chaves PGP importadas e a chave SSH, em um único arquivo .passpony bloqueado com um código de recuperação. Guarde o arquivo onde quiser. Sem o código, ele não pode ser aberto."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ваши идентификаторы age, все импортированные ключи PGP и SSH-ключ в одном файле .passpony, защищённом кодом восстановления. Храните файл где угодно. Без кода его невозможно открыть."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你的 age 身份、所有已导入的 PGP 密钥以及 SSH 密钥，保存在一个用恢复码锁定的 .passpony 文件中。该文件可以存放在任何地方。没有恢复码就无法打开它。"
           }
         }
       }

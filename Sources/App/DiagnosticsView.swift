@@ -32,11 +32,14 @@ struct DiagnosticsView: View {
             keys = .pass(keyFiles: files.count)
         }
         let git = model.syncStatus.map { status in
-            DiagnosticsReport.GitInfo(
+            let url = status.hasRemote ? model.git?.remoteUrl() : nil
+            return DiagnosticsReport.GitInfo(
                 ahead: Int(status.ahead),
                 behind: Int(status.behind),
                 dirty: status.dirty,
-                remoteHost: status.hasRemote ? DiagnosticsReport.remoteHost(model.git?.remoteUrl()) : nil
+                remoteHost: status.hasRemote ? DiagnosticsReport.remoteHost(url) : nil,
+                scheme: url.map { Self.schemeName(remoteScheme(url: $0)) },
+                hostPinned: url.flatMap { sshKnownHostsName(url: $0) }.map { SshKeyStore.isPinned($0) }
             )
         }
         let info = Bundle.main.infoDictionary
@@ -52,7 +55,8 @@ struct DiagnosticsView: View {
             git: git,
             autofillEnabled: autofillEnabled,
             languageTag: AppLanguage.current,
-            keys: keys
+            keys: keys,
+            sshKey: SshKeyStore.load()?.algorithm
         )
     }
 
@@ -80,6 +84,7 @@ struct DiagnosticsView: View {
                 case .passage(let present):
                     LabeledContent("Keys", value: present ? L("identities file present") : L("no identities file"))
                 }
+                LabeledContent("SSH key", value: report.sshKey ?? L("none"))
             } footer: {
                 Text("This report has no entry names, secrets, key fingerprints, or remote credentials. Paste it into a support message or a GitHub issue.")
             }
@@ -111,8 +116,20 @@ struct DiagnosticsView: View {
     private static func gitLine(_ git: DiagnosticsReport.GitInfo) -> String {
         var line = "↑\(git.ahead) ↓\(git.behind)"
         if git.dirty { line += " (dirty)" }
+        if let scheme = git.scheme { line += " \(scheme)" }
         if let host = git.remoteHost { line += " \(host)" }
+        if let pinned = git.hostPinned { line += pinned ? " (host pinned)" : " (host not pinned)" }
         return line
+    }
+
+    private static func schemeName(_ scheme: RemoteScheme) -> String {
+        switch scheme {
+        case .https: return "https"
+        case .http: return "http"
+        case .ssh: return "ssh"
+        case .file: return "file"
+        case .other: return "other"
+        }
     }
 
     /// The hardware identifier ("iPhone17,1"), which says more in a bug

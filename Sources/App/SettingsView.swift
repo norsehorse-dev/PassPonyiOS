@@ -140,6 +140,25 @@ struct SettingsView: View {
                     Text("Backup")
                 }
 
+                Section {
+                    NavigationLink {
+                        SshKeyView()
+                    } label: {
+                        Label {
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text("SSH key and trusted hosts")
+                                Text("For ssh:// and git@host: remotes")
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                            }
+                        } icon: {
+                            Image(systemName: "key.horizontal")
+                        }
+                    }
+                } header: {
+                    Text("SSH")
+                }
+
                 Section("Maintenance") {
                     Button {
                         reencrypting = true
