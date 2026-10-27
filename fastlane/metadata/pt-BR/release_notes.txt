@@ -1,13 +1,5 @@
-PassPony 2.0
+PassPony 2.1
 
-Chaves de acesso: salve uma chave de acesso para um site e inicie sessão com ela. Ela fica guardada na entrada desse site, criptografada com suas chaves, e é sincronizada com seus outros dispositivos.
+Chaves RSA: cofres pass criptografados com chaves RSA agora abrem no iPhone, e as novas entradas também são salvas neles. Chaves protegidas por frase secreta, chaves exportadas apenas com suas subchaves e entradas gravadas por versões recentes do GnuPG também funcionam.
 
-Sincronização por SSH: use um remoto SSH com uma chave criada no app ou importada. Os hosts são considerados confiáveis no primeiro uso, e uma chave de host alterada é recusada.
-
-Backup das chaves: salve todas as chaves deste celular em um único arquivo protegido por um código de recuperação e restaure-o em um celular novo. Arquivos de identidade age protegidos por frase secreta também podem ser importados, e a importação adiciona chaves em vez de substituí-las.
-
-Celulares com um cofre em comum: cada celular adiciona a própria chave pública ao .age-recipients do cofre ao sincronizar e pede sua confirmação antes de recriptografar suas entradas para um celular novo.
-
-Códigos de uso único: contadores HOTP e importação a partir dos códigos QR de exportação de um app autenticador.
-
-O período de tolerância de cinco minutos do bloqueio agora é contado a partir do momento em que você sai do app.
+Correções: escolher o formato pass (OpenPGP) antes de importar uma chave não faz mais o app travar. Inicializar cofre agora lista as chaves RSA em vez de dizer que nenhuma chave foi importada. Adicionar ou editar uma entrada não fecha mais a tela quando o salvamento falha. Ela continua aberta e mostra o motivo.

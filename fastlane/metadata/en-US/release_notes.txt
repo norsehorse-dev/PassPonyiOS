@@ -1,13 +1,5 @@
-PassPony 2.0
+PassPony 2.1
 
-Passkeys: save a passkey for a site and sign in with it. It is stored in that site's entry, encrypted with your keys, and syncs to your other devices.
+RSA keys: pass stores encrypted to RSA keys now open on iPhone, and new entries are saved to them too. Passphrase-protected keys, keys exported with only their subkeys, and entries written by recent GnuPG versions also work.
 
-SSH sync: use an SSH remote with a key made in the app or imported. Hosts are trusted on first use, and a changed host key is refused.
-
-Key backups: save every key on this phone to one file locked with a recovery code, and restore it on a new phone. Passphrase-protected age identity files can be imported too, and importing adds keys instead of replacing them.
-
-Phones sharing a store: each phone adds its own public key to the store's .age-recipients when it syncs, and asks you before re-encrypting your entries for a new one.
-
-One-time codes: HOTP counters, and import from an authenticator app's export QR codes.
-
-The lock's five-minute grace window now counts from when you leave the app.
+Fixes: choosing the pass (OpenPGP) format before importing a key no longer crashes the app. Initialize store now lists RSA keys instead of saying no key has been imported. Adding or editing an entry no longer closes the screen when the save fails. It stays open and says why.

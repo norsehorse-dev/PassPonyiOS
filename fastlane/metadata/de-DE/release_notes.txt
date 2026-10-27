@@ -1,13 +1,5 @@
-PassPony 2.0
+PassPony 2.1
 
-Passkeys: Sichere einen Passkey für eine Website und melde dich damit an. Er wird im Eintrag dieser Website gespeichert, mit deinen Schlüsseln verschlüsselt, und mit deinen anderen Geräten synchronisiert.
+RSA-Schlüssel: pass-Speicher, die mit RSA-Schlüsseln verschlüsselt sind, lassen sich jetzt auf dem iPhone öffnen, und neue Einträge werden ebenfalls darin gespeichert. Auch passphrasengeschützte Schlüssel, Schlüssel, die nur mit ihren Unterschlüsseln exportiert wurden, und Einträge, die von aktuellen GnuPG-Versionen geschrieben wurden, funktionieren.
 
-SSH-Sync: Nutze ein SSH-Remote mit einem Schlüssel, der in der App erstellt oder importiert wurde. Hosts werden beim ersten Kontakt als vertrauenswürdig übernommen, und ein geänderter Host-Schlüssel wird abgelehnt.
-
-Schlüssel-Backups: Sichere jeden Schlüssel auf diesem Telefon in einer Datei, die mit einem Wiederherstellungscode verschlossen ist, und stelle sie auf einem neuen Telefon wieder her. Auch passphrasengeschützte age-Identitätsdateien lassen sich importieren, und beim Import werden Schlüssel hinzugefügt statt ersetzt.
-
-Telefone mit gemeinsamem Speicher: Jedes Telefon fügt beim Sync seinen eigenen öffentlichen Schlüssel zur Datei .age-recipients des Speichers hinzu und fragt dich, bevor deine Einträge für einen neuen Schlüssel neu verschlüsselt werden.
-
-Einmalcodes: HOTP-Zähler und Import über die Export-QR-Codes einer Authenticator-App.
-
-Die fünfminütige Schonfrist der Sperre zählt jetzt ab dem Moment, in dem du die App verlässt.
+Fehlerbehebungen: Wenn du vor dem Import eines Schlüssels das Format pass (OpenPGP) wählst, stürzt die App nicht mehr ab. „Speicher initialisieren“ zeigt jetzt RSA-Schlüssel an, statt zu melden, dass kein Schlüssel importiert wurde. Wenn das Speichern beim Hinzufügen oder Bearbeiten eines Eintrags fehlschlägt, wird der Bildschirm nicht mehr geschlossen. Er bleibt geöffnet und zeigt dir den Grund an.

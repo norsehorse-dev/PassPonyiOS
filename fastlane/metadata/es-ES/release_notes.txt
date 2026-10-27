@@ -1,13 +1,5 @@
-PassPony 2.0
+PassPony 2.1
 
-Llaves de acceso: guarda una llave de acceso para un sitio e inicia sesión con ella. Se guarda en la entrada de ese sitio, cifrada con tus claves, y se sincroniza con tus otros dispositivos.
+Claves RSA: los almacenes de pass cifrados con claves RSA ahora se abren en el iPhone, y las entradas nuevas también se guardan en ellos. También funcionan las claves protegidas con frase de contraseña, las claves exportadas solo con sus subclaves y las entradas escritas por versiones recientes de GnuPG.
 
-Sincronización por SSH: usa un remoto SSH con una clave creada en la app o importada. Se confía en cada servidor la primera vez que te conectas, y se rechaza una clave de servidor que haya cambiado.
-
-Copias de seguridad de claves: guarda todas las claves de este teléfono en un solo archivo protegido con un código de recuperación y restáuralo en un teléfono nuevo. También se pueden importar archivos de identidades age protegidos con frase de contraseña, y al importar se añaden claves en lugar de reemplazarlas.
-
-Teléfonos que comparten un almacén: cada teléfono añade su propia clave pública al .age-recipients del almacén cuando sincroniza, y te pregunta antes de volver a cifrar tus entradas para uno nuevo.
-
-Códigos de un solo uso: contadores HOTP e importación desde los códigos QR de exportación de una app de autenticación.
-
-El margen de cinco minutos del bloqueo ahora empieza a contar cuando sales de la app.
+Correcciones: elegir el formato pass (OpenPGP) antes de importar una clave ya no hace que la app se cierre inesperadamente. «Inicializar almacén» ahora muestra las claves RSA en lugar de decir que no se ha importado ninguna clave. Al añadir o editar una entrada, la pantalla ya no se cierra si falla el guardado. Se queda abierta y te explica el motivo.

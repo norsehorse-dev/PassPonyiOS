@@ -1,13 +1,5 @@
-PassPony 2.0
+PassPony 2.1
 
-Clés d'accès : enregistrez une clé d'accès pour un site et connectez-vous avec. Elle est conservée dans l'entrée de ce site, chiffrée avec vos clés, et se synchronise sur vos autres appareils.
+Clés RSA : les coffres pass chiffrés avec des clés RSA s'ouvrent désormais sur iPhone, et les nouvelles entrées y sont aussi enregistrées. Les clés protégées par une phrase secrète, les clés exportées avec leurs seules sous-clés et les entrées écrites par les versions récentes de GnuPG fonctionnent également.
 
-Synchronisation SSH : utilisez un dépôt distant SSH avec une clé créée dans l'app ou importée. Les hôtes sont approuvés à la première utilisation, et une clé d'hôte modifiée est refusée.
-
-Sauvegarde des clés : enregistrez toutes les clés de ce téléphone dans un seul fichier verrouillé par un code de récupération, et restaurez-le sur un nouveau téléphone. Les fichiers d'identité age protégés par une phrase secrète peuvent aussi être importés, et l'importation ajoute des clés au lieu de remplacer celles déjà présentes.
-
-Téléphones partageant un coffre : chaque téléphone ajoute sa propre clé publique au fichier .age-recipients du coffre lors de la synchronisation, et vous demande votre accord avant de rechiffrer vos entrées pour un nouveau téléphone.
-
-Codes à usage unique : compteurs HOTP et import depuis les codes QR d'export d'une app d'authentification.
-
-Le délai de grâce de cinq minutes du verrouillage est désormais compté à partir du moment où vous quittez l'app.
+Corrections : choisir le format pass (OpenPGP) avant d'importer une clé ne fait plus planter l'application. « Initialiser le coffre » affiche maintenant les clés RSA au lieu d'indiquer qu'aucune clé n'a été importée. L'ajout ou la modification d'une entrée ne ferme plus l'écran quand l'enregistrement échoue. Il reste ouvert et vous indique pourquoi.
