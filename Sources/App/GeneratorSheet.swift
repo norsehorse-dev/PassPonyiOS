@@ -88,7 +88,7 @@ struct GeneratorSheet: View {
                         Text("Basic").tag(GeneratorSettings.Symbols.basic)
                         Text("Full").tag(GeneratorSettings.Symbols.full)
                     }
-                    .pickerStyle(.segmented)
+                    .pickerStyle(.menu)
                 } footer: {
                     switch settings.symbols {
                     case .noSymbols:

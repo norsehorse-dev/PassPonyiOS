@@ -146,8 +146,8 @@ struct BackupView: View {
                 backedUp = true
                 step = .idle
                 message = L("Backup saved.")
-            case .failure(let error):
-                message = L("Couldn't save: \(error.localizedDescription)")
+            case .failure:
+                message = L("Couldn't save the backup file.")
             }
             backupDocument = nil
         }

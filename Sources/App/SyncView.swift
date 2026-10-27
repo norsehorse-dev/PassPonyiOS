@@ -139,7 +139,7 @@ struct SyncView: View {
     private var remoteSection: some View {
         Section {
             LabeledContent("Current") {
-                Text(Self.redacted(model.git?.remoteUrl() ?? "—"))
+                Text(model.git?.remoteUrl().map(Self.redacted) ?? L("Not set"))
                     .font(.caption.monospaced())
                     .lineLimit(1)
                     .truncationMode(.middle)

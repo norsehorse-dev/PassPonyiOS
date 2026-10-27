@@ -134,11 +134,17 @@ struct StoreListView: View {
         }
         .overlay {
             if model.visibleEntries.isEmpty {
-                ContentUnavailableView(
-                    "No entries",
-                    systemImage: "key",
-                    description: Text("Add an entry, or clone your store in Sync.")
-                )
+                if model.searchText.isEmpty {
+                    ContentUnavailableView(
+                        "No entries",
+                        systemImage: "key",
+                        description: Text("Add an entry, or clone your store in Sync.")
+                    )
+                } else {
+                    // The platform's own no-results view, which names the
+                    // search term.
+                    ContentUnavailableView.search(text: model.searchText)
+                }
             }
         }
     }

@@ -5607,47 +5607,6 @@
         }
       }
     },
-    "Get Started" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Los geht's"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Comenzar"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Commencer"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Começar"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Начать"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "开始使用"
-          }
-        }
-      }
-    },
     "Git" : {
       "extractionState" : "manual",
       "shouldTranslate" : false
@@ -6318,47 +6277,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "请先在“设置”中导入密钥文件。"
-          }
-        }
-      }
-    },
-    "Import failed for %@: %@" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Import fehlgeschlagen für %1$@: %2$@"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Error al importar %1$@: %2$@"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Échec de l'importation de %1$@ : %2$@"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Falha ao importar %1$@: %2$@"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Не удалось импортировать %1$@: %2$@"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "导入 %1$@ 失败：%2$@"
           }
         }
       }
@@ -11424,47 +11342,6 @@
         }
       }
     },
-    "Quorum key backup & recovery" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Schlüssel-Backup und -Wiederherstellung per Quorum"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Copia de seguridad y recuperación de claves por quórum"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sauvegarde et récupération de clés par quorum"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Backup e recuperação de chaves por quórum"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Кворумное резервирование и восстановление ключей"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "法定人数密钥备份与恢复"
-          }
-        }
-      }
-    },
     "Re-encrypt" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -11721,47 +11598,6 @@
                 }
               }
             }
-          }
-        }
-      }
-    },
-    "Re-keying a live store is the re-encrypt flow, coming with the subtree preview." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Das Umschlüsseln eines aktiven Speichers ist der Neuverschlüsselungs-Ablauf, er kommt mit der Teilbaum-Vorschau."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cambiar las claves de un almacén en uso es el flujo de recifrado, que llegará con la vista previa por subárbol."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Changer les clés d'un coffre actif passe par le flux de rechiffrement, à venir avec l'aperçu par sous-arborescence."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Trocar as chaves de um cofre em uso é o fluxo de recriptografia, chegará com a pré-visualização por subárvore."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Смена ключей действующего хранилища является процессом перешифрования; он появится вместе с предпросмотром поддерева."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "更换在用密码库的密钥属于重新加密流程，将随子树预览一起推出。"
           }
         }
       }
@@ -13387,47 +13223,6 @@
         }
       }
     },
-    "Simple, modern file encryption (age)" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Einfache, moderne Dateiverschlüsselung (age)"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cifrado de archivos simple y moderno (age)"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Chiffrement de fichiers simple et moderne (age)"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Criptografia de arquivos simples e moderna (age)"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Простое современное шифрование файлов (age)"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "简单、现代的文件加密（age）"
-          }
-        }
-      }
-    },
     "Site" : {
       "comment" : "iOS only. Label for the website domain on the save-passkey screen (a short label in a form row).",
       "extractionState" : "manual",
@@ -13926,47 +13721,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "状态"
-          }
-        }
-      }
-    },
-    "Store already has a .gpg-id. Re-keying comes with the re-encrypt flow." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Der Speicher hat bereits eine .gpg-id. Das Umschlüsseln kommt mit dem Neuverschlüsselungs-Ablauf."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "El almacén ya tiene un .gpg-id. El cambio de claves llegará con el flujo de recifrado."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Le coffre a déjà un .gpg-id. Le changement de clés arrivera avec le flux de rechiffrement."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "O cofre já tem um .gpg-id. A troca de chaves chegará com o fluxo de recriptografia."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "У хранилища уже есть .gpg-id. Смена ключей появится вместе с процессом перешифрования."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "密码库已有 .gpg-id。更换密钥将随重新加密流程推出。"
           }
         }
       }
@@ -18638,43 +18392,533 @@
         }
       }
     },
-    "Your passwords, in a store you own.\n\nPassPony speaks the same format as the pass and passage command-line tools: plain files, encrypted with your keys, synced with git." : {
+    "PassPony speaks the same format as the pass and passage command-line tools: plain files, encrypted with your keys, synced with git." : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Deine Passwörter, in einem Speicher, der dir gehört.\n\nPassPony spricht dasselbe Format wie die Kommandozeilen-Tools pass und passage: einfache Dateien, verschlüsselt mit deinen Schlüsseln, synchronisiert über git."
+            "value" : "PassPony spricht dasselbe Format wie die Kommandozeilen-Tools pass und passage: einfache Dateien, verschlüsselt mit deinen Schlüsseln, synchronisiert über git."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tus contraseñas, en un almacén que te pertenece.\n\nPassPony usa el mismo formato que las herramientas de línea de comandos pass y passage: archivos simples, cifrados con tus claves y sincronizados con git."
+            "value" : "PassPony usa el mismo formato que las herramientas de línea de comandos pass y passage: archivos simples, cifrados con tus claves y sincronizados con git."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vos mots de passe, dans un coffre qui vous appartient.\n\nPassPony parle le même format que les outils en ligne de commande pass et passage : des fichiers simples, chiffrés avec vos clés, synchronisés avec git."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Suas senhas, em um cofre que pertence a você.\n\nO PassPony fala o mesmo formato das ferramentas de linha de comando pass e passage: arquivos simples, criptografados com suas chaves, sincronizados com git."
+            "value" : "PassPony parle le même format que les outils en ligne de commande pass et passage : des fichiers simples, chiffrés avec vos clés, synchronisés avec git."
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ваши пароли в хранилище, которое принадлежит вам.\n\nPassPony использует тот же формат, что и консольные инструменты pass и passage: обычные файлы, зашифрованные вашими ключами и синхронизируемые через git."
+            "value" : "PassPony использует тот же формат, что и консольные инструменты pass и passage: обычные файлы, зашифрованные вашими ключами и синхронизируемые через git."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O PassPony fala o mesmo formato das ferramentas de linha de comando pass e passage: arquivos simples, criptografados com suas chaves, sincronizados com git."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "你的密码，存放在属于你自己的密码库中。\n\nPassPony 使用与命令行工具 pass 和 passage 相同的格式：纯文件，用你的密钥加密，通过 git 同步。"
+            "value" : "PassPony 使用与命令行工具 pass 和 passage 相同的格式：纯文件，用你的密钥加密，通过 git 同步。"
+          }
+        }
+      }
+    },
+    "Couldn't import %@." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ konnte nicht importiert werden."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se pudo importar %@."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossible d'importer %@."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось импортировать %@."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Não foi possível importar %@."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无法导入 %@。"
+          }
+        }
+      }
+    },
+    "Couldn't save the backup file." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Backup-Datei konnte nicht gespeichert werden."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se pudo guardar el archivo de copia de seguridad."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossible d'enregistrer le fichier de sauvegarde."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось сохранить файл резервной копии."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Não foi possível salvar o arquivo de backup."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无法保存备份文件。"
+          }
+        }
+      }
+    },
+    "Method" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Methode"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Método"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Méthode"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Способ"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Método"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "方式"
+          }
+        }
+      }
+    },
+    "File encryption with age" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dateiverschlüsselung mit age"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cifrado de archivos con age"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chiffrement de fichiers avec age"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Шифрование файлов с помощью age"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Criptografia de arquivos com age"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "基于 age 的文件加密"
+          }
+        }
+      }
+    },
+    "Quorum key backup and recovery" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schlüssel-Backup und -Wiederherstellung per Quorum"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copia de seguridad y recuperación de claves por quórum"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sauvegarde et récupération de clés par quorum"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кворумное резервирование и восстановление ключей"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Backup e recuperação de chaves por quórum"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "法定人数密钥备份与恢复"
+          }
+        }
+      }
+    },
+    "VeraCrypt-compatible encrypted vaults on your device" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VeraCrypt-kompatible verschlüsselte Tresore auf deinem Gerät"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bóvedas cifradas compatibles con VeraCrypt en tu dispositivo"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Conteneurs chiffrés compatibles VeraCrypt sur votre appareil"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Совместимые с VeraCrypt зашифрованные контейнеры на вашем устройстве"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contêineres criptografados compatíveis com VeraCrypt no seu dispositivo"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你设备上与 VeraCrypt 兼容的加密保险库"
+          }
+        }
+      }
+    },
+    "To change the keys of a store in use, use Re-encrypt store." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Um die Schlüssel eines Speichers zu ändern, der in Gebrauch ist, nutze „Speicher neu verschlüsseln“."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Para cambiar las claves de un almacén en uso, usa Volver a cifrar el almacén."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pour changer les clés d'un coffre en cours d'utilisation, utilisez Rechiffrer le coffre."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Чтобы сменить ключи используемого хранилища, воспользуйтесь пунктом «Перешифровать хранилище»."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Para trocar as chaves de um cofre em uso, use Recriptografar cofre."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "要更换在用密码库的密钥，请使用“重新加密密码库”。"
+          }
+        }
+      }
+    },
+    "This store already has a .gpg-id. To change its keys, use Re-encrypt store." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dieser Speicher hat bereits eine .gpg-id. Um seine Schlüssel zu ändern, nutze „Speicher neu verschlüsseln“."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este almacén ya tiene un .gpg-id. Para cambiar sus claves, usa Volver a cifrar el almacén."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ce coffre a déjà un .gpg-id. Pour changer ses clés, utilisez Rechiffrer le coffre."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "У этого хранилища уже есть .gpg-id. Чтобы сменить его ключи, воспользуйтесь пунктом «Перешифровать хранилище»."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este cofre já tem um .gpg-id. Para trocar as chaves dele, use Recriptografar cofre."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此密码库已有 .gpg-id。要更换其密钥，请使用“重新加密密码库”。"
+          }
+        }
+      }
+    },
+    "Something went wrong. Try again, and if it keeps happening, copy the report in Settings, Diagnostics." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Etwas ist schiefgelaufen. Versuche es erneut, und wenn es weiter passiert, kopiere den Bericht unter Einstellungen, Diagnose."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Algo salió mal. Inténtalo de nuevo y, si sigue pasando, copia el informe en Ajustes, Diagnóstico."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Un problème est survenu. Réessayez, et si cela se reproduit, copiez le rapport dans Réglages, Diagnostic."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Что-то пошло не так. Попробуйте ещё раз, а если ошибка повторится, скопируйте отчёт в разделе «Диагностика» на экране «Настройки»."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Algo deu errado. Tente novamente e, se continuar acontecendo, copie o relatório em Ajustes, Diagnóstico."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "出了点问题。请重试。如果问题反复出现，请在“设置”的“诊断”部分复制报告。"
+          }
+        }
+      }
+    },
+    "Not set" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nicht festgelegt"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No establecido"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Non défini"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не задан"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Não definido"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未设置"
+          }
+        }
+      }
+    },
+    "Strip metadata from photos" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Metadaten aus Fotos entfernen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eliminar metadatos de las fotos"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Supprimer les métadonnées des photos"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удаление метаданных из фотографий"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remoção de metadados de fotos"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "清除照片中的元数据"
+          }
+        }
+      }
+    },
+    "Webhooks from NFC tags" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Webhooks über NFC-Tags"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Webhooks desde etiquetas NFC"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Webhooks depuis des étiquettes NFC"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вебхуки по NFC-меткам"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Webhooks a partir de tags NFC"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通过 NFC 标签触发 Webhook"
           }
         }
       }

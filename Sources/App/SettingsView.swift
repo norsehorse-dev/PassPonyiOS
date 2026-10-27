@@ -77,7 +77,7 @@ struct SettingsView: View {
                             Button {
                                 initializing = true
                             } label: {
-                                Label("Initialize store with key…", systemImage: "wand.and.stars")
+                                Label("Initialize store with key…", systemImage: "key")
                             }
                             .disabled(keyFiles.isEmpty)
                         } else {
@@ -91,7 +91,7 @@ struct SettingsView: View {
                     } footer: {
                         Text(gpgIDLines.isEmpty
                              ? "A pass store encrypts to the keys listed in its .gpg-id. Initialize once with your imported keys."
-                             : "Re-keying a live store is the re-encrypt flow, coming with the subtree preview.")
+                             : "To change the keys of a store in use, use Re-encrypt store.")
                     }
                 }
 
@@ -192,7 +192,7 @@ struct SettingsView: View {
                         model.showingSettings = false
                         onboardingCompleted = false
                     } label: {
-                        Label("Show welcome tour again", systemImage: "sparkles")
+                        Label("Show welcome tour again", systemImage: "book")
                     }
                 }
 
@@ -264,7 +264,7 @@ struct SettingsView: View {
                                 }
                             } icon: {
                                 Image(systemName: app.icon)
-                                    .foregroundStyle(app.tint)
+                                    .foregroundStyle(.tint)
                             }
                         }
                     }
@@ -312,19 +312,27 @@ struct SettingsView: View {
 
     /// App names render verbatim (brand names, never translated); taglines
     /// are LocalizedStringKey and resolve through the catalog.
-    private static let otherApps: [(name: String, tagline: LocalizedStringKey, icon: String, tint: Color, url: String)] = [
-        ("PGPony", "OpenPGP messages, files, and keys", "envelope.fill", .purple,
+    /// One treatment for every row: the app's symbol in the accent color.
+    private static let otherApps: [(name: String, tagline: LocalizedStringKey, icon: String, url: String)] = [
+        ("PGPony", "OpenPGP messages, files, and keys", "envelope.fill",
          "https://apps.apple.com/us/app/pgpony/id6759994432"),
-        ("AgePony", "Simple, modern file encryption (age)", "lock.fill", .indigo,
+        ("AgePony", "File encryption with age", "lock.fill",
          "https://apps.apple.com/app/id6774821172"),
-        ("QuorumPony", "Quorum key backup & recovery", "person.3.fill", .teal,
+        ("QuorumPony", "Quorum key backup and recovery", "person.3.fill",
          "https://apps.apple.com/us/app/quorumpony-key-backup/id6783608628"),
-        ("CarrierPony", "PGP chat and encrypted files", "paperplane.fill", .orange,
+        ("CarrierPony", "PGP chat and encrypted files", "paperplane.fill",
          "https://apps.apple.com/us/app/carrierpony-pgp-chat-files/id6786930072"),
-        ("BurnPony", "Self-destructing encrypted messages", "flame.fill", .red,
+        ("BurnPony", "Self-destructing encrypted messages", "flame.fill",
          "https://apps.apple.com/us/app/burnpony/id6788513233"),
-        ("RelayPony", "Encrypted file transfer", "arrow.left.arrow.right", .green,
+        ("RelayPony", "Encrypted file transfer", "arrow.left.arrow.right",
          "https://apps.apple.com/us/app/relaypony-file-transfer/id6785085525"),
+        // App Store id not available here; the product site, as Android links.
+        ("VaultPony", "VeraCrypt-compatible encrypted vaults on your device", "lock.rectangle.stack.fill",
+         "https://vaultpony.app"),
+        ("ScrubPony", "Strip metadata from photos", "photo",
+         "https://apps.apple.com/us/app/scrubpony-strip-metadata/id6803265054"),
+        ("TapPony", "Webhooks from NFC tags", "wave.3.right",
+         "https://apps.apple.com/us/app/tappony-webhook-automation/id6817057965"),
     ]
 
     /// Marketing version from the bundle so the displayed version tracks
@@ -395,7 +403,7 @@ struct SettingsView: View {
                 try data.write(to: dest, options: [.completeFileProtection])
                 imported += 1
             } catch {
-                message = L("Import failed for \(url.lastPathComponent): \(error.localizedDescription)")
+                message = L("Couldn't import \(url.lastPathComponent).")
             }
         }
         if imported > 0 {

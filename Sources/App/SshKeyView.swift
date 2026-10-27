@@ -67,11 +67,17 @@ struct SshKeyView: View {
                         .foregroundStyle(.secondary)
                 }
                 ForEach(hosts, id: \.host) { host in
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text(verbatim: host.host)
-                        Text(verbatim: "\(host.key.keyType) · \(host.key.fingerprint)")
-                            .font(.caption.monospaced())
-                            .foregroundStyle(.secondary)
+                    HStack {
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(verbatim: host.host)
+                            Text(verbatim: "\(host.key.keyType) · \(host.key.fingerprint)")
+                                .font(.caption.monospaced())
+                                .foregroundStyle(.secondary)
+                        }
+                        Spacer()
+                        // Visible door for the swipe/context action.
+                        Button("Forget", role: .destructive) { forget(host.host) }
+                            .buttonStyle(.borderless)
                     }
                     .swipeActions {
                         Button("Forget", role: .destructive) { forget(host.host) }

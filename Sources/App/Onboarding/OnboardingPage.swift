@@ -32,14 +32,10 @@ struct OnboardingPage: View {
                 VStack(spacing: 28) {
                     Spacer(minLength: 8)
 
-                    ZStack {
-                        Circle()
-                            .fill(slide.iconTint.opacity(0.15))
-                            .frame(width: 140, height: 140)
-                        Image(systemName: slide.action == .biometric ? biometricIcon : slide.icon)
-                            .font(.system(size: 64))
-                            .foregroundStyle(slide.iconTint)
-                    }
+                    Image(systemName: slide.action == .biometric ? biometricIcon : slide.icon)
+                        .font(.system(size: 56))
+                        .foregroundStyle(slide.iconTint)
+                        .accessibilityHidden(true)
 
                     Text(slide.title)
                         .font(.title.bold())
@@ -114,12 +110,19 @@ struct OnboardingPage: View {
     private var languagePicker: some View {
         VStack(spacing: 0) {
             languageRow(code: "", label: Text("System"))
+            Divider().padding(.leading, 16)
             languageRow(code: "en", label: Text(verbatim: "English"))
+            Divider().padding(.leading, 16)
             languageRow(code: "es", label: Text(verbatim: "Español"))
+            Divider().padding(.leading, 16)
             languageRow(code: "fr", label: Text(verbatim: "Français"))
+            Divider().padding(.leading, 16)
             languageRow(code: "de", label: Text(verbatim: "Deutsch"))
+            Divider().padding(.leading, 16)
             languageRow(code: "zh-Hans", label: Text(verbatim: "简体中文"))
+            Divider().padding(.leading, 16)
             languageRow(code: "pt-BR", label: Text(verbatim: "Português (Brasil)"))
+            Divider().padding(.leading, 16)
             languageRow(code: "ru", label: Text(verbatim: "Русский"))
         }
         .background(Color(.secondarySystemBackground))
@@ -139,7 +142,7 @@ struct OnboardingPage: View {
                 }
             }
             .padding(.horizontal, 16)
-            .padding(.vertical, 10)
+            .padding(.vertical, 12)
             .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
@@ -152,7 +155,7 @@ struct OnboardingPage: View {
             Text("passage (age)").tag(StoreFormat.passage)
             Text("pass (OpenPGP)").tag(StoreFormat.pass)
         }
-        .pickerStyle(.segmented)
+        .pickerStyle(.menu)
         .onChange(of: format) { _, newValue in
             StorePaths.currentFormat = newValue
             model.openStore()

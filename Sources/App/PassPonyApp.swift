@@ -111,7 +111,7 @@ struct LockedView: View {
 
     var body: some View {
         ZStack {
-            Rectangle().fill(.regularMaterial).ignoresSafeArea()
+            Color(.systemBackground).ignoresSafeArea()
             VStack(spacing: 16) {
                 Image(systemName: "lock.fill")
                     .font(.system(size: 44))

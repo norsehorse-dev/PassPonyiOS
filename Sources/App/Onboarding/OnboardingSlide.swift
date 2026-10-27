@@ -34,22 +34,22 @@ enum OnboardingSlides {
             // user's iOS language from the first frame.
             OnboardingSlide(
                 icon: "globe",
-                iconTint: .blue,
+                iconTint: .accentColor,
                 title: "Language",
                 body: "Choose the language you'd like to use.\n\nYou can change this anytime in Settings.",
                 action: .languagePicker
             ),
 
             OnboardingSlide(
-                icon: "hand.wave.fill",
-                iconTint: .teal,
+                icon: "key.fill",
+                iconTint: .accentColor,
                 title: "Welcome to PassPony",
-                body: "Your passwords, in a store you own.\n\nPassPony speaks the same format as the pass and passage command-line tools: plain files, encrypted with your keys, synced with git."
+                body: "PassPony speaks the same format as the pass and passage command-line tools: plain files, encrypted with your keys, synced with git."
             ),
 
             OnboardingSlide(
                 icon: "archivebox.fill",
-                iconTint: .orange,
+                iconTint: .accentColor,
                 title: "Choose your format",
                 body: "passage encrypts with modern age identities. pass encrypts with OpenPGP keys and works with existing pass stores.\n\nEach format keeps its own store, and you can switch anytime in Settings.",
                 action: .formatPicker
@@ -57,7 +57,7 @@ enum OnboardingSlides {
 
             OnboardingSlide(
                 icon: "square.and.arrow.down.fill",
-                iconTint: .indigo,
+                iconTint: .accentColor,
                 title: "Bring your store",
                 body: "Already using pass or passage? Clone your existing store from its git remote, or import your OpenPGP key files.\n\nStarting fresh? Just continue.",
                 action: .importStore
@@ -65,7 +65,7 @@ enum OnboardingSlides {
 
             OnboardingSlide(
                 icon: "plus.circle.fill",
-                iconTint: .green,
+                iconTint: .accentColor,
                 title: "Add your first pass",
                 body: "A pass is one encrypted file: the password on the first line, anything else after it.\n\nTry it now. This saves a real entry to your store.",
                 action: .tryPass
@@ -75,7 +75,7 @@ enum OnboardingSlides {
                 // Icon is overridden at render time based on the device's
                 // biometric type; this is the fallback.
                 icon: "lock.shield.fill",
-                iconTint: .purple,
+                iconTint: .accentColor,
                 title: "Locked by default",
                 body: "PassPony locks behind Face ID, Touch ID, or your passcode.\n\nAfter you unlock, it stays open for \(Int(UnlockGate.gracePeriod / 60)) minutes (shared with autofill), then locks again.",
                 action: .biometric
@@ -83,7 +83,7 @@ enum OnboardingSlides {
 
             OnboardingSlide(
                 icon: "keyboard.fill",
-                iconTint: .pink,
+                iconTint: .accentColor,
                 title: "Fill passwords anywhere",
                 body: "Turn on autofill and your passes appear right in the QuickType bar when you sign in.\n\nYou can manage this anytime in iOS Settings under AutoFill & Passwords.",
                 action: .autofill

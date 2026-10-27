@@ -88,7 +88,7 @@ struct InitializeStoreView: View {
             let content = fingerprints.joined(separator: "\n") + "\n"
             let gpgID = root.appendingPathComponent(".gpg-id")
             guard !FileManager.default.fileExists(atPath: gpgID.path) else {
-                error = L("Store already has a .gpg-id. Re-keying comes with the re-encrypt flow.")
+                error = L("This store already has a .gpg-id. To change its keys, use Re-encrypt store.")
                 return
             }
             try Data(content.utf8).write(to: gpgID, options: [.completeFileProtection])

@@ -21,7 +21,9 @@ extension Error {
         case let error as SshKeyError: return error.ponyMessage
         case let error as PasskeyError: return error.ponyMessage
         case let error as AgeIdentityStore.ImportError: return error.ponyMessage
-        default: return String(describing: self)
+        // Never raw error text in the UI. The diagnostics report is
+        // where the details go.
+        default: return L("Something went wrong. Try again, and if it keeps happening, copy the report in Settings, Diagnostics.")
         }
     }
 }

@@ -85,9 +85,9 @@ struct TOTPSetupSheet: View {
                             Text("Scan").tag(Tab.scan)
                         }
                     } label: {
-                        EmptyView()
+                        Text("Method")
                     }
-                    .pickerStyle(.segmented)
+                    .pickerStyle(.menu)
                 }
 
                 switch tab {

@@ -1,7 +1,7 @@
 import SwiftUI
 
 /// Top-level first-run carousel: swipeable slides, Skip in the top-right
-/// (hidden on the last page), dot indicator plus Next / Get Started at the
+/// (hidden on the last page), dot indicator plus Next / Done at the
 /// bottom. Rendered by RootView while the onboarding flag is unset,
 /// replacing both the lock screen and the store list until the user
 /// finishes or skips. Replayable from Settings (Show welcome tour again).
@@ -92,7 +92,7 @@ struct OnboardingView: View {
                 advance()
             }
         } label: {
-            Text(LocalizedStringKey(isLastPage ? "Get Started" : "Next"))
+            Text(LocalizedStringKey(isLastPage ? "Done" : "Next"))
                 .fontWeight(.semibold)
                 .padding(.horizontal, 8)
                 .frame(height: 36)
