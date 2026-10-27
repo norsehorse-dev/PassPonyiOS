@@ -1,6 +1,7 @@
 // The engine seam. passage stores run on the real AgePonyCore engine;
-// pass stores still use the DEV byte-flip stand-in until NorseHorsePGPCore
-// is wired (next engine, same seam).
+// pass stores run on PGPonyEngine (NorseHorsePGPCore) once a key is
+// imported. With no usable key the provider hands back MissingKeyEngine,
+// which throws, so a missing key is an error message and never a crash.
 
 import Foundation
 
@@ -14,7 +15,7 @@ enum EngineProvider {
             #if DEBUG
             return DevFlipEngine()
             #else
-            fatalError("passage engine unavailable")
+            return MissingKeyEngine()
             #endif
         case .pass:
             PGPKeyStore.ensureDirectory()
@@ -25,17 +26,31 @@ enum EngineProvider {
                ) {
                 return engine
             }
-            #if DEBUG
-            return DevFlipEngine()
-            #else
-            fatalError("No OpenPGP keys imported. pass stores need keys in pgp-keys/.")
-            #endif
+            // No keys yet is a normal state (picking pass during onboarding,
+            // switching format in Settings, before the key import). Every
+            // store open reaches here via the passkey index rebuild, so this
+            // must throw, never trap, in every build.
+            return MissingKeyEngine()
         }
     }
 }
 
-// DEV ONLY — NOT CRYPTO. A reversible byte-flip used solely where a real
-// engine isn't wired yet (pass stores). Release builds trap instead.
+/// Stands in when a store's keys aren't available. Every call throws
+/// NoUsableKey, which callers already surface as "import the key for this
+/// store", and the passkey index rebuild skips quietly.
+final class MissingKeyEngine: CryptoBackend {
+    func encrypt(plaintext: Data, recipients: [String]) throws -> Data {
+        throw CryptoError.NoUsableKey
+    }
+
+    func decrypt(ciphertext: Data) throws -> Data {
+        throw CryptoError.NoUsableKey
+    }
+}
+
+// DEV ONLY — NOT CRYPTO. A reversible byte-flip, DEBUG builds only, for a
+// passage store on a simulator where the age identity can't be created.
+// Release builds get MissingKeyEngine instead.
 final class DevFlipEngine: CryptoBackend {
     func encrypt(plaintext: Data, recipients: [String]) throws -> Data {
         Data(plaintext.map { ~$0 })
