@@ -18,10 +18,19 @@ struct AddEntryView: View {
     @State private var otpauth: String?
     @State private var showingOtpSetup = false
     @State private var showingGenerator = false
+    /// Why the last Save failed (no .gpg-id yet, no usable key, ...).
+    @State private var saveError: String?
 
     var body: some View {
         NavigationStack {
             Form {
+                if let saveError {
+                    Section {
+                        Text(saveError)
+                            .foregroundStyle(.red)
+                            .font(.footnote)
+                    }
+                }
                 Section("Entry") {
                     TextField("Name (e.g. web/github)", text: $name)
                         .textInputAutocapitalization(.never)
@@ -101,7 +110,10 @@ struct AddEntryView: View {
         if !username.isEmpty { content += "username: \(username)\n" }
         if !url.isEmpty { content += "url: \(url)\n" }
         if !otpOnly, let otpauth { content += otpauth + "\n" }
-        model.saveEntry(name: name, content: Data(content.utf8), isNew: true)
-        dismiss()
+        if model.saveEntry(name: name, content: Data(content.utf8), isNew: true) {
+            dismiss()
+        } else {
+            saveError = model.lastError
+        }
     }
 }

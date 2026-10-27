@@ -95,6 +95,8 @@ struct EditEntryView: View {
     @State private var showingOtpSetup: Bool
     @State private var showingGenerator = false
     @State private var confirmingDelete = false
+    /// Why the last Save failed; the sheet stays open to show it.
+    @State private var saveError: String?
 
     private let fieldKeys: [String]
     private let originalValues: [String: String]
@@ -143,6 +145,13 @@ struct EditEntryView: View {
     var body: some View {
         NavigationStack {
             Form {
+                if let saveError {
+                    Section {
+                        Text(saveError)
+                            .foregroundStyle(.red)
+                            .font(.footnote)
+                    }
+                }
                 if otpOnly {
                     // Line 1 is the URI, so there is no password to edit;
                     // the code section below owns that line.
@@ -347,7 +356,10 @@ struct EditEntryView: View {
                 content = entryRemoveOtpauth(content: content)
             }
         }
-        model.saveEntry(name: name, content: content, isNew: false)
+        guard model.saveEntry(name: name, content: content, isNew: false) else {
+            saveError = model.lastError
+            return
+        }
         onSave()
         dismiss()
     }

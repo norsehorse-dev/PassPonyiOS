@@ -86,8 +86,14 @@ final class AppModel: ObservableObject {
         return try store.readEntry(name: name, backend: engine)
     }
 
-    func saveEntry(name: String, content: Data, isNew: Bool) {
-        guard let store else { return }
+    /// Returns false (with `lastError` set) when the entry wasn't written,
+    /// so a sheet can stay open and say why instead of closing on nothing.
+    @discardableResult
+    func saveEntry(name: String, content: Data, isNew: Bool) -> Bool {
+        guard let store else {
+            lastError = StoreError.NoStore.ponyMessage
+            return false
+        }
         do {
             try store.writeEntry(name: name, content: content, backend: engine)
             let file = "\(name).\(format == .passage ? "age" : "gpg")"
@@ -96,8 +102,10 @@ final class AppModel: ObservableObject {
             try? git?.commitPaths(paths: [file], message: message)
             PasskeyIndex.updateEntry(name, content: content, format: format)
             refresh()
+            return true
         } catch {
             lastError = error.ponyMessage
+            return false
         }
     }
 
