@@ -77,10 +77,12 @@ Xcode project.
 
 passage stores run on AgePonyCore (pure-Swift age v1). pass stores run on
 NorseHorsePGPCore (Cv25519 v4 and X25519/Ed25519 v6 keys in software).
-RSA-keyed stores need the smartcard path, which is not implemented yet;
-software RSA decrypt is deliberately absent from the core. DEBUG builds
-fall back to a byte-flip stand-in engine only when a real engine cannot
-load; release builds trap instead.
+Since 2.1, anything NorseHorsePGPCore can't read (RSA and NIST-curve keys,
+GnuPG's AEAD/OCB packets, secret-subkeys-only exports) falls back to
+rpgp, compiled into the core with its `pgp-engine` feature, the same
+backend PassPony Desktop uses. With no usable key, the engine seam returns
+one that throws "no usable key", in every build; DEBUG builds use a
+byte-flip stand-in only for passage on a simulator without an identity.
 
 The SSH key for git remotes (2.0) lives in the Keychain, this device
 only, and is read per sync; the core hands it to libssh2 from memory.

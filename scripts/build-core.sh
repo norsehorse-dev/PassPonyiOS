@@ -23,9 +23,14 @@ pushd "$CORE" >/dev/null
 # rust-toolchain.toml, not the default toolchain.
 rustup target add aarch64-apple-ios aarch64-apple-ios-sim
 
-cargo build --release -p pass-ffi
-cargo build --release -p pass-ffi --target aarch64-apple-ios
-cargo build --release -p pass-ffi --target aarch64-apple-ios-sim
+# pgp-engine: the rpgp OpenPGP engine for pass stores (RSA, NIST curves,
+# GnuPG AEAD), iOS only since 2.1. The host build needs it too, because
+# the Swift bindings are generated from the host library.
+FEATURES="pgp-engine"
+
+cargo build --release -p pass-ffi --features "$FEATURES"
+cargo build --release -p pass-ffi --features "$FEATURES" --target aarch64-apple-ios
+cargo build --release -p pass-ffi --features "$FEATURES" --target aarch64-apple-ios-sim
 
 # The core pins its target dir in .cargo/config.toml (a fixed absolute
 # path, for reproducible builds), so the artifacts are not under
@@ -38,7 +43,7 @@ HOST_DYLIB="$TARGET_DIR/release/libpass_ffi.dylib"
 [[ -f "$HOST_DYLIB" ]] || HOST_DYLIB="$TARGET_DIR/release/libpass_ffi.so"
 
 rm -rf /tmp/passpony-bindings
-cargo run -q --release -p pass-ffi --features cli --bin uniffi-bindgen -- \
+cargo run -q --release -p pass-ffi --features "cli,$FEATURES" --bin uniffi-bindgen -- \
   generate --library "$HOST_DYLIB" --language swift \
   --out-dir /tmp/passpony-bindings --no-format
 
