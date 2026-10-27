@@ -2,4 +2,6 @@ PassPony 2.1
 
 Chaves RSA: cofres pass criptografados com chaves RSA agora abrem no iPhone, e as novas entradas também são salvas neles. Chaves protegidas por frase secreta, chaves exportadas apenas com suas subchaves e entradas gravadas por versões recentes do GnuPG também funcionam.
 
+Design: um visual mais simples no laranja do PassPony, menus no lugar de controles segmentados apertados e mensagens claras quando um cofre não pode ser aberto ou algo não pode ser salvo.
+
 Correções: escolher o formato pass (OpenPGP) antes de importar uma chave não faz mais o app travar. Inicializar cofre agora lista as chaves RSA em vez de dizer que nenhuma chave foi importada. Adicionar ou editar uma entrada não fecha mais a tela quando o salvamento falha. Ela continua aberta e mostra o motivo.

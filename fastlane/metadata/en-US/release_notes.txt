@@ -2,4 +2,6 @@ PassPony 2.1
 
 RSA keys: pass stores encrypted to RSA keys now open on iPhone, and new entries are saved to them too. Passphrase-protected keys, keys exported with only their subkeys, and entries written by recent GnuPG versions also work.
 
+Design: a plainer look in PassPony orange, menus in place of cramped segmented controls, and clear messages when a store can't be opened or something can't be saved.
+
 Fixes: choosing the pass (OpenPGP) format before importing a key no longer crashes the app. Initialize store now lists RSA keys instead of saying no key has been imported. Adding or editing an entry no longer closes the screen when the save fails. It stays open and says why.

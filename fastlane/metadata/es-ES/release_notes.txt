@@ -2,4 +2,6 @@ PassPony 2.1
 
 Claves RSA: los almacenes de pass cifrados con claves RSA ahora se abren en el iPhone, y las entradas nuevas también se guardan en ellos. También funcionan las claves protegidas con frase de contraseña, las claves exportadas solo con sus subclaves y las entradas escritas por versiones recientes de GnuPG.
 
+Diseño: un aspecto más sencillo en el naranja de PassPony, menús en lugar de controles segmentados apretados y mensajes claros cuando un almacén no se puede abrir o algo no se puede guardar.
+
 Correcciones: elegir el formato pass (OpenPGP) antes de importar una clave ya no hace que la app se cierre inesperadamente. «Inicializar almacén» ahora muestra las claves RSA en lugar de decir que no se ha importado ninguna clave. Al añadir o editar una entrada, la pantalla ya no se cierra si falla el guardado. Se queda abierta y te explica el motivo.

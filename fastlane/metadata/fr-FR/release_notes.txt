@@ -2,4 +2,6 @@ PassPony 2.1
 
 Clés RSA : les coffres pass chiffrés avec des clés RSA s'ouvrent désormais sur iPhone, et les nouvelles entrées y sont aussi enregistrées. Les clés protégées par une phrase secrète, les clés exportées avec leurs seules sous-clés et les entrées écrites par les versions récentes de GnuPG fonctionnent également.
 
+Design : un aspect plus sobre dans l'orange de PassPony, des menus à la place des contrôles segmentés trop serrés et des messages clairs lorsqu'un coffre ne peut pas être ouvert ou qu'un élément ne peut pas être enregistré.
+
 Corrections : choisir le format pass (OpenPGP) avant d'importer une clé ne fait plus planter l'application. « Initialiser le coffre » affiche maintenant les clés RSA au lieu d'indiquer qu'aucune clé n'a été importée. L'ajout ou la modification d'une entrée ne ferme plus l'écran quand l'enregistrement échoue. Il reste ouvert et vous indique pourquoi.
