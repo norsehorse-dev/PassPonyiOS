@@ -74,6 +74,22 @@ platform :ios do
     )
   end
 
+  desc "Upload the listing text only (What's New, promotional text and the rest of fastlane/metadata), every locale; screenshots and binary untouched. Usage: fastlane text version:2.1.0"
+  lane :text do |options|
+    version = options[:version] || UI.user_error!("pass version:, e.g. fastlane text version:2.1.0")
+    asc_api_key
+    deliver(
+      app_version: version,
+      skip_binary_upload: true,
+      skip_screenshots: true,
+      skip_metadata: false,
+      submit_for_review: false,
+      force: true,
+      run_precheck_before_submit: false,
+      precheck_include_in_app_purchases: false
+    )
+  end
+
   desc "Delete EVERY screenshot from the editable App Store version, all locales (clears stuck or duplicated assets the ASC UI can't remove)"
   lane :nuke_screenshots do
     asc_api_key

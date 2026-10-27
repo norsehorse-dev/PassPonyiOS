@@ -1,1 +1,1 @@
-Gestor de senhas de código aberto para cofres pass e passage. Novo na 2.0: chaves de acesso, sincronização por SSH, backup das chaves e celulares com um cofre em comum.
+Gestor de senhas de código aberto para cofres pass e passage. Novo na 2.1: chaves RSA para cofres pass, visual mais limpo e mensagens mais claras quando algo falha.
