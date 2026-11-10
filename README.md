@@ -43,7 +43,13 @@ Prereqs: Xcode 16+, rustup, `brew install xcodegen`, PassPonyCore checked
 out (default assumed at `~/Apps/PassPonyCore`; override with
 `PASSPONY_CORE`).
 
+The public NorseHorsePGPCore checkout must be at commit
+`891670cd4806fdf26927c37f73fb1447b0d16887`. The app's public API and
+passphrase-error compatibility patch is applied by the first step below;
+set `PASSPONY_PGPCORE` if that checkout is not `../NorseHorsePGPCore`.
+
 ```
+bash scripts/prepare-pgpcore.sh
 bash scripts/build-core.sh
 xcodegen generate
 open PassPony.xcodeproj
@@ -143,10 +149,6 @@ passkey-index rebuilds are skipped in this mode because they would require
 unattended biometric prompts; passkeys changed on another device may not
 appear in AutoFill until the index is updated by another supported workflow.
 
-The standalone age-engine tests run on every push. The full iOS build check
-is currently manual: the published NorseHorsePGPCore revision used by CI
-does not expose `ParsedPublicKeyInfo`, which the existing app imports. This
-pre-existing dependency mismatch prevents an end-to-end app build until a
-compatible public library version is supplied or the OpenPGP integration is
-adapted and verified. Passing the age-only check is not an iOS build or a
-hardware verification.
+The standalone age-engine and OpenPGP conformance tests and the full iOS
+simulator build run in CI. Passing software tests does not verify Secure
+Enclave behavior or biometric prompts on a physical device.

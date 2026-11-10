@@ -5,6 +5,21 @@ on:
 permissions:
   contents: read
 jobs:
+  pgp-compat:
+    runs-on: macos-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch and patch the public OpenPGP dependency
+        run: |
+          git clone https://github.com/norsehorse-dev/NorseHorsePGPCore.git ../NorseHorsePGPCore
+          git -C ../NorseHorsePGPCore checkout 891670cd4806fdf26927c37f73fb1447b0d16887
+          bash scripts/prepare-pgpcore.sh
+      - name: Run OpenPGP conformance tests
+        run: |
+          DEVICE_ID=$(xcrun simctl list devices available -j | python3 -c 'import json,sys; d=json.load(sys.stdin)["devices"]; print(next(x["udid"] for runtime, devices in d.items() if "iOS" in runtime for x in devices if x["isAvailable"] and "iPhone" in x["name"]))')
+          cd ../NorseHorsePGPCore
+          xcodebuild test -scheme NorseHorsePGPCore -destination "platform=iOS Simulator,id=$DEVICE_ID" CODE_SIGNING_ALLOWED=NO
   age-interop:
     runs-on: macos-latest
     timeout-minutes: 15
@@ -20,9 +35,6 @@ jobs:
           PASSPONY_INTEROP_RECIPIENT: age1lnmeq4xp22lf40k2u0zx66m5jutwukhfzvvv2v2xk89984alxq7qy4h53d
         run: bash scripts/test-age-interop.sh
   ios:
-    # The published PGP library lacks APIs referenced by the app. Keep the
-    # full check available on demand while that mismatch is resolved.
-    if: ${{ github.event_name == 'workflow_dispatch' }}
     runs-on: macos-latest
     timeout-minutes: 45
     steps:
@@ -35,8 +47,14 @@ jobs:
           git -C ../AgePony checkout 788f596df6027ce4e629acd41d0f68ffea06074d
           git clone https://github.com/norsehorse-dev/NorseHorsePGPCore.git ../NorseHorsePGPCore
           git -C ../NorseHorsePGPCore checkout 891670cd4806fdf26927c37f73fb1447b0d16887
+          bash scripts/prepare-pgpcore.sh
       - name: Install XcodeGen
         run: brew install xcodegen
+      - name: Restore Rust build cache
+        uses: actions/cache/restore@v4
+        with:
+          path: /tmp/passponycore-cargo-target
+          key: passpony-core-${{ runner.os }}-${{ runner.arch }}-222fe1e-rust195-lto-off-v1
       - name: Build shared Rust framework
         env:
           PASSPONY_CORE: ${{ github.workspace }}/../PassPonyCore
@@ -45,6 +63,11 @@ jobs:
           CARGO_PROFILE_RELEASE_LTO: "false"
           CARGO_PROFILE_RELEASE_CODEGEN_UNITS: "16"
         run: bash scripts/build-core.sh
+      - name: Save Rust build cache
+        uses: actions/cache/save@v4
+        with:
+          path: /tmp/passponycore-cargo-target
+          key: passpony-core-${{ runner.os }}-${{ runner.arch }}-222fe1e-rust195-lto-off-v1
       - name: Generate Xcode project
         run: xcodegen generate
       - name: Test on an iOS simulator
