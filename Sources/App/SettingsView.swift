@@ -111,7 +111,7 @@ struct SettingsView: View {
                     } header: {
                         Text("Device-bound age key")
                     } footer: {
-                        Text("This key cannot be transferred to another device. Keep a separate recovery recipient. Existing entries need to be encrypted to the new recipient before this device can open them.")
+                        Text("This key cannot be transferred to another device. Keep a separate recovery recipient. Sync can add this public key to the root recipients file. Existing entries need to be encrypted to the new recipient before this device can open them.")
                     }
                     .confirmationDialog("Create a device-bound age key?", isPresented: $confirmingEnclave, titleVisibility: .visible) {
                         Button("Create key") {
