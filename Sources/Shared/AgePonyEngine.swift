@@ -62,7 +62,7 @@ final class AgePonyEngine: CryptoBackend {
                     targets = try identities.map { try X25519Recipient(publicKey: $0.publicKey) }
                 }
             } else {
-                targets = try recipients.map { recipient in
+                targets = try recipients.map { recipient -> AgeRecipient in
                     if TagRecipient.isTagRecipient(recipient) {
                         return try TagRecipient(ageRecipient: recipient)
                     }
