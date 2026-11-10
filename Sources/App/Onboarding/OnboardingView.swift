@@ -23,7 +23,7 @@ struct OnboardingView: View {
                 Spacer()
                 if !isLastPage {
                     Button {
-                        onComplete()
+                        finishOrChooseKey()
                     } label: {
                         Text("Skip")
                             .foregroundStyle(.secondary)
@@ -87,7 +87,7 @@ struct OnboardingView: View {
     private var advanceButton: some View {
         Button {
             if isLastPage {
-                onComplete()
+                finishOrChooseKey()
             } else {
                 advance()
             }
@@ -101,6 +101,17 @@ struct OnboardingView: View {
     }
 
     // MARK: - Actions
+
+    private func finishOrChooseKey() {
+        if StorePaths.currentFormat == .passage &&
+            !EnclaveAgeIdentity.isEnabled && !AgeIdentityStore.hasIdentities {
+            if let index = slides.firstIndex(where: { if case .ageKey = $0.action { return true }; return false }) {
+                withAnimation { currentPage = index }
+            }
+            return
+        }
+        onComplete()
+    }
 
     private func advance() {
         guard currentPage < slides.count - 1 else { return }

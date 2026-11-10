@@ -9,6 +9,7 @@ struct OnboardingSlide: Identifiable {
         case none
         case languagePicker
         case formatPicker
+        case ageKey
         case importStore
         case tryPass
         case biometric
@@ -53,6 +54,14 @@ enum OnboardingSlides {
                 title: "Choose your format",
                 body: "passage encrypts with modern age identities. pass encrypts with OpenPGP keys and works with existing pass stores.\n\nEach format keeps its own store, and you can switch anytime in Settings.",
                 action: .formatPicker
+            ),
+
+            OnboardingSlide(
+                icon: "lock.shield.fill",
+                iconTint: .accentColor,
+                title: "Protect this device's key",
+                body: "For passage stores, use a device-bound Secure Enclave key. It cannot be backed up or moved to another device. Add a separate recovery public key, or use another authorized device to regain access.",
+                action: .ageKey
             ),
 
             OnboardingSlide(

@@ -21,7 +21,11 @@ pushd "$CORE" >/dev/null
 
 # Run inside the core dir so rustup targets the toolchain pinned by its
 # rust-toolchain.toml, not the default toolchain.
-rustup target add aarch64-apple-ios aarch64-apple-ios-sim
+SIM_TARGET=aarch64-apple-ios-sim
+if [[ "$(uname -m)" == "x86_64" ]]; then
+  SIM_TARGET=x86_64-apple-ios
+fi
+rustup target add aarch64-apple-ios "$SIM_TARGET"
 
 # pgp-engine: the rpgp OpenPGP engine for pass stores (RSA, NIST curves,
 # GnuPG AEAD), iOS only since 2.1. The host build needs it too, because
@@ -30,7 +34,7 @@ FEATURES="pgp-engine"
 
 cargo build --release -p pass-ffi --features "$FEATURES"
 cargo build --release -p pass-ffi --features "$FEATURES" --target aarch64-apple-ios
-cargo build --release -p pass-ffi --features "$FEATURES" --target aarch64-apple-ios-sim
+cargo build --release -p pass-ffi --features "$FEATURES" --target "$SIM_TARGET"
 
 # The core pins its target dir in .cargo/config.toml (a fixed absolute
 # path, for reproducible builds), so the artifacts are not under
@@ -61,7 +65,7 @@ rm -rf "$OUT_VENDOR/PassFFI.xcframework"
 mkdir -p "$OUT_VENDOR"
 xcodebuild -create-xcframework \
   -library "$TARGET_DIR/aarch64-apple-ios/release/libpass_ffi.a" -headers "$HEADERS" \
-  -library "$TARGET_DIR/aarch64-apple-ios-sim/release/libpass_ffi.a" -headers "$HEADERS" \
+  -library "$TARGET_DIR/$SIM_TARGET/release/libpass_ffi.a" -headers "$HEADERS" \
   -output "$OUT_VENDOR/PassFFI.xcframework"
 
 echo "Done. Now: xcodegen generate && open PassPony.xcodeproj"

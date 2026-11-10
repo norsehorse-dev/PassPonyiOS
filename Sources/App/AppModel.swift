@@ -414,6 +414,9 @@ final class AppModel: ObservableObject {
     /// just became readable), and after a sync brings in changes.
     func rebuildPasskeyIndex() {
         let format = self.format
+        // Rebuilding decrypts every entry. Do not prompt for user presence
+        // in a background task or replace the index with partial results.
+        if format == .passage && EnclaveAgeIdentity.isEnabled { return }
         Task.detached(priority: .utility) {
             let root = StorePaths.storeRoot(for: format).path
             guard let store = try? PassStore.open(root: root, format: format) else { return }
