@@ -122,7 +122,7 @@ struct SettingsView: View {
                             }
                         }
                     } message: {
-                        Text("The new key becomes the active age identity. Existing software identities are retained but will not be used while this key is active.")
+                        Text("The new key becomes the active age identity. Existing software identities remain on this device and may still decrypt entries addressed to them. Review the store recipients and retain a separate recovery key.")
                     }
                     if !EnclaveAgeIdentity.isEnabled {
                     Section {

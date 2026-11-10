@@ -58,6 +58,12 @@ final class CredentialProviderViewController: ASCredentialProviderViewController
     override func provideCredentialWithoutUserInteraction(
         for credentialRequest: ASCredentialRequest
     ) {
+        // A Secure Enclave identity requires user presence for decryption.
+        // Ask iOS for the interactive extension rather than attempting a
+        // biometric prompt in its non-interactive callback.
+        if StorePaths.currentFormat == .passage && EnclaveAgeIdentity.isEnabled {
+            return cancel(.userInteractionRequired)
+        }
         if let passkeyRequest = credentialRequest as? ASPasskeyCredentialRequest {
             guard UnlockGate.isFresh else { return cancel(.userInteractionRequired) }
             switch passkeyAssertion(for: passkeyRequest) {

@@ -128,6 +128,8 @@ that phone; existing software identities are retained but are not used while
 it is active. Entries must be encrypted to the phone's recipient before the
 phone can read them. Always include an independent recovery recipient in the
 store, and verify it can decrypt before relying on the device-bound identity.
+Retained software identities can still decrypt entries addressed to them;
+this feature does not automatically remove their keys or recipients.
 No migration of an existing store happens automatically. Sync may add the
 phone's public recipient to the root recipients file as described above.
 
@@ -136,3 +138,7 @@ This feature uses the tagged-recipient APIs in AgePonyCore commit
 The gopass fixture in `Tests/SecureEnclaveAgeTests.swift` was created by
 version 1.17.4. Hardware and biometric behavior must also be checked on a
 real iPhone; the test identity uses a public dummy software key.
+AutoFill uses its interactive path for this identity. Automatic background
+passkey-index rebuilds are skipped in this mode because they would require
+unattended biometric prompts; passkeys changed on another device may not
+appear in AutoFill until the index is updated by another supported workflow.
