@@ -89,13 +89,14 @@ struct ReencryptView: View {
         let scope = subpath
         let engine = model.engine
         let format = model.format
+        let git = model.git
         Task.detached {
             do {
                 let rewritten = try store.reencryptSubtree(subpath: scope, backend: engine)
                 let ext = format == .passage ? "age" : "gpg"
                 let files = rewritten.map { "\($0).\(ext)" }
                 if !files.isEmpty {
-                    try? model.git?.commitPaths(
+                    try? git?.commitPaths(
                         paths: files,
                         message: commitMessageReencrypt(path: scope)
                     )
