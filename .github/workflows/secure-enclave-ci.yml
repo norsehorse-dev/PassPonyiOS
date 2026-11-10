@@ -15,6 +15,9 @@ jobs:
           git clone https://github.com/norsehorse-dev/AgePonyiOS.git ../AgePony
           git -C ../AgePony checkout 788f596df6027ce4e629acd41d0f68ffea06074d
       - name: Test the shared age engine against gopass fixture
+        env:
+          # Public recipient of a disposable local test key, not a user key.
+          PASSPONY_INTEROP_RECIPIENT: age1lnmeq4xp22lf40k2u0zx66m5jutwukhfzvvv2v2xk89984alxq7qy4h53d
         run: bash scripts/test-age-interop.sh
   ios:
     runs-on: macos-latest

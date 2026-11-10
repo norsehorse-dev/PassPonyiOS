@@ -34,4 +34,16 @@ final class SecureEnclaveAgeTests: XCTestCase {
         let engine = AgePonyEngine(enclaveIdentity: try TagIdentity.softwareClassic(scalar: scalar))
         XCTAssertThrowsError(try engine.encrypt(plaintext: Data("secret".utf8), recipients: ["age1invalid"]))
     }
+
+    func testExportForGopassWhenRequested() throws {
+        guard let recipient = ProcessInfo.processInfo.environment["PASSPONY_INTEROP_RECIPIENT"] else {
+            throw XCTSkip("External gopass fixture not configured")
+        }
+        var scalar = Data(repeating: 0, count: 32)
+        scalar[31] = 1
+        let engine = AgePonyEngine(enclaveIdentity: try TagIdentity.softwareClassic(scalar: scalar))
+        let tagged = "age1tag1qwe0kafsjrar4txm6heqnhpfuggzr0gvznz7fvygxrlq90u5mq2pysxtw6h"
+        let ciphertext = try engine.encrypt(plaintext: Data("swift-to-gopass-fixture\n".utf8), recipients: [tagged, recipient])
+        print("PASSPONY_INTEROP_CIPHERTEXT=\(ciphertext.base64EncodedString())")
+    }
 }
