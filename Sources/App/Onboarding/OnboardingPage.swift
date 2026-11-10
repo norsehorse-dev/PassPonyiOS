@@ -183,6 +183,7 @@ struct OnboardingPage: View {
                         do {
                             let previousKeys = DeviceKeys.ownKeys()
                             _ = try EnclaveAgeIdentity.create()
+                            keyReady = true
                             if let store = model.store {
                                 let existing = (try store.rootRecipients()) ?? ""
                                 let recipients = recipientsAdd(existing: existing, keys: previousKeys + DeviceKeys.ownKeys())
@@ -191,7 +192,6 @@ struct OnboardingPage: View {
                                     try? model.git?.commitPaths(paths: [DeviceKeys.recipientsFile], message: commitMessageRecipientsAdd())
                                 }
                             }
-                            keyReady = true
                             status = L("Secure Enclave key created.")
                         } catch { status = error.localizedDescription }
                     } label: {
