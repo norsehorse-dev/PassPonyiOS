@@ -42,6 +42,23 @@ final class SecureEnclaveAgeTests: XCTestCase {
         XCTAssertThrowsError(try oldEngine.decrypt(ciphertext: newEntry))
     }
 
+    func testRejectedEnclaveDoesNotFallBackToSoftware() throws {
+        struct DeniedAgreement: P256KeyAgreement {
+            struct Denied: Error {}
+            func sharedX(peerUncompressed: Data) throws -> Data { throw Denied() }
+        }
+        var scalar = Data(repeating: 0, count: 32)
+        scalar[31] = 1
+        let hardware = try TagIdentity.softwareClassic(scalar: scalar)
+        let denied = try TagIdentity.classic(publicKey: hardware.recipient.publicKey, p256: DeniedAgreement())
+        let software = X25519Identity.generate()
+        let engine = AgePonyEngine(enclaveIdentity: denied, softwareIdentities: [software])
+        let addressedToBoth = try engine.encrypt(plaintext: Data("secret".utf8), recipients: [hardware.recipient.toBech32(), software.ageRecipient])
+        XCTAssertThrowsError(try engine.decrypt(ciphertext: addressedToBoth))
+        let softwareOnly = try AgePonyEngine(identities: [software]).encrypt(plaintext: Data("old".utf8), recipients: [])
+        XCTAssertEqual(try engine.decrypt(ciphertext: softwareOnly), Data("old".utf8))
+    }
+
     func testRejectsInvalidRecipient() throws {
         var scalar = Data(repeating: 0, count: 32)
         scalar[31] = 1

@@ -81,9 +81,17 @@ final class AgePonyEngine: CryptoBackend {
     func decrypt(ciphertext: Data) throws -> Data {
         guard !identities.isEmpty || enclaveIdentity != nil else { throw CryptoError.NoUsableKey }
         do {
-            var keys: [AgeIdentity] = identities.map { $0 as AgeIdentity }
-            if let enclaveIdentity { keys.append(enclaveIdentity) }
-            return try Age.decrypt(ciphertext: ciphertext, identities: keys)
+            if let enclaveIdentity {
+                do {
+                    return try Age.decrypt(ciphertext: ciphertext, identities: [enclaveIdentity])
+                } catch AgeError.noMatchingIdentity {
+                    // Only older entries not addressed to this device may use
+                    // a retained software identity. A denied hardware prompt
+                    // or any other hardware error must never bypass the enclave.
+                    guard !identities.isEmpty else { throw AgeError.noMatchingIdentity }
+                }
+            }
+            return try Age.decrypt(ciphertext: ciphertext, identities: identities.map { $0 as AgeIdentity })
         } catch {
             throw CryptoError.DecryptionFailed
         }
