@@ -111,12 +111,21 @@ struct SettingsView: View {
                     } header: {
                         Text("Device-bound age key")
                     } footer: {
-                        Text("This key cannot be transferred to another device. Keep a separate recovery recipient. Sync can add this public key to the root recipients file. Existing entries need to be encrypted to the new recipient before this device can open them.")
+                        Text("This key cannot be backed up or transferred. Keep a separate recovery recipient. Existing software keys remain usable until you safely re-encrypt older entries.")
                     }
                     .confirmationDialog("Create a device-bound age key?", isPresented: $confirmingEnclave, titleVisibility: .visible) {
                         Button("Create key") {
                             do {
+                                let previousKeys = DeviceKeys.ownKeys()
                                 enclaveRecipient = try EnclaveAgeIdentity.create()
+                                if let store = model.store {
+                                    let existing = (try store.rootRecipients()) ?? ""
+                                    let edit = recipientsAdd(existing: existing, keys: previousKeys + DeviceKeys.ownKeys())
+                                    if edit.changed > 0 {
+                                        try store.setRootRecipients(text: edit.text)
+                                        try? model.git?.commitPaths(paths: [DeviceKeys.recipientsFile], message: commitMessageRecipientsAdd())
+                                    }
+                                }
                             } catch {
                                 message = error.localizedDescription
                             }
@@ -124,7 +133,6 @@ struct SettingsView: View {
                     } message: {
                         Text("The new key becomes the active age identity. Existing software identities remain on this device and may still decrypt entries addressed to them. Review the store recipients and retain a separate recovery key.")
                     }
-                    if !EnclaveAgeIdentity.isEnabled {
                     Section {
                         (agePresent
                             ? Text("Identities file present.")
@@ -147,7 +155,6 @@ struct SettingsView: View {
                         }
                     } header: {
                         Text("Age identities")
-                    }
                     }
                 }
 

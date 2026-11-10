@@ -1,4 +1,5 @@
 import SwiftUI
+import AgePonyCore
 import AuthenticationServices
 import LocalAuthentication
 import UniformTypeIdentifiers
@@ -23,6 +24,8 @@ struct OnboardingPage: View {
     @State private var entryCountBeforeAdd = 0
     @State private var autofillEnabled = false
     @State private var status: String?
+    @State private var recoveryRecipient = ""
+    @State private var keyReady = EnclaveAgeIdentity.isEnabled || AgeIdentityStore.hasIdentities
 
     var body: some View {
         // Center-or-scroll (the PGPony fix for tall language lists): the
@@ -96,6 +99,8 @@ struct OnboardingPage: View {
             languagePicker
         case .formatPicker:
             formatPicker
+        case .ageKey:
+            ageKeyArea
         case .importStore:
             importArea
         case .tryPass:
@@ -162,6 +167,83 @@ struct OnboardingPage: View {
         }
     }
 
+    // MARK: - Device identity and optional off-device recovery
+
+    @ViewBuilder
+    private var ageKeyArea: some View {
+        if model.format != .passage {
+            Text("OpenPGP keys are set up on the next screen.").font(.footnote)
+        } else {
+            VStack(spacing: 12) {
+                if EnclaveAgeIdentity.isEnabled {
+                    Label("Secure Enclave key ready", systemImage: "checkmark.circle.fill")
+                        .foregroundStyle(.green)
+                } else {
+                    Button {
+                        do {
+                            let previousKeys = DeviceKeys.ownKeys()
+                            _ = try EnclaveAgeIdentity.create()
+                            if let store = model.store {
+                                let existing = (try store.rootRecipients()) ?? ""
+                                let recipients = recipientsAdd(existing: existing, keys: previousKeys + DeviceKeys.ownKeys())
+                                if recipients.changed > 0 {
+                                    try store.setRootRecipients(text: recipients.text)
+                                    try? model.git?.commitPaths(paths: [DeviceKeys.recipientsFile], message: commitMessageRecipientsAdd())
+                                }
+                            }
+                            keyReady = true
+                            status = L("Secure Enclave key created.")
+                        } catch { status = error.localizedDescription }
+                    } label: {
+                        Label("Use Secure Enclave", systemImage: "lock.shield")
+                            .frame(maxWidth: .infinity)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    if !AgeIdentityStore.hasIdentities {
+                        Button("Use a software key instead") {
+                            do {
+                                try AgeIdentityStore.createSoftwareIdentity()
+                                keyReady = true
+                                status = L("Software key created. Back it up separately.")
+                            } catch { status = error.localizedDescription }
+                        }.buttonStyle(.bordered)
+                    } else {
+                        Text("Your existing software key stays available for older entries.").font(.footnote)
+                    }
+                }
+                if keyReady {
+                    TextField("Optional recovery public key (age1…)", text: $recoveryRecipient)
+                        .textInputAutocapitalization(.never)
+                        .autocorrectionDisabled()
+                        .textFieldStyle(.roundedBorder)
+                    Button("Add recovery public key") { addRecoveryRecipient() }
+                        .disabled(recoveryRecipient.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                    Text("Only the public recipient is stored here. Keep its private key elsewhere.")
+                        .font(.footnote).foregroundStyle(.secondary)
+                }
+            }
+        }
+    }
+
+    private func addRecoveryRecipient() {
+        do {
+            let key = recoveryRecipient.trimmingCharacters(in: .whitespacesAndNewlines)
+            if TagRecipient.isTagRecipient(key) { _ = try TagRecipient(ageRecipient: key) }
+            else { _ = try X25519Recipient(ageRecipient: key) }
+            guard let store = model.store else { throw StoreError.NoStore }
+            let existing = (try store.rootRecipients()) ?? ""
+            let edit = recipientsAdd(existing: existing, keys: DeviceKeys.ownKeys() + [key])
+            if edit.changed > 0 {
+                try store.setRootRecipients(text: edit.text)
+                try? model.git?.commitPaths(paths: [DeviceKeys.recipientsFile], message: commitMessageRecipientsAdd())
+            }
+            recoveryRecipient = ""
+            status = L("Recovery public key added.")
+        } catch {
+            status = L("Could not add that recovery public key. Check it and try again.")
+        }
+    }
+
     // MARK: - Import
 
     @ViewBuilder
@@ -180,7 +262,7 @@ struct OnboardingPage: View {
             } else {
                 existingIndicator
             }
-            if format == .passage {
+            if model.format == .passage {
                 Button {
                     importingAgeIdentities = true
                 } label: {
@@ -250,6 +332,7 @@ struct OnboardingPage: View {
                     .frame(maxWidth: .infinity)
             }
             .buttonStyle(.borderedProminent)
+            .disabled(model.format == .passage && !EnclaveAgeIdentity.isEnabled && !AgeIdentityStore.hasIdentities)
         } else {
             existingIndicator
         }

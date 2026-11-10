@@ -46,7 +46,7 @@ struct BackupView: View {
                 (backedUp ? Text("Your keys are backed up.") : Text("Your keys aren't backed up yet."))
                     .foregroundStyle(backedUp ? Color.secondary : Color.red)
             } footer: {
-                Text("Sync copies your encrypted entries, not your keys. A new phone can clone your store but can't read it without a key backup.")
+                Text("Sync copies encrypted entries, not your private keys. A Secure Enclave key cannot be backed up or transferred; keep another authorized device or a separate recovery key.")
             }
 
             Section {
@@ -103,7 +103,7 @@ struct BackupView: View {
             } header: {
                 Text("Encrypted backup")
             } footer: {
-                Text("Your age identities, any imported PGP keys and the SSH key, in one .passpony file locked with a recovery code. Keep the file wherever you like. Without the code it can't be opened.")
+                Text("Your software age identities, imported PGP keys and SSH key are saved in one encrypted file. Secure Enclave keys cannot be included. Keep the recovery code and file safe.")
             }
 
             if hasAgeIdentities {

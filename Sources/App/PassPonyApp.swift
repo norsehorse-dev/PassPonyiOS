@@ -14,8 +14,12 @@ struct PassPonyApp: App {
         // the tour, the key backup banner and the unlock prompt (the
         // simulator may have a passcode set) so the UI test lands straight
         // on the demo store. DEBUG builds only.
+        if ProcessInfo.processInfo.arguments.contains("-showOnboardingForTesting") {
+            UserDefaults.standard.set(false, forKey: "passpony.onboardingCompleted")
+        }
         if ProcessInfo.processInfo.arguments.contains("-seedDemoStore") {
             UserDefaults.standard.set(true, forKey: "passpony.onboardingCompleted")
+            try? AgeIdentityStore.createSoftwareIdentity()
             KeyBackupState.markBackedUp()
             UnlockGate.markUnlocked()
         }

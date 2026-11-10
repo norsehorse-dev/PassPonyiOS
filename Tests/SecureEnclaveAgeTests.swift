@@ -28,6 +28,20 @@ final class SecureEnclaveAgeTests: XCTestCase {
         XCTAssertEqual(try Age.decrypt(ciphertext: ciphertext, identities: [software]), message)
     }
 
+    func testEnablingEnclavePreservesAccessToSoftwareEntries() throws {
+        var scalar = Data(repeating: 0, count: 32)
+        scalar[31] = 1
+        let hardware = try TagIdentity.softwareClassic(scalar: scalar)
+        let software = X25519Identity.generate()
+        let oldEngine = AgePonyEngine(identities: [software])
+        let combined = AgePonyEngine(enclaveIdentity: hardware, softwareIdentities: [software])
+        let oldEntry = try oldEngine.encrypt(plaintext: Data("existing".utf8), recipients: [])
+        XCTAssertEqual(try combined.decrypt(ciphertext: oldEntry), Data("existing".utf8))
+        let newEntry = try combined.encrypt(plaintext: Data("new".utf8), recipients: [])
+        XCTAssertEqual(try combined.decrypt(ciphertext: newEntry), Data("new".utf8))
+        XCTAssertThrowsError(try oldEngine.decrypt(ciphertext: newEntry))
+    }
+
     func testRejectsInvalidRecipient() throws {
         var scalar = Data(repeating: 0, count: 32)
         scalar[31] = 1

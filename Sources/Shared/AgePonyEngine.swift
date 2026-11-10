@@ -18,8 +18,8 @@ final class AgePonyEngine: CryptoBackend {
         self.identities = identities
     }
 
-    init(enclaveIdentity: TagIdentity) {
-        self.identities = []
+    init(enclaveIdentity: TagIdentity, softwareIdentities: [X25519Identity] = []) {
+        self.identities = softwareIdentities
         self.enclaveIdentity = enclaveIdentity
     }
 
@@ -81,12 +81,8 @@ final class AgePonyEngine: CryptoBackend {
     func decrypt(ciphertext: Data) throws -> Data {
         guard !identities.isEmpty || enclaveIdentity != nil else { throw CryptoError.NoUsableKey }
         do {
-            let keys: [AgeIdentity]
-            if let enclaveIdentity {
-                keys = [enclaveIdentity]
-            } else {
-                keys = identities.map { $0 as AgeIdentity }
-            }
+            var keys: [AgeIdentity] = identities.map { $0 as AgeIdentity }
+            if let enclaveIdentity { keys.append(enclaveIdentity) }
             return try Age.decrypt(ciphertext: ciphertext, identities: keys)
         } catch {
             throw CryptoError.DecryptionFailed
@@ -106,27 +102,34 @@ enum AgeIdentityStore {
     /// allowed to exhaust the phone.
     static let maxScryptWorkFactor = 20
 
-    /// Load the engine from the identities file; on first run, generate one
-    /// identity and persist it (file protection on, 0600) so the store works
-    /// out of the box. Since 2.0 the user can back it up (Keys backup) and
-    /// import more (identities are appended, never replaced).
-    static func loadOrCreateEngine() throws -> AgePonyEngine {
+    /// Load existing identities without creating private keys as a side effect.
+    static func loadEngine() throws -> AgePonyEngine {
         if EnclaveAgeIdentity.isEnabled {
-            return try AgePonyEngine(enclaveIdentity: EnclaveAgeIdentity.load())
+            let software = (try? String(contentsOf: identitiesFile, encoding: .utf8)) ?? ""
+            let ids = parseIdentities(software)
+            return try AgePonyEngine(enclaveIdentity: EnclaveAgeIdentity.load(), softwareIdentities: ids)
         }
-        let url = identitiesFile
-        if !FileManager.default.fileExists(atPath: url.path) {
-            let identity = X25519Identity.generate()
-            let text = """
-            # created by PassPony
-            # public key: \(identity.ageRecipient)
-            \(identity.ageIdentityString)
+        return try AgePonyEngine(identitiesFile: identitiesFile)
+    }
 
-            """
-            try writeAtomically(text)
-            KeyBackupState.markChanged()
-        }
-        return try AgePonyEngine(identitiesFile: url)
+    static func createSoftwareIdentity() throws {
+        guard !EnclaveAgeIdentity.isEnabled, !hasIdentities else { return }
+        let identity = X25519Identity.generate()
+        let text = """
+        # created by PassPony
+        # public key: \(identity.ageRecipient)
+        \(identity.ageIdentityString)
+
+        """
+        try writeAtomically(text)
+        KeyBackupState.markChanged()
+    }
+
+    private static func parseIdentities(_ text: String) -> [X25519Identity] {
+        text.split(whereSeparator: \.isNewline)
+            .map { $0.trimmingCharacters(in: .whitespaces) }
+            .filter { !$0.isEmpty && !$0.hasPrefix("#") }
+            .compactMap { try? X25519Identity(ageIdentity: $0) }
     }
 
     static var hasIdentities: Bool {

@@ -9,17 +9,13 @@ enum EngineProvider {
     static func engine(for format: StoreFormat) -> CryptoBackend {
         switch format {
         case .passage:
-            if let engine = try? AgeIdentityStore.loadOrCreateEngine() {
+            if let engine = try? AgeIdentityStore.loadEngine() {
                 return engine
             }
             if EnclaveAgeIdentity.isEnabled {
                 return MissingKeyEngine()
             }
-            #if DEBUG
-            return DevFlipEngine()
-            #else
             return MissingKeyEngine()
-            #endif
         case .pass:
             PGPKeyStore.ensureDirectory()
             if PGPKeyStore.hasKeys,
