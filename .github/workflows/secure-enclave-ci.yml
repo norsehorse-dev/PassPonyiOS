@@ -5,6 +5,17 @@ on:
 permissions:
   contents: read
 jobs:
+  age-interop:
+    runs-on: macos-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch pinned age library
+        run: |
+          git clone https://github.com/norsehorse-dev/AgePonyiOS.git ../AgePony
+          git -C ../AgePony checkout 788f596df6027ce4e629acd41d0f68ffea06074d
+      - name: Test the shared age engine against gopass fixture
+        run: bash scripts/test-age-interop.sh
   ios:
     runs-on: macos-latest
     timeout-minutes: 45
