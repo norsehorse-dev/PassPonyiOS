@@ -91,6 +91,7 @@ targets:
       - package: NorseHorsePGPCore
     settings:
       base:
+        TARGETED_DEVICE_FAMILY: "1"
         PRODUCT_BUNDLE_IDENTIFIER: dev.norsehorse.passpony
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
@@ -100,6 +101,8 @@ targets:
     info:
       path: Sources/App/Info.plist
       properties:
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         CFBundleDisplayName: PassPony
         UILaunchScreen: {}
         # NFC smartcard scaffolding removed for the first store submission;
@@ -135,11 +138,14 @@ targets:
       - package: NorseHorsePGPCore
     settings:
       base:
+        TARGETED_DEVICE_FAMILY: "1"
         PRODUCT_BUNDLE_IDENTIFIER: dev.norsehorse.passpony.autofill
         CODE_SIGN_ENTITLEMENTS: Sources/Autofill/PassPonyAutofill.entitlements
     info:
       path: Sources/Autofill/Info.plist
       properties:
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         CFBundleDisplayName: PassPony Autofill
         NSFaceIDUsageDescription: >-
           Face ID unlocks your password store for autofill.
