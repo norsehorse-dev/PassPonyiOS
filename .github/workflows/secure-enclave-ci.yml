@@ -6,7 +6,7 @@ permissions:
   contents: read
 jobs:
   pgp-compat:
-    runs-on: macos-latest
+    runs-on: macos-15-intel
     timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
@@ -35,7 +35,7 @@ jobs:
           PASSPONY_INTEROP_RECIPIENT: age1lnmeq4xp22lf40k2u0zx66m5jutwukhfzvvv2v2xk89984alxq7qy4h53d
         run: bash scripts/test-age-interop.sh
   ios:
-    runs-on: macos-latest
+    runs-on: macos-15-intel
     timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
