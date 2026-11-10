@@ -21,6 +21,8 @@ struct SettingsView: View {
     @State private var importingAge = false
     @State private var ageHints: [String] = []
     @State private var agePresent = false
+    @State private var enclaveRecipient: String?
+    @State private var confirmingEnclave = false
 
     var body: some View {
         NavigationStack {
@@ -97,6 +99,33 @@ struct SettingsView: View {
 
                 if format == .passage {
                     Section {
+                        if let enclaveRecipient {
+                            Text("Secure Enclave identity is active on this device.")
+                            Text(verbatim: enclaveRecipient).font(.caption.monospaced()).textSelection(.enabled)
+                            ShareLink(item: enclaveRecipient) { Label("Share public recipient", systemImage: "square.and.arrow.up") }
+                        } else if EnclaveAgeIdentity.isEnabled {
+                            Text("The Secure Enclave identity could not be loaded. Restore access to this device's key before continuing.")
+                        } else {
+                            Button("Create Secure Enclave identity…") { confirmingEnclave = true }
+                        }
+                    } header: {
+                        Text("Device-bound age key")
+                    } footer: {
+                        Text("This key cannot be transferred to another device. Keep a separate recovery recipient. Existing entries need to be encrypted to the new recipient before this device can open them.")
+                    }
+                    .confirmationDialog("Create a device-bound age key?", isPresented: $confirmingEnclave, titleVisibility: .visible) {
+                        Button("Create key") {
+                            do {
+                                enclaveRecipient = try EnclaveAgeIdentity.create()
+                            } catch {
+                                message = error.localizedDescription
+                            }
+                        }
+                    } message: {
+                        Text("The new key becomes the active age identity. Existing software identities are retained but will not be used while this key is active.")
+                    }
+                    if !EnclaveAgeIdentity.isEnabled {
+                    Section {
                         (agePresent
                             ? Text("Identities file present.")
                             : Text("No identities imported. A passage store needs the age identity it was encrypted to."))
@@ -118,6 +147,7 @@ struct SettingsView: View {
                         }
                     } header: {
                         Text("Age identities")
+                    }
                     }
                 }
 
@@ -362,6 +392,7 @@ struct SettingsView: View {
         lockedKeys = PGPKeyStore.lockedKeyFiles
         agePresent = AgeIdentityStore.hasIdentities
         ageHints = AgeIdentityStore.publicKeyHints()
+        enclaveRecipient = EnclaveAgeIdentity.isEnabled ? try? EnclaveAgeIdentity.load().recipient.toBech32() : nil
     }
 
     private func unlockKeys() {

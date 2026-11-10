@@ -12,6 +12,9 @@ enum EngineProvider {
             if let engine = try? AgeIdentityStore.loadOrCreateEngine() {
                 return engine
             }
+            if EnclaveAgeIdentity.isEnabled {
+                return MissingKeyEngine()
+            }
             #if DEBUG
             return DevFlipEngine()
             #else

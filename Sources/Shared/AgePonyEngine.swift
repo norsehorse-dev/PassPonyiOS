@@ -11,9 +11,15 @@ import Foundation
 
 final class AgePonyEngine: CryptoBackend {
     private let identities: [X25519Identity]
+    private var enclaveIdentity: TagIdentity?
 
     init(identities: [X25519Identity]) {
         self.identities = identities
+    }
+
+    init(enclaveIdentity: TagIdentity) {
+        self.identities = []
+        self.enclaveIdentity = enclaveIdentity
     }
 
     convenience init(identitiesFile url: URL) throws {
@@ -44,13 +50,25 @@ final class AgePonyEngine: CryptoBackend {
     /// anywhere up the tree) — in that case we encrypt to our own public
     /// keys, exactly as `age -e -i identities` does.
     func encrypt(plaintext: Data, recipients: [String]) throws -> Data {
-        guard !identities.isEmpty || !recipients.isEmpty else {
+        guard !identities.isEmpty || enclaveIdentity != nil || !recipients.isEmpty else {
             throw CryptoError.NoUsableKey
         }
         do {
-            let targets: [AgeRecipient] = recipients.isEmpty
-                ? try identities.map { try X25519Recipient(publicKey: $0.publicKey) }
-                : try recipients.map { try X25519Recipient(ageRecipient: $0) }
+            let targets: [AgeRecipient]
+            if recipients.isEmpty {
+                if let enclaveIdentity {
+                    targets = [enclaveIdentity.recipient]
+                } else {
+                    targets = try identities.map { try X25519Recipient(publicKey: $0.publicKey) }
+                }
+            } else {
+                targets = try recipients.map { recipient in
+                    if TagRecipient.isTagRecipient(recipient) {
+                        return try TagRecipient(ageRecipient: recipient)
+                    }
+                    return try X25519Recipient(ageRecipient: recipient)
+                }
+            }
             return try Age.encrypt(plaintext: plaintext, to: targets)
         } catch let error as CryptoError {
             throw error
@@ -60,9 +78,15 @@ final class AgePonyEngine: CryptoBackend {
     }
 
     func decrypt(ciphertext: Data) throws -> Data {
-        guard !identities.isEmpty else { throw CryptoError.NoUsableKey }
+        guard !identities.isEmpty || enclaveIdentity != nil else { throw CryptoError.NoUsableKey }
         do {
-            return try Age.decrypt(ciphertext: ciphertext, identities: identities)
+            let keys: [AgeIdentity]
+            if let enclaveIdentity {
+                keys = [enclaveIdentity]
+            } else {
+                keys = identities.map { $0 as AgeIdentity }
+            }
+            return try Age.decrypt(ciphertext: ciphertext, identities: keys)
         } catch {
             throw CryptoError.DecryptionFailed
         }
@@ -86,6 +110,9 @@ enum AgeIdentityStore {
     /// out of the box. Since 2.0 the user can back it up (Keys backup) and
     /// import more (identities are appended, never replaced).
     static func loadOrCreateEngine() throws -> AgePonyEngine {
+        if EnclaveAgeIdentity.isEnabled {
+            return try AgePonyEngine(enclaveIdentity: EnclaveAgeIdentity.load())
+        }
         let url = identitiesFile
         if !FileManager.default.fileExists(atPath: url.path) {
             let identity = X25519Identity.generate()

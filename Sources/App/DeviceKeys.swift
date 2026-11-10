@@ -38,6 +38,9 @@ enum DeviceKeys {
 
     /// This device's own `age1...` keys, from its identities file.
     static func ownKeys() -> [String] {
+        if EnclaveAgeIdentity.isEnabled {
+            return (try? EnclaveAgeIdentity.load().recipient.toBech32()).map { [$0] } ?? []
+        }
         guard let text = AgeIdentityStore.exportText() else { return [] }
         var out: [String] = []
         for line in text.split(whereSeparator: \.isNewline) {

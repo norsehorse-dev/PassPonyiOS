@@ -1,0 +1,34 @@
+name: Secure Enclave age compatibility
+on:
+  push:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  ios:
+    runs-on: macos-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch pinned dependencies
+        run: |
+          git clone https://github.com/norsehorse-dev/PassPonyCore.git ../PassPonyCore
+          git -C ../PassPonyCore checkout 222fe1eb59eaa50dd45b5be2d2770be3121a132b
+          git clone https://github.com/norsehorse-dev/AgePonyiOS.git ../AgePony
+          git -C ../AgePony checkout 788f596df6027ce4e629acd41d0f68ffea06074d
+          git clone https://github.com/norsehorse-dev/NorseHorsePGPCore.git ../NorseHorsePGPCore
+          git -C ../NorseHorsePGPCore checkout 891670cd4806fdf26927c37f73fb1447b0d16887
+      - name: Install XcodeGen
+        run: brew install xcodegen
+      - name: Build shared Rust framework
+        env:
+          PASSPONY_CORE: ${{ github.workspace }}/../PassPonyCore
+        run: bash scripts/build-core.sh
+      - name: Generate Xcode project
+        run: xcodegen generate
+      - name: Test on an iOS simulator
+        run: |
+          xcodebuild -version
+          xcrun simctl list devices available
+          DEVICE_ID=$(xcrun simctl list devices available -j | python3 -c 'import json,sys; d=json.load(sys.stdin)["devices"]; print(next(x["udid"] for runtime, devices in d.items() if "iOS" in runtime for x in devices if x["isAvailable"] and "iPhone" in x["name"]))')
+          xcodebuild test -project PassPony.xcodeproj -scheme PassPony -destination "platform=iOS Simulator,id=$DEVICE_ID" CODE_SIGNING_ALLOWED=NO

@@ -34,6 +34,10 @@ schemes:
     run:
       config: Debug
       executable: PassPony
+    test:
+      config: Debug
+      targets:
+        - PassPonyTests
     archive:
       config: Release
   PassPonyAutofill:
@@ -57,6 +61,18 @@ schemes:
         - PassPonyUITests
 
 targets:
+  PassPonyTests:
+    type: bundle.unit-test
+    platform: iOS
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        PRODUCT_BUNDLE_IDENTIFIER: dev.norsehorse.passpony.tests
+    sources:
+      - Tests
+    dependencies:
+      - target: PassPony
+      - package: AgePonyCore
   PassPony:
     type: application
     platform: iOS

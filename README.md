@@ -114,3 +114,25 @@ re-encrypting the existing entries to it, or removing it
 ## License
 
 Apache-2.0. See LICENSE.
+
+## Secure Enclave age identity
+
+Settings can create a device-bound age P-256 tagged identity. The app and
+AutoFill extension use that identity for passage entries and can encrypt to
+both tagged P-256 and normal X25519 recipients. Each private key operation
+requires device-owner authentication. The persisted key representation is
+bound to the iPhone and cannot be used on a replacement device.
+
+The hardware identity replaces the active software identity for passage on
+that phone; existing software identities are retained but are not used while
+it is active. Entries must be encrypted to the phone's recipient before the
+phone can read them. Always include an independent recovery recipient in the
+store, and verify it can decrypt before relying on the device-bound identity.
+No migration of an existing store happens automatically. Sync may add the
+phone's public recipient to the root recipients file as described above.
+
+This feature uses the tagged-recipient APIs in AgePonyCore commit
+`788f596df6027ce4e629acd41d0f68ffea06074d` or a compatible later version.
+The gopass fixture in `Tests/SecureEnclaveAgeTests.swift` was created by
+version 1.17.4. Hardware and biometric behavior must also be checked on a
+real iPhone; the test identity uses a public dummy software key.
