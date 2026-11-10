@@ -3,8 +3,9 @@
 //
 // Identities live in an age identities file in the app-group container,
 // mirroring ~/.passage/identities: one AGE-SECRET-KEY-1... per line, blank
-// lines and # comments ignored. Passphrase-protected identity files and
-// plugin identities (age-plugin-yubikey) are later work — see the plan §7.
+// lines and # comments ignored. A device-bound P-256 tagged identity can be
+// selected instead. Plugin identities such as age-plugin-yubikey are not
+// supported by this backend.
 
 import AgePonyCore
 import Foundation

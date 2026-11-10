@@ -142,3 +142,11 @@ AutoFill uses its interactive path for this identity. Automatic background
 passkey-index rebuilds are skipped in this mode because they would require
 unattended biometric prompts; passkeys changed on another device may not
 appear in AutoFill until the index is updated by another supported workflow.
+
+The standalone age-engine tests run on every push. The full iOS build check
+is currently manual: the published NorseHorsePGPCore revision used by CI
+does not expose `ParsedPublicKeyInfo`, which the existing app imports. This
+pre-existing dependency mismatch prevents an end-to-end app build until a
+compatible public library version is supplied or the OpenPGP integration is
+adapted and verified. Passing the age-only check is not an iOS build or a
+hardware verification.

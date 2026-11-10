@@ -6,6 +6,7 @@ root="$(pwd)"
 work="$root/build/age-interop"
 mkdir -p "$work/Sources/AgeInterop" "$work/Tests/AgeInteropTests"
 awk '/^enum AgeIdentityStore / { exit } { print }' Sources/Shared/AgePonyEngine.swift > "$work/Sources/AgeInterop/AgePonyEngine.swift"
+cp Sources/Shared/EnclaveAgeIdentity.swift "$work/Sources/AgeInterop/EnclaveAgeIdentity.swift"
 cat > "$work/Sources/AgeInterop/FFIStub.swift" <<'SWIFT'
 import Foundation
 protocol CryptoBackend {
@@ -13,6 +14,10 @@ protocol CryptoBackend {
     func decrypt(ciphertext: Data) throws -> Data
 }
 enum CryptoError: Error { case NoUsableKey, EncryptionFailed, DecryptionFailed }
+enum StorePaths {
+    static let appGroupID = "test.passpony.interop"
+    static let container = FileManager.default.temporaryDirectory
+}
 SWIFT
 sed 's/@testable import PassPony/@testable import AgeInterop/' Tests/SecureEnclaveAgeTests.swift > "$work/Tests/AgeInteropTests/SecureEnclaveAgeTests.swift"
 cat > "$work/Package.swift" <<'SWIFT'
