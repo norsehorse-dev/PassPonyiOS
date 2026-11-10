@@ -23,6 +23,10 @@ jobs:
       - name: Build shared Rust framework
         env:
           PASSPONY_CORE: ${{ github.workspace }}/../PassPonyCore
+          # The simulator check exercises correctness, not optimized release
+          # performance. Avoid link-time optimization across three targets.
+          CARGO_PROFILE_RELEASE_LTO: "false"
+          CARGO_PROFILE_RELEASE_CODEGEN_UNITS: "16"
         run: bash scripts/build-core.sh
       - name: Generate Xcode project
         run: xcodegen generate
